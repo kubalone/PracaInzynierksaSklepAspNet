@@ -1,0 +1,13 @@
+﻿@model TechCom.App.Models.ProductListViewModel
+
+<ul id="mainMenu" >
+@foreach (var item in Model.Categories)
+{
+   <li>
+       <a href="@Url.Action("ProductList", "Product", new { categoryName = item.CategoryName })">
+           @item.CategoryName
+       </a>
+   </li>
+
+}
+</ul>

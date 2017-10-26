@@ -1,0 +1,19 @@
+﻿@model TechCom.App.Models.ProductListViewModel
+@using PagedList.Mvc;
+@using PagedList;
+ 
+@{
+    ViewBag.Title = "ProductList";
+}
+
+    @foreach (var item in Model.Products)
+    {
+
+       
+        @Html.Partial("_ProductList", item)
+
+
+    }
+
+
+    @Html.PagedListPager(Model.Products, page => Url.Action("ProductList", new {categoryName = Model.CurrentCategory,page }))
