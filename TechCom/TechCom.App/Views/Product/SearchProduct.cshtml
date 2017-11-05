@@ -1,0 +1,37 @@
+﻿@model TechCom.App.Models.ProductListViewModel
+@using PagedList.Mvc;
+@using PagedList;
+@using System.Linq
+
+    @using (Html.BeginForm("SearchProduct", "Product"))
+    { <p>
+            <input id="SearchString" name="SearchString" data-autocomplete-source="@Url.Action("SearchSuggestions","Product",new { categoryName = Model.CurrentCategory })" type="search" placeholder="czego szukasz?" value="@ViewBag.CurrentFilter"  />
+
+
+            <input type="submit" value="Szukaj" />
+        </p>
+    }
+
+@using (Html.BeginForm("SearchProduct", "Product", new {currentFilter = ViewBag.CurrentFilter }))
+{
+    @Html.LabelFor(m => m.OrderBy)
+    @Html.DropDownListFor(m => m.OrderBy, Model.OrderList, "-- Order By --",new { onchange = "this.form.submit();" })
+    
+}
+
+        @foreach (var item in Model.EnableCategories)
+        {
+            <a href="@Url.Action("ProductList","Product", new
+                { categoryName=item.Category.CategoryName,currentFilter = ViewBag.CurrentFilter})">
+                @item.Category.CategoryName </a>
+           <br />
+
+        }
+ 
+@foreach (var item in Model.Products)
+{
+
+    @Html.Partial("_ProductList", item)
+
+}
+@Html.PagedListPager(Model.Products, page => Url.Action("SearchProduct", new { orderBy = Model.OrderBy,page, currentFilter = ViewBag.CurrentFilter }))

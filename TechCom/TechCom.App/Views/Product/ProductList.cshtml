@@ -6,14 +6,39 @@
     ViewBag.Title = "ProductList";
 }
 
+    @using (Html.BeginForm())
+    { <p>
+    <input id="SearchString" name="SearchString" data-autocomplete-source="@Url.Action("SearchSuggestions","Product",new { categoryName = Model.CurrentCategory })" type="search"  placeholder="czego szukasz?" value="@ViewBag.CurrentFilter" />
+
+        
+        <input  type="submit" value="Szukaj" />
+    </p>
+    }
+@using (Html.BeginForm("ProductList","Product", new { categoryName = Model.CurrentCategory, currentFilter = ViewBag.CurrentFilter }))
+{
+    @Html.LabelFor(m => m.OrderBy)
+    @Html.DropDownListFor(m => m.OrderBy, Model.OrderList , "Najlepiej pasujące", new { onchange = "this.form.submit();" })
+    
+}
+
     @foreach (var item in Model.Products)
     {
 
-       
+      
+
         @Html.Partial("_ProductList", item)
 
 
     }
 
 
-    @Html.PagedListPager(Model.Products, page => Url.Action("ProductList", new {categoryName = Model.CurrentCategory,page }))
+    @Html.PagedListPager(Model.Products, page => Url.Action("ProductList", new { orderBy = Model.OrderBy,currentFilter = ViewBag.CurrentFilter, categoryName = Model.CurrentCategory, page }))
+
+    @section Scripts{
+        @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+
+       
+<script src="~/Scripts/Search/SearchSuggestions.js"></script>
+    
+
+         }

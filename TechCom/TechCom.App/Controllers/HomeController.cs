@@ -1,10 +1,12 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TechCom.App.Models;
 using TechCom.Model.Domain.EFRepository;
+using TechCom.Model.Domain.Entities;
 using TechCom.Model.Domain.Repository;
 
 namespace TechCom.App.Controllers
@@ -30,7 +32,9 @@ namespace TechCom.App.Controllers
             };
             return View(model);
         }
+     
+       
 
-      
+
     }
 }

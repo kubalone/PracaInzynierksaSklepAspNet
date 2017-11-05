@@ -53,7 +53,8 @@
                 new Product() {ProductID=4, CategoryID=4, Name="KAMERA SPORTOWA Go-Pro HD WODOODPORNA", Description="Wielofunkcyjna kamera. Umożliwia nagrywanie filmów podczas uprawiania sportów ekstremalnych lub używania jako rejestratora jazdy w samochodzie i na motorze.", Manufacturer="GoPro", Price=200, ProductWithDiscount=false,ImageProduct="gopro.jpg", DateAdded=DateTime.Now   },
                 new Product() {ProductID=5, CategoryID=5, Name="Klawiatura Genesis Thor 300 TKL Blue", Description="Thor 300 TKL powstało z myślą o nich. TKL to skrót od Tenkeyless Mechanical Keyboard, czyli mechanicznej klawiatury bez części numerycznej. To właśnie kompaktowe rozmiary czynią Thor 300 TKL idealnym urządzeniem do zabrania ze sobą.", Manufacturer="Genesis", Price=70, ProductWithDiscount=true,ImageProduct="Genesis.jpg", DateAdded=DateTime.Now  },
                 new Product() {ProductID=6, CategoryID=1, Name="Asus ZZ480", Description="Komputer stacjonarny Asus z systemem windows 10", Manufacturer="Asus", Price=8700, ProductWithDiscount=true,ImageProduct="AsusZ370.jpg", DateAdded=DateTime.Now   },
-                new Product() {ProductID=7, CategoryID=1, Name="Asus ZZ410", Description="Komputer stacjonarny Asus z systemem windows 8", Manufacturer="Asus", Price=8700, ProductWithDiscount=true,ImageProduct="AsusZ370.jpg", DateAdded=DateTime.Now   }
+                new Product() {ProductID=7, CategoryID=2, Name="Asus ZZ410", Description="Laptop Asus z systemem windows 8", Manufacturer="Asus", Price=8700, ProductWithDiscount=true,ImageProduct="AsusZ370.jpg", DateAdded=DateTime.Now   },
+                new Product() {ProductID=8, CategoryID=1, Name="HP 1940", Description="Komputer z systemem windows 8", Manufacturer="HP", Price=8700, ProductWithDiscount=true,ImageProduct="AsusZ370.jpg", DateAdded=DateTime.Now   }
 
             };
 
