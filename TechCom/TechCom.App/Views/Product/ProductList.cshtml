@@ -20,6 +20,9 @@
     @Html.DropDownListFor(m => m.OrderBy, Model.OrderList , "Najlepiej pasujące", new { onchange = "this.form.submit();" })
     
 }
+<a href="link">
+    @Html.MvcSiteMap().SiteMapPath()
+</a>
 
     @foreach (var item in Model.Products)
     {

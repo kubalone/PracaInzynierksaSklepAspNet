@@ -15,14 +15,15 @@ namespace TechCom.App.Models
         {
             OrderList = new List<SelectListItem>();
         }
-        public IEnumerable <Product> IdProduct { get; set; }//id produktu w autowyszukiwaniu
+        public List<CountOfProduct> CountOfProductsInCategory{ get; set; }//id produktu w autowyszukiwaniu
         [Display(Name = "Sortuj wg: ")]
         public int? OrderBy { get; set; }
         public IEnumerable<SelectListItem> OrderList { get; set; }
-
+        public string Name { get; set; }
+        public int Count { get; set; }
         public IEnumerable<Category> Categories{ get; set; }
         public IEnumerable<Product> EnableCategories { get; set; }//lista dostepnych kategorii dla danego produktu
-        public int CountProduct { get; set; }//zwraca liczbe produtktow w kat
+      
         public IEnumerable<Product> SaleProduct { get; set; }
         public Product DetailsProduct { get; set; }
         public IPagedList<Product>Products{ get; set; }

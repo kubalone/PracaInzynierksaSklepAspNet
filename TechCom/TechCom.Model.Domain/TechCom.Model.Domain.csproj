@@ -59,16 +59,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EFRepository\EFAppContext.cs" />
-    <Compile Include="EFRepository\AppInitializer.cs" />
     <Compile Include="EFRepository\AppRepository.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\OrderDetail.cs" />
     <Compile Include="Entities\ShoppingCart.cs" />
+    <Compile Include="Entities\ShoppingCartManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ICategories.cs" />
     <Compile Include="Repository\IProduct.cs" />
+    <Compile Include="Repository\IOrderDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\PagedList.css" />

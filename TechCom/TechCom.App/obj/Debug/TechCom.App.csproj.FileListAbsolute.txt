@@ -196,3 +196,7 @@ C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.A
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.csproj.GenerateResource.Cache
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.dll
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.pdb
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\MvcSiteMapProvider.dll
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\MvcSiteMapProvider.WebActivator.dll
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\MvcSiteMapProvider.xml
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\MvcSiteMapProvider.WebActivator.xml

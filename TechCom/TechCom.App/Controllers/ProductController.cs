@@ -44,7 +44,7 @@ namespace TechCom.App.Controllers
             int pageNumber = page ?? 1;
 
 
-            //var data = new SelectListGroup { Name = "Data" };  
+             
             var price = new SelectListGroup { Name = "Cena" };
             var products = productRepository.Products.Where(b => b.Category.CategoryName == categoryName).ToList();
            
@@ -116,12 +116,25 @@ namespace TechCom.App.Controllers
                 }
             }
             var categories = products.Where(s => s.CategoryID == s.Category.CategoryID).ToList();
-            
+            var countOfProductInCategory = categories.GroupBy(c=>c.Category.CategoryName).
+                Select(group=>new
+                                            {
+                                                Name = group.Key,
+                                                Count = group.Count(),
+
+                                            }).ToList();
+            List<CountOfProduct> ListOfProduct = new List<CountOfProduct>();
+            for (int i = 0; i < countOfProductInCategory.ToList().Count; i++)
+            {
+                ListOfProduct.Add(new CountOfProduct { Categoryname = countOfProductInCategory[i].Name, Count = countOfProductInCategory[i].Count });
+            }
+
             var vm = new ProductListViewModel()
             {
                 EnableCategories = categories,
                 OrderBy = orderBy,
                 Products = products.ToPagedList(pageNumber, pageSize),
+                CountOfProductsInCategory=ListOfProduct,
                 OrderList = new List<SelectListItem>
                 {
                     new SelectListItem {Text="Malejąco",Value="1",Group=price},

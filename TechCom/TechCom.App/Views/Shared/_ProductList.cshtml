@@ -7,7 +7,6 @@
             </h3>
         </a>
         <span class="pull-right label label-primary">@Model.Price.ToString("c")</span>
-
         @using (Html.BeginForm("AddToShoppingCart", "ShoppingCart"))
         {
             <div class="pull-right">
@@ -16,6 +15,7 @@
                 <input type="submit" class="btn btn-success" value="Dodaj do koszyka" />
             </div>
         }
+       
         <span class="lead">@Model.Description</span>
 
     </div>

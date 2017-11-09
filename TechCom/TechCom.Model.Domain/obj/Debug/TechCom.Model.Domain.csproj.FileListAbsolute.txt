@@ -12,3 +12,17 @@ C:\Users\Kubalone\Desktop\TechCom\TechCom.Model.Domain\bin\Debug\PagedList.dll
 C:\Users\Kubalone\Desktop\TechCom\TechCom.Model.Domain\bin\Debug\PagedList.Mvc.dll
 C:\Users\Kubalone\Desktop\TechCom\TechCom.Model.Domain\bin\Debug\PagedList.xml
 C:\Users\Kubalone\Desktop\TechCom\TechCom.Model.Domain\bin\Debug\PagedList.Mvc.xml
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Model.Domain\bin\Debug\TechCom.Model.Domain.dll.config
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Model.Domain\bin\Debug\TechCom.Model.Domain.dll
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Model.Domain\bin\Debug\TechCom.Model.Domain.pdb
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Model.Domain\bin\Debug\EntityFramework.dll
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Model.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Model.Domain\bin\Debug\PagedList.dll
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Model.Domain\bin\Debug\PagedList.Mvc.dll
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Model.Domain\bin\Debug\EntityFramework.xml
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Model.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Model.Domain\bin\Debug\PagedList.xml
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Model.Domain\bin\Debug\PagedList.Mvc.xml
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Model.Domain\obj\Debug\TechCom.Model.Domain.csprojResolveAssemblyReference.cache
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Model.Domain\obj\Debug\TechCom.Model.Domain.dll
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Model.Domain\obj\Debug\TechCom.Model.Domain.pdb

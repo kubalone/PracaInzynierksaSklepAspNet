@@ -1,11 +1,20 @@
 ﻿@model TechCom.App.Models.ProductListViewModel
 
-
+<a href="link">
+    @Html.MvcSiteMap().SiteMapPath()
+</a>
 <h3>
 
-    @Model.DetailsProduct.Name -@Model.DetailsProduct.Manufacturer
+    @Model.DetailsProduct.Name -@Model.DetailsProduct.Manufacturer 
 </h3>
-
+@*@using (Html.BeginForm("AddToShoppingCart", "ShoppingCart", new { id = Model.DetailsProduct.ProductID, returnUrl = Request.Url.PathAndQuery }))
+{
+    <div class="pull-right">
+   
+      
+        <input type="submit" class="btn btn-success" value="Dodaj do koszyka" />
+    </div>
+}*@
 <div>
     @string.Format("{0:0.##}", Model.DetailsProduct.Price)<span>PLN</span> 
 </div>

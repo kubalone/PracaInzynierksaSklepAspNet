@@ -19,11 +19,11 @@
     
 }
 
-        @foreach (var item in Model.EnableCategories)
+        @foreach (var item in Model.CountOfProductsInCategory)
         {
             <a href="@Url.Action("ProductList","Product", new
-                { categoryName=item.Category.CategoryName,currentFilter = ViewBag.CurrentFilter})">
-                @item.Category.CategoryName </a>
+                { categoryName=item.Categoryname,currentFilter = ViewBag.CurrentFilter})">
+                @item.Categoryname - @item.Count </a>
            <br />
 
         }

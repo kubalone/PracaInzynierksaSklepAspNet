@@ -19,6 +19,14 @@ namespace TechCom.Model.Domain.EFRepository
             }
         }
 
+        //public IEnumerable<OrderDetail> OrderDetails
+        //{
+        //    get
+        //    {
+        //        return context.ShippingDetails;
+        //    }
+        //}
+
         public IEnumerable<Product> Products
         {
             get

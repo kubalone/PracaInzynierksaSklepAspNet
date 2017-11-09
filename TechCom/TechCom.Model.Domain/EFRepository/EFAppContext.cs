@@ -21,7 +21,7 @@ namespace TechCom.Model.Domain.EFRepository
         //}
         public  DbSet<Product> Products { get; set; }
         public  DbSet<Category> Categories { get; set; }
-        public  DbSet<OrderDetail> ShippingDetails { get; set; }
+        public virtual DbSet<OrderDetail> ShippingDetails { get; set; }//skorzystać do stworzenia zamówienia
 
         public DbSet<Order> Orders { get; set; }
 
