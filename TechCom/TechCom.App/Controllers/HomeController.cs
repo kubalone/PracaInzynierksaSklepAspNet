@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TechCom.App.Models;
-using TechCom.Model.Domain.EFRepository;
+
 using TechCom.Model.Domain.Entities;
 using TechCom.Model.Domain.Repository;
 

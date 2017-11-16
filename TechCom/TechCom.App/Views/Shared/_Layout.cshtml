@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Sklep TechCom</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @System.Web.Optimization.Styles.Render("~/Content/themes/base/css")
@@ -19,12 +19,13 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("TechCom", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+              
             </div>
+            
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                
-                </ul>
+                <a href="@Url.Action("Index","ShoppingCart", new { returnUrl = Request.Url.PathAndQuery })">
+                    @Html.Action("Cart", "ShoppingCart")
+                </a>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

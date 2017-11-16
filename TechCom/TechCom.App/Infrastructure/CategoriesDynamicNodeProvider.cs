@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TechCom.Model.Domain.EFRepository;
+using TechCom.App.DAL;
 using TechCom.Model.Domain.Entities;
 using TechCom.Model.Domain.Repository;
 
@@ -11,7 +11,7 @@ namespace TechCom.App.Infrastructure
 {
     public class CategoriesDynamicNodeProvider : DynamicNodeProviderBase
     {
-        EFAppContext db = new EFAppContext();
+        ApplicationDbContext db = new ApplicationDbContext();
         public override IEnumerable<DynamicNode> GetDynamicNodeCollection(ISiteMapNode nodeOne)
         {
             var returnValue = new List<DynamicNode>();

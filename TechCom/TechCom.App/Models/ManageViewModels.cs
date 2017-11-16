@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using TechCom.Model.Domain.Entities;
 
 namespace TechCom.App.Models
 {
@@ -12,6 +13,8 @@ namespace TechCom.App.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public UserData UserData{ get; set; }
+
     }
 
     public class ManageLoginsViewModel

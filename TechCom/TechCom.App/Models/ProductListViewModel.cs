@@ -28,7 +28,9 @@ namespace TechCom.App.Models
         public Product DetailsProduct { get; set; }
         public IPagedList<Product>Products{ get; set; }
         public string CurrentCategory{ get; set; }
-       
+        
+        public int CountOfProduct { get; set; }//wybieranie ilości produktów podczas zakupu
+
 
     }
 }

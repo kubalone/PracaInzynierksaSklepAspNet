@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using TechCom.App.Models;
+using TechCom.App.DAL;
 
 namespace TechCom.App
 {

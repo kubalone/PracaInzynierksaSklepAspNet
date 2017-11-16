@@ -7,14 +7,21 @@
 
     @Model.DetailsProduct.Name -@Model.DetailsProduct.Manufacturer 
 </h3>
-@*@using (Html.BeginForm("AddToShoppingCart", "ShoppingCart", new { id = Model.DetailsProduct.ProductID, returnUrl = Request.Url.PathAndQuery }))
+@*<a href="@Url.Action("AddToShoppingCart","ShoppingCart", new {id=Model.DetailsProduct.ProductID})">
+    <input type="submit" class="btn btn-success" value="Dodaj do koszyka" />
+</a>*@
+@using (Html.BeginForm("AddToShoppingCart", "ShoppingCart", FormMethod.Post))
 {
-    <div class="pull-right">
-   
-      
-        <input type="submit" class="btn btn-success" value="Dodaj do koszyka" />
-    </div>
-}*@
+    @Html.Hidden("id", Model.DetailsProduct.ProductID)
+    @Html.TextBox("quantity",Model.CountOfProduct=1,  new { type = "number", min = "1", max = "12"})
+    
+    
+    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+    
+
+    
+    <input type="submit" class="btn btn-success" value="Dodaj do koszyka" />
+}
 <div>
     @string.Format("{0:0.##}", Model.DetailsProduct.Price)<span>PLN</span> 
 </div>

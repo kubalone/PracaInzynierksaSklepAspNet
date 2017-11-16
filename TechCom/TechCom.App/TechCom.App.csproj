@@ -233,12 +233,15 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="DAL\ApplicationDbContext.cs" />
+    <Compile Include="DAL\ApplicationInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Infrastructure\ProductDetailsDynamicNodeProvider.cs" />
     <Compile Include="Infrastructure\CategoriesDynamicNodeProvider.cs" />
+    <Compile Include="Infrastructure\Binders\SessionManager.cs" />
     <Compile Include="Migrations\201710191247183_structure.cs" />
     <Compile Include="Migrations\201710191247183_structure.Designer.cs">
       <DependentUpon>201710191247183_structure.cs</DependentUpon>
@@ -251,14 +254,26 @@
     <Compile Include="Migrations\201710201041237_dodanieDatyDodaniaProduktu.Designer.cs">
       <DependentUpon>201710201041237_dodanieDatyDodaniaProduktu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711141530126_identity.cs" />
+    <Compile Include="Migrations\201711141530126_identity.Designer.cs">
+      <DependentUpon>201711141530126_identity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711151233289_DodanieNowychRekordow.cs" />
+    <Compile Include="Migrations\201711151233289_DodanieNowychRekordow.Designer.cs">
+      <DependentUpon>201711151233289_DodanieNowychRekordow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CountOfProduct.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\ProductListViewModel.cs" />
     <Compile Include="Models\ShoppingCartViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AppRepository.cs" />
+    <Compile Include="Services\ShoppingCartManager.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -387,6 +402,9 @@
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\Cart.cshtml" />
+    <Content Include="Views\ShoppingCart\MakeAnOrder.cshtml" />
+    <Content Include="Views\ShoppingCart\OrderConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -414,6 +432,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710201041237_dodanieDatyDodaniaProduktu.resx">
       <DependentUpon>201710201041237_dodanieDatyDodaniaProduktu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711141530126_identity.resx">
+      <DependentUpon>201711141530126_identity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711151233289_DodanieNowychRekordow.resx">
+      <DependentUpon>201711151233289_DodanieNowychRekordow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

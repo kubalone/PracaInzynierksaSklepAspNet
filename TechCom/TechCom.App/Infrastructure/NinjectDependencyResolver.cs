@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TechCom.Model.Domain.EFRepository;
+using TechCom.App.Repository;
 using TechCom.Model.Domain.Repository;
 
 namespace TechCom.App.Infrastructure

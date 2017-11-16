@@ -9,6 +9,6 @@ namespace TechCom.Model.Domain.Repository
 {
    public interface IOrderDetails
     {
-        IEnumerable<OrderDetail> OrderDetails { get; }
+     //   IEnumerable<OrderDetail> OrderDetails { get; }
     }
 }

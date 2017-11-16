@@ -200,3 +200,5 @@ C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.A
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\MvcSiteMapProvider.WebActivator.dll
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\MvcSiteMapProvider.xml
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\MvcSiteMapProvider.WebActivator.xml
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.Migrations.identity.resources
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.Migrations.DodanieNowychRekordow.resources

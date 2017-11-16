@@ -16,15 +16,24 @@
         </tr>
     </thead>
     <tbody>
+      
         @foreach (var line in Model.ShoppingCartManager.ContentOfCart)
         {
+         
             <tr>
                 <td class="text-center">@line.Quantity</td>
                 <td class="text-left">@line.Product.Name</td>
                 <td class="text-right">@line.Product.Price.ToString("c")</td>
                 <td class="text-right">@((line.Quantity * line.Product.Price).ToString("c"))</td>
+                <td><a href="@Url.Action("RemoveFromShoppingCart","ShoppingCart", new {id=line.Product.ProductID,returnUrl=Request.Url.PathAndQuery})">
+                    <input type="submit" class="btn btn-danger" value="Usuń" />
+                </a>
+                </td>
+            
             </tr>
+           
         }
+
     </tbody>
     <tfoot>
         <tr>
@@ -36,5 +45,6 @@
     </tfoot>
 </table>
 <div class="text-center">
-    <a class="btn btn-primary" href="@Model.ReturnUrl">Kontynuuj zakupy</a>
+    <a class="btn btn-primary" href="@Url.Content("~/")">Kontynuuj zakupy</a>
+    @Html.ActionLink("Realizuj zamówienie", "MakeAnOrder",null,new { @class="btn btn-primary" })
 </div>

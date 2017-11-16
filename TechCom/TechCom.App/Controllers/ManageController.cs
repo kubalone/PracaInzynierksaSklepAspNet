@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TechCom.App.Models;
+using TechCom.Model.Domain.Entities;
 
 namespace TechCom.App.Controllers
 {
@@ -54,6 +55,7 @@ namespace TechCom.App.Controllers
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
+            var name = User.Identity.Name;
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
@@ -64,17 +66,47 @@ namespace TechCom.App.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            if (User.IsInRole("Admin"))
+                ViewBag.UserIsAdmin = true;
+            else
+                ViewBag.UserIsAdmin = false;
+            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            if (user == null)
+            {
+                return View("Error");
+            }
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                UserData = user.UserData
             };
             return View(model);
         }
+       [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangeProfile([Bind(Prefix = "UserData")]UserData userData)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                user.UserData = userData;
+                var result = await UserManager.UpdateAsync(user);
 
+                AddErrors(result);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                TempData["ViewData"] = ViewData;
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
+        }
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]

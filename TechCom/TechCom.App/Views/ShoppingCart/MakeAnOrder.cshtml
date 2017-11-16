@@ -1,0 +1,56 @@
+﻿@model TechCom.Model.Domain.Entities.OrderDetail
+@{
+    ViewBag.Title = "MakeAnOrder";
+}
+@*DODAC VALIDATORY W KLASIE ORDERDETAIL*@
+
+@using (@Html.BeginForm("MakeAnOrder", "ShoppingCart"))
+{
+    <table id="checkout-address-table">
+        <tr>
+            <td>@Html.LabelFor(o => o.Name, "Name:")</td>
+            <td>@Html.TextBoxFor(o => o.Name)</td>
+            @*<td>@Html.ValidationMessageFor(o => o.Name)</td>*@
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(o => o.Surname, "Surname")</td>
+            <td>@Html.TextBoxFor(o => o.Surname)</td>
+            @*<td>@Html.ValidationMessageFor(o => o.Surname)</td>*@
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(o => o.Adress, "Adress")</td>
+            <td>@Html.TextBoxFor(o => o.Adress)</td>
+            @*<td>@Html.ValidationMessageFor(o => o.Adress)</td>*@
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(o => o.City, "City")</td>
+            <td>@Html.TextBoxFor(o => o.City)</td>
+            @*<td>@Html.ValidationMessageFor(o => o.City)</td>*@
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(o => o.ZipCode, "ZipCode")</td>
+            <td>@Html.TextBoxFor(o => o.ZipCode)</td>
+            @*<td>@Html.ValidationMessageFor(o => o.ZipCode)</td>*@
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(o => o.Phone, "Phone number")</td>
+            <td>@Html.TextBoxFor(o => o.Phone)</td>
+            @*<td>@Html.ValidationMessageFor(o => o.Phone)</td>*@
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(o => o.Email, "Email adress")</td>
+            <td>@Html.TextBoxFor(o => o.Email)</td>
+            @*<td>@Html.ValidationMessageFor(o => o.Email)</td>*@
+        </tr>
+        <tr>
+            <td><label>Comments</label></td>
+            <td>
+                <textarea cols="30" rows="2">@Model.Comments</textarea>
+            </td>
+        </tr>
+    </table>
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit" value="Make an order" />
+    </div>
+
+}

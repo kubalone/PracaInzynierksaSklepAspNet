@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using TechCom.App.DAL;
 using TechCom.Model.Domain.Entities;
 using TechCom.Model.Domain.Repository;
 
-namespace TechCom.Model.Domain.EFRepository
+namespace TechCom.App.Repository
 {
     public class AppRepository : ICategories, IProduct
     {
-        private EFAppContext context = new EFAppContext();
+        private ApplicationDbContext context = new ApplicationDbContext();
         public IEnumerable<Category> Categories
         {
             get
@@ -19,14 +19,7 @@ namespace TechCom.Model.Domain.EFRepository
             }
         }
 
-        //public IEnumerable<OrderDetail> OrderDetails
-        //{
-        //    get
-        //    {
-        //        return context.ShippingDetails;
-        //    }
-        //}
-
+    
         public IEnumerable<Product> Products
         {
             get

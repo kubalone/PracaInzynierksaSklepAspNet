@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TechCom.Model.Domain.EFRepository;
+using TechCom.App.DAL;
+using TechCom.Model.Domain.Entities;
 using TechCom.Model.Domain.Repository;
 
-namespace TechCom.Model.Domain.Entities
+namespace TechCom.App.Services
 {
     public class ShoppingCartManager
         
     {
-        private EFAppContext db; 
-        public ShoppingCartManager(EFAppContext db)
-        {
-            this.db = db;
-        }
+        private ApplicationDbContext db=new ApplicationDbContext();
+        //private ISessionManager session;
+        //public ShoppingCartManager(ISessionManager session,EFAppContext db)
+        //{
+        //    this.session = session;
+        //    this.db = db;
+
+        //}
         private List<ShoppingCart> productCollection = new List<ShoppingCart>();
 
         public void AddProducts(Product product, int quantity)
@@ -46,12 +50,14 @@ namespace TechCom.Model.Domain.Entities
         {
            get{ return productCollection; }
         }
-        public OrderDetail CreateAnOrder(OrderDetail newOrder,string userID)//przeanalizować połaączenie z kontem usera
+        public OrderDetail CreateAnOrder(OrderDetail newOrder, string userID)//przeanalizować połaączenie z kontem usera
         {
             var shoppingCart = ContentOfCart;
             newOrder.DateOfTheOrder = DateTime.Now;
+            newOrder.UserID = userID;
+            newOrder.ValueOfOrder = WorthOfProduct();
             db.ShippingDetails.Add(newOrder);
-            if (newOrder.Orders==null)
+            if (newOrder.Orders == null)
             {
                 newOrder.Orders = new List<Order>();
             }
@@ -62,10 +68,10 @@ namespace TechCom.Model.Domain.Entities
                 {
                     ProductID = item.Product.ProductID,
                     Quantity = item.Quantity,
-                    Price = item.Quantity
+                    Price = item.Product.Price
 
                 };
-                worthOfCard += item.Quantity * item.Product.Price;
+                worthOfCard += (item.Quantity * item.Product.Price);
                 newOrder.Orders.Add(order);
             }
             newOrder.ValueOfOrder = worthOfCard;

@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using TechCom.App.Models;
+using TechCom.App.DAL;
 
 namespace TechCom.App
 {
