@@ -1,0 +1,70 @@
+﻿@model TechCom.Model.Domain.ViewModels.EditProductVieModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container" id="editContainer">
+    <div class="panel-body ">
+
+        @using (@Html.BeginForm("Edit", "ProductManagment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+            @*<div class="error-summary-centered">
+                    @Html.ValidationSummary()
+                </div>*@
+            @Html.HiddenFor(o => o.Product.ProductID)
+            @Html.HiddenFor(o => o.Product.DateAdded)
+            @Html.HiddenFor(o => o.Product.ImageProduct)
+
+            <div class="form-group row">
+                <div class="col-xs-5">
+                    @Html.Label("Nazwa:")
+                    @Html.TextBoxFor(o => o.Product.Name, new { @class = "form-control " })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-xs-5">
+                    @Html.Label("Producent:")
+                    @Html.TextBoxFor(o => o.Product.Manufacturer, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-xs-6">
+                    @Html.Label("Opis:")
+                    @Html.TextAreaFor(o => o.Product.Description, new { @class = "form-control", rows = 5 })
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-xs-3">
+                    @Html.Label("Kategoria:")
+                    @Html.DropDownListFor(m => m.Product.CategoryID, new SelectList(Model.Categories, "CategoryID", "CategoryName", Model.Categories.First().CategoryID), new { @class = "form-control" })
+                </div>
+                <div class="col-xs-3">
+                    @Html.Label("Cena:")
+                    @Html.TextBoxFor(o => o.Product.Price, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group ">
+
+                @Html.Label("Pordukt ze zniżką:")<br />
+                @Html.CheckBoxFor(o => o.Product.ProductWithDiscount, new { @class = "custom-control-input" })
+            </div>
+
+            if (ViewBag.EditMode == null || !ViewBag.EditMode)
+            {
+                <label class="custom-file">
+                    <input type="file" name="file" class="custom-file-input">
+                    <span class="custom-file-control"></span>
+                </label>
+            }
+            <br /><br />
+            <input type="submit" value="Zapisz" class="btn btn-primary" />
+        }
+    </div>
+</div>
+
+

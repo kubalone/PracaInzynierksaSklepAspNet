@@ -17,6 +17,7 @@
         protected override void Seed(ApplicationDbContext context)
         {
             ApplicationInitializer.SeedAppData(context);
+            ApplicationInitializer.SeedUserData(context);
         }
     }
 }

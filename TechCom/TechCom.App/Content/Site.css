@@ -20,5 +20,22 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 100%
+}
+#btnEdit{
+    margin-right:9%;
+}
+#h2ProductManagment{
+    margin-bottom:2%;
+}
+#formProductManagment{
+    margin-bottom:2%;
+}
+#addProductManagment{
+    margin-bottom:2%;
+}
+#editContainer{
+  
+  margin-left: auto;
+  margin-right: auto;
 }
