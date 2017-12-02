@@ -13,7 +13,6 @@ namespace TechCom.App.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
-        public ChangePasswordViewModel ChangePasswordViewModel { get; set; }
         public UserData UserData{ get; set; }
 
     }

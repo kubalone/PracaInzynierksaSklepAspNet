@@ -8,7 +8,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using TechCom.Model.Domain.Entities;
 using TechCom.App.Migrations;
-using TechCom.App.Models;
 
 namespace TechCom.App.DAL
 {
@@ -58,38 +57,6 @@ namespace TechCom.App.DAL
             exampleProducts.ForEach(e => context.Products.AddOrUpdate(e));
 
             context.SaveChanges();
-        }
-        public static void SeedUserData(ApplicationDbContext context)
-        {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-
-            const string userName = "admin@techCom.pl";
-            const string password = "Qwer11!";
-            const string roleName = "Admin";
-
-            var user = userManager.FindByName(userName);
-            if (user == null)
-            {
-                user = new ApplicationUser
-                {
-                    UserName = userName,
-                    Email = userName,
-                    UserData = new UserData()
-                };
-                var result = userManager.Create(user, password);
-            }
-            var role = roleManager.FindByName(roleName);
-            if (role==null)
-            {
-                role = new IdentityRole(roleName);
-                var roleResult = roleManager.Create(role);
-            }
-            var rolesForUser = userManager.GetRoles(user.Id);
-            if (!rolesForUser.Contains(role.Name))
-            {
-                var result = userManager.AddToRole(user.Id, role.Name);
-            }
         }
     }
 }

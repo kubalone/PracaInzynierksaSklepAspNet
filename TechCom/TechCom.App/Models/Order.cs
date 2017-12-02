@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TechCom.Model.Domain.Entities;
 
-namespace TechCom.App.Models
+namespace TechCom.Model.Domain.Entities
 {
    public class Order
     {

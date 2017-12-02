@@ -1,5 +1,5 @@
 ﻿@model TechCom.App.Models.ProductListViewModel
-@using TechCom.App.Infrastructure.Helpers
+
 <a href="link">
     @Html.MvcSiteMap().SiteMapPath()
 </a>
@@ -25,12 +25,8 @@
 <div>
     @string.Format("{0:0.##}", Model.DetailsProduct.Price)<span>PLN</span> 
 </div>
-<div>
-    <img src="@Url.ImageHelper(Model.DetailsProduct.ImageProduct)" />
-</div>
 <div >
     @Model.DetailsProduct.Description
 </div>
-<a href="@Url.Action("Edit", "ProductManagment", new { idProduct = Model.DetailsProduct.ProductID })" style="margin-top: 20px; font-weight: bold; display: block;">Edytuj</a>
 
 

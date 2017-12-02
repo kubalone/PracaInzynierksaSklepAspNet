@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TechCom.App.DAL;
-using TechCom.App.Models;
 using TechCom.Model.Domain.Entities;
 using TechCom.Model.Domain.Repository;
 
@@ -57,7 +56,6 @@ namespace TechCom.App.Services
             newOrder.DateOfTheOrder = DateTime.Now;
             newOrder.UserID = userID;
             newOrder.ValueOfOrder = WorthOfProduct();
-            
             db.ShippingDetails.Add(newOrder);
             if (newOrder.Orders == null)
             {

@@ -232,15 +232,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\ProductManagmentController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="DAL\ApplicationInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Infrastructure\Helpers\ImageConfig.cs" />
-    <Compile Include="Infrastructure\Helpers\UrlHelpers.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Infrastructure\ProductDetailsDynamicNodeProvider.cs" />
     <Compile Include="Infrastructure\CategoriesDynamicNodeProvider.cs" />
@@ -272,7 +269,6 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
-    <Compile Include="Models\OrderListViewModel.cs" />
     <Compile Include="Models\ProductListViewModel.cs" />
     <Compile Include="Models\ShoppingCartViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -409,15 +405,9 @@
     <Content Include="Views\ShoppingCart\Cart.cshtml" />
     <Content Include="Views\ShoppingCart\MakeAnOrder.cshtml" />
     <Content Include="Views\ShoppingCart\OrderConfirmation.cshtml" />
-    <Content Include="Views\Manage\ListOfOrder.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
-    <Content Include="Views\Shared\_AdminLayout.cshtml" />
-    <Content Include="Views\ProductManagment\Index.cshtml" />
-    <Content Include="Views\ProductManagment\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Picture\" />
     <Folder Include="Models\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
