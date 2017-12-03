@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TechCom.App.Models;
 
-namespace TechCom.Model.Domain.Entities
+namespace TechCom.App.Models
 {
    public class OrderDetail
     {

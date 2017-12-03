@@ -8,6 +8,10 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TechCom.App.Models;
 using TechCom.Model.Domain.Entities;
+using System.Collections.Generic;
+using TechCom.App.DAL;
+using System.Data.Entity;
+using PagedList;
 
 namespace TechCom.App.Controllers
 {
@@ -16,16 +20,17 @@ namespace TechCom.App.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db=new ApplicationDbContext();
+        //public ManageController(ApplicationDbContext db)
+        //{
+        //    this.db = db;
+        //}
 
-        public ManageController()
-        {
-        }
-
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
+        //public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        //{
+        //    UserManager = userManager;
+        //    SignInManager = signInManager;
+        //}
 
         public ApplicationSignInManager SignInManager
         {
@@ -260,7 +265,7 @@ namespace TechCom.App.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return RedirectToAction("Index");
             }
             var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
             if (result.Succeeded)
@@ -273,7 +278,7 @@ namespace TechCom.App.Controllers
                 return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
             }
             AddErrors(result);
-            return View(model);
+              return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
         }
 
         //
@@ -365,7 +370,84 @@ namespace TechCom.App.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        public ActionResult ListOfOrder(int? orderBy, string currentFilter,string searchString, int? page)
+        {
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+            int pageSize = 1;
+            int pageNumber = page ?? 1;
+            var user = User.Identity.Name;
+            bool isAdmin = User.IsInRole("Admin");
+            ViewBag.UserIsAdmin = isAdmin;
+            IEnumerable<OrderDetail> orderOfUser;
+            if (isAdmin)
+            {
+
+                orderOfUser = db.ShippingDetails.Include("Orders").OrderByDescending(p => p.DateOfTheOrder).ToList();
+            }
+            else
+            {
+                var userID = User.Identity.GetUserId();
+                orderOfUser = db.ShippingDetails.Where(p => p.UserID == userID).Include("Orders").OrderByDescending(p => p.DateOfTheOrder).ToList();
+            }
+           
+            switch (orderBy)
+            {
+                case 1:
+                    orderOfUser = db.ShippingDetails.Where(p=>p.OrderStatus==OrderStatus.New).OrderByDescending(p => p.DateOfTheOrder).ToList();
+                    break;
+                case 2:
+                    orderOfUser = db.ShippingDetails.Where(p => p.OrderStatus == OrderStatus.Completed).OrderByDescending(p => p.DateOfTheOrder).ToList();
+                    break;
+            }
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                orderOfUser = orderOfUser.Where(s => s.Name.Contains(searchString)|| s.Surname.Contains(searchString) || s.User.UserName.Contains(searchString)).ToList(); 
+                switch (orderBy)
+                {
+                    case 1:
+                        orderOfUser = db.ShippingDetails.Where(s => s.OrderStatus == OrderStatus.New && s.Name.Contains(searchString) || s.Surname.Contains(searchString) || s.User.UserName.Contains(searchString)).OrderByDescending(p => p.DateOfTheOrder).ToList();
+                        break;
+                    case 2:
+                        orderOfUser = db.ShippingDetails.Where(s => s.OrderStatus == OrderStatus.Completed && s.Name.Contains(searchString) || s.Surname.Contains(searchString) || s.User.UserName.Contains(searchString)).OrderByDescending(p => p.DateOfTheOrder).OrderByDescending(p => p.DateOfTheOrder).ToList();
+                        break;
+                }
+            }
+            var orderList = new OrderListViewModel()
+            {
+                OrderDetail = orderOfUser.ToPagedList(pageNumber, pageSize),
+                OrderUserList= new List<SelectListItem>
+                {
+                    new SelectListItem {Text="Nowe",Value="1"},
+                    new SelectListItem {Text="Zrealizowane",Value="2" }
+                },
+            OrderBy = orderBy
+            };
+           
+
+            return View(orderList);
+        }
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public RedirectToRouteResult ChangeOrderStatus(OrderDetail item, string returnUrl)
+        {
+            OrderDetail changeOrderStatus = db.ShippingDetails.Find(item.ShippingID);
+            changeOrderStatus.OrderStatus = item.OrderStatus;
+            db.SaveChanges();
+            return RedirectToAction("ListOfOrder", new { returnUrl });
+           
+            //return item.OrderStatus;
+        }
+        
+
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
