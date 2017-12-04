@@ -6,6 +6,7 @@
 
 @using (@Html.BeginForm("MakeAnOrder", "ShoppingCart"))
 {
+    @Html.HiddenFor(o => o.Email)
     <table id="checkout-address-table">
         <tr>
             <td>@Html.LabelFor(o => o.Name, "Name:")</td>
@@ -37,11 +38,11 @@
             <td>@Html.TextBoxFor(o => o.Phone)</td>
             @*<td>@Html.ValidationMessageFor(o => o.Phone)</td>*@
         </tr>
-        <tr>
+        @*<tr>
             <td>@Html.LabelFor(o => o.Email, "Email adress")</td>
             <td>@Html.TextBoxFor(o => o.Email)</td>
-            @*<td>@Html.ValidationMessageFor(o => o.Email)</td>*@
-        </tr>
+            
+        </tr>*@
         <tr>
             <td><label>Comments</label></td>
             <td>

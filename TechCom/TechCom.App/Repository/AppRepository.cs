@@ -14,7 +14,7 @@ using TechCom.Model.Domain.ViewModels;
 
 namespace TechCom.App.Repository
 {
-    public class AppRepository : Controller, ICategories, IProduct
+    public class AppRepository : Controller, ICategories, IProduct, IOrderDetails
     {
         private ApplicationDbContext context = new ApplicationDbContext();
         public IEnumerable<Category> Categories
@@ -33,6 +33,16 @@ namespace TechCom.App.Repository
                 return context.Products;
             }
         }
+
+        public DbSet<OrderDetail> Orders
+        {
+            get
+            {
+                return context.ShippingDetails;
+            }
+        }
+
+
         public void EditProduct(EditProductVieModel editProduct)
         {
             context.Entry(editProduct.Product).State = EntityState.Modified;

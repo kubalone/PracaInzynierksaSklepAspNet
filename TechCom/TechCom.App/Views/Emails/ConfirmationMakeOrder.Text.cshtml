@@ -1,0 +1,15 @@
+﻿
+@model TechCom.App.ViewModels.ConfirmationMakeOrder
+    Content-Type: text/plain; charset=utf-8
+
+Dziękujemy za złożone zamówienie.
+Zamówiłeś:
+@{ 
+    IEnumerable<TechCom.App.Models.Order> order = Model.Order;
+
+    for (int i = 0; i < order.Count(); i++)
+    {
+        @order.ElementAt(i).product.Name
+    }
+
+}

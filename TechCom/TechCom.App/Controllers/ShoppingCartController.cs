@@ -6,8 +6,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using TechCom.App.DAL;
 using TechCom.App.Models;
+using TechCom.App.Repository;
 using TechCom.App.Services;
+using TechCom.App.ViewModels;
 using TechCom.Model.Domain.Entities;
 using TechCom.Model.Domain.Repository;
 
@@ -17,11 +20,16 @@ namespace TechCom.App.Controllers
     {
         // GET: ShoppingCart
         private IProduct productRepository;
-       
-        //private EFAppContext db=;
-        public ShoppingCartController(IProduct productRepository, ShoppingCartManager cart)
+        private IMail emailRepository;
+        private IOrderDetails orderRepository;
+        private ApplicationDbContext db;
+
+        public ShoppingCartController(IProduct productRepository, IMail emailRepository, IOrderDetails orderRepository, ApplicationDbContext db)
         {
             this.productRepository = productRepository;
+            this.emailRepository = emailRepository;
+           this.orderRepository = orderRepository;
+            this.db = db;
            // this.cart = cart;
         }
         public ViewResult Index(string returnUrl, ShoppingCartManager shoppingCartManager)
@@ -66,7 +74,7 @@ namespace TechCom.App.Controllers
                     Adress = user.UserData.Adress,
                     City = user.UserData.City,
                     ZipCode = user.UserData.ZipCode,
-                    Email = user.UserData.Email,
+                    Email = user.Email,
                     Phone = user.UserData.Phone
                 };
                 return View(oderDetails);
@@ -85,9 +93,13 @@ namespace TechCom.App.Controllers
                 var newOrder = cart.CreateAnOrder(orderDetails, userID);
 
                 var user = await UserManager.FindByIdAsync(userID);
-                TryUpdateModel(user.UserData);//aktualizacja danych w przypadku aktualizacji danych wpr przez Usera
+                TryUpdateModel(user.UserData);
                 await UserManager.UpdateAsync(user);
                 cart.Clear();
+
+                var order=orderRepository.Orders.Include("Orders").Include("Orders.Product").SingleOrDefault(p => p.ShippingID == newOrder.ShippingID);
+                emailRepository.SendConfirmationOrder(order);
+           
                 return RedirectToAction ("OrderConfirmation");
             }
             else
@@ -119,6 +131,8 @@ namespace TechCom.App.Controllers
                 _userManager = value;
             }
         }
+       
+        
 
     }
 }

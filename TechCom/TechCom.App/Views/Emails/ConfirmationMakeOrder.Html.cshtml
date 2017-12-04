@@ -1,0 +1,25 @@
+﻿
+@model TechCom.App.ViewModels.ConfirmationMakeOrder
+    Content-Type: text/html; charset=utf-8
+
+<html>
+<body>
+   <p>Dziękujemy za złożone zamówienie.</p> 
+    <p>Zamówiłeś: </p>
+    @{
+        IEnumerable<TechCom.App.Models.Order> order = Model.Order;
+
+        for (int i = 0; i < order.Count(); i++)
+        {
+            <p>
+                @order.ElementAt(i).product.Name - @order.ElementAt(i).product.Price
+                
+            </p>
+           
+        }
+
+    }
+
+
+</body>
+</html>

@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using TechCom.App.DAL;
 using System.Data.Entity;
 using PagedList;
+using TechCom.App.Repository;
 
 namespace TechCom.App.Controllers
 {
@@ -21,8 +22,10 @@ namespace TechCom.App.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ApplicationDbContext db=new ApplicationDbContext();
-        //public ManageController(ApplicationDbContext db)
+        //private IMail mailRepository;
+        //public ManageController(ApplicationDbContext db,IMail mailRepository)
         //{
+        //    this.mailRepository = mailRepository;
         //    this.db = db;
         //}
 
@@ -445,7 +448,42 @@ namespace TechCom.App.Controllers
            
             //return item.OrderStatus;
         }
-        
+        //[AllowAnonymous]
+        //public ActionResult SendConfirmationOrder(int orderId, string Name)
+        //{
+        //    var zamowienie = db.ShippingDetails.Include("Order").Include("PozycjeZamowienia.Kurs")
+        //                       .SingleOrDefault(o => o.ZamowienieID == zamowienieId && o.Nazwisko == nazwisko);
+
+        //    if (zamowienie == null) return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+
+        //    PotwierdzenieZamowieniaEmail email = new PotwierdzenieZamowieniaEmail();
+        //    email.To = zamowienie.Email;
+        //    email.From = "mariuszjurczenko@gmail.com";
+        //    email.Wartosc = zamowienie.WartoscZamowienia;
+        //    email.NumerZamowienia = zamowienie.ZamowienieID;
+        //    email.PozycjeZamowienia = zamowienie.PozycjeZamowienia;
+        //    email.sciezkaObrazka = AppConfig.ObrazkiFolderWzgledny;
+        //    email.Send();
+
+        //    return new HttpStatusCodeResult(HttpStatusCode.OK);
+        //}
+
+        //[AllowAnonymous]
+        //public ActionResult WyslanieZamowienieZrealizowaneEmail(int zamowienieId, string nazwisko)
+        //{
+        //    var zamowienie = db.Zamowienia.Include("PozycjeZamowienia").Include("PozycjeZamowienia.Kurs")
+        //                          .SingleOrDefault(o => o.ZamowienieID == zamowienieId && o.Nazwisko == nazwisko);
+
+        //    if (zamowienie == null) return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+
+        //    ZamowienieZrealizowaneEmail email = new ZamowienieZrealizowaneEmail();
+        //    email.To = zamowienie.Email;
+        //    email.From = "mariuszjurczenko@gmail.com";
+        //    email.NumerZamowienia = zamowienie.ZamowienieID;
+        //    email.Send();
+
+        //    return new HttpStatusCodeResult(HttpStatusCode.OK);
+        //}
 
         #region Helpers
         // Used for XSRF protection when adding external logins
