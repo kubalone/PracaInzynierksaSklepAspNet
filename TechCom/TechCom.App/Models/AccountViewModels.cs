@@ -65,10 +65,7 @@ namespace TechCom.App.Models
 
     public class RegisterViewModel
     {
-        [Required]
        
-        [Display(Name = "Nazwa użytkownika")]
-        public string UserName { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

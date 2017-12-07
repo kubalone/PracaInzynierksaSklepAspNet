@@ -31,7 +31,7 @@ namespace TechCom.App.Controllers
         // GET: ProductManagment
         public ViewResult Index(string currentFilter, string searchString, int? page)
         {
-            int pageSize = 2;
+            int pageSize = 20;
             int pageNumber = (page ?? 1);
             if (searchString != null)
             {

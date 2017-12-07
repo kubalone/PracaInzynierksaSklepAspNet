@@ -11,5 +11,6 @@ namespace TechCom.App.Repository
     {
         void SendConfirmationOrder(OrderDetail order);
         void SendConfirmationRealizeOrder(OrderDetail order);
+        void SendAcceptanceOfTheOrder(OrderDetail order);
     }
 }

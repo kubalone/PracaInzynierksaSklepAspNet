@@ -38,7 +38,7 @@
                     <th>Koszt zamowienia</th>
                 </tr>
             </thead>
-            <tr @if (item.OrderStatus == TechCom.App.Models.OrderStatus.New) { <text> class="noweZamowienie" </text>        }>
+            <tr @if (item.OrderStatus == TechCom.App.Models.OrderStatus.Nowe) { <text> class="noweZamowienie" </text>        }>
 <tr>
     <td>
         @item.ShippingID
@@ -124,27 +124,3 @@
    @Html.PagedListPager(Model.OrderDetail, page => Url.Action("ListOfOrder", new { orderBy = Model.OrderBy, currentFilter = ViewBag.CurrentFilter, page }))
 
 </div>
-@*@section Scripts
-{
-    <script src="~/Scripts/jquery-2.2.1.js"></script>
-
-    <script>
-    $(".StanZamowieniaZmien").on('change', function (e) {
-        //e.preventDefault();
-
-        var f = $(this.form);
-        var tr = f.closest("tr");
-        var action = f.attr("action");
-        var serializedForm = f.serialize();
-
-        $.post(action, serializedForm).done(function (data) {
-            if (data == '@TechCom.App.Models.OrderStatus.New.ToString()') {
-                tr.addClass("noweZamowienie")
-            }
-            else {
-                tr.removeClass("noweZamowienie");
-            }
-          });
-    });
-    </script>
-}*@

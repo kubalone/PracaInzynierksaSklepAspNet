@@ -15,26 +15,37 @@ namespace TechCom.App.Repository
             var email = new ConfirmationMakeOrder()
             {
                 To = order.Email,
-                From = "ankakubalka@gmail.com",
+                From = "skleptechcom@gmail.com",
                 Worth = order.ValueOfOrder,
                 OrderID = order.ShippingID,
-                Order = order.Orders
-                // ImageProduct = ImageConfig.ImageSource,
-
+                Order = order.Orders      
             };
             email.Send();
         }
+        public void SendAcceptanceOfTheOrder(OrderDetail order)
+        {
 
+            var email = new AcceptanceOfTheOrder()
+            {
+                To = order.Email,
+                From = "skleptechcom@gmail.com",
+                OrderID = order.ShippingID,
+            };
+            email.Send();
+        }
         public void SendConfirmationRealizeOrder(OrderDetail order)
         {
+
             var email = new ConfirmationRealizedOrder()
             {
                 To = order.Email,
-                From = "skleptechcom@o2.pl",
+                From = "skleptechcom@gmail.com",
                 OrderID = order.ShippingID,
             };
             email.Send();
         }
+      
+       
 
     }
 }

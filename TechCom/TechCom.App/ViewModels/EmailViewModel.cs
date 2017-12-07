@@ -17,6 +17,12 @@ namespace TechCom.App.ViewModels
        // public string ImageProduct { get; set; }
         public List<Order> Order{ get; set; }
     }
+    public class AcceptanceOfTheOrder : Email
+    {
+        public string To { get; set; }
+        public string From { get; set; }
+        public int OrderID { get; set; }
+    }
     public class ConfirmationRealizedOrder : Email
     {
         public string To { get; set; }

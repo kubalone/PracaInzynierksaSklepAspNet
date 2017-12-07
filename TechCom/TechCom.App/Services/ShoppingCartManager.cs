@@ -14,6 +14,7 @@ namespace TechCom.App.Services
         
     {
         private ApplicationDbContext db=new ApplicationDbContext();
+        private IProduct productRepository;
         //private ISessionManager session;
         //public ShoppingCartManager(ISessionManager session,EFAppContext db)
         //{
@@ -34,7 +35,15 @@ namespace TechCom.App.Services
             {
                 cart.Quantity += quantity;
             }
+           
         }
+        //public void QuantityProduct(Product product, int quantity)
+        //{
+           
+        //    product.Quantity -= quantity;
+        //    db.Products.
+        //    db.SaveChanges();
+        //}
         public void RemoveProduct(Product product)
         {
             productCollection.RemoveAll(p => p.Product.ProductID == product.ProductID);
@@ -47,18 +56,21 @@ namespace TechCom.App.Services
         {
             productCollection.Clear();
         }
-        public IEnumerable<ShoppingCart> ContentOfCart
+        public List<ShoppingCart> ContentOfCart
         {
            get{ return productCollection; }
         }
         public OrderDetail CreateAnOrder(OrderDetail newOrder, string userID)//przeanalizować połaączenie z kontem usera
         {
+            
             var shoppingCart = ContentOfCart;
+            
             newOrder.DateOfTheOrder = DateTime.Now;
             newOrder.UserID = userID;
             newOrder.ValueOfOrder = WorthOfProduct();
             
             db.ShippingDetails.Add(newOrder);
+            
             if (newOrder.Orders == null)
             {
                 newOrder.Orders = new List<Order>();
@@ -70,13 +82,26 @@ namespace TechCom.App.Services
                 {
                     ProductID = item.Product.ProductID,
                     Quantity = item.Quantity,
-                    Price = item.Product.Price
+                    Price = item.Product.Price,
+                    
+                  
+
 
                 };
+                
+               
+               
                 worthOfCard += (item.Quantity * item.Product.Price);
+
+               
                 newOrder.Orders.Add(order);
+                Product prod = (from p in db.Products where p.ProductID == order.ProductID select p).Single();
+                prod.Quantity -= order.Quantity;
             }
+            
             newOrder.ValueOfOrder = worthOfCard;
+           
+            
             db.SaveChanges();
             return newOrder;
         }

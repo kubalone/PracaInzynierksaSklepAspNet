@@ -40,7 +40,7 @@ namespace TechCom.App.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            int pageSize = 1;
+            int pageSize = 20;
             int pageNumber = page ?? 1;
 
 
@@ -71,9 +71,10 @@ namespace TechCom.App.Controllers
                         break;
                 }
             }
+
             var vm = new ProductListViewModel()
             {
-                Products = products.ToPagedList(pageNumber, pageSize),
+                Products = products.Where(p=>p.Quantity>0).ToPagedList(pageNumber, pageSize),
                 CurrentCategory = categoryName,
                 OrderBy=orderBy,
               
@@ -99,7 +100,7 @@ namespace TechCom.App.Controllers
             }
             List<Product> products = new List<Product>();
             ViewBag.CurrentFilter = searchString;
-            int pageSize = 1;
+            int pageSize = 20;
             int pageNumber = page ?? 1;
             var price = new SelectListGroup { Name = "Cena" };
             if (!String.IsNullOrEmpty(searchString))
@@ -133,7 +134,7 @@ namespace TechCom.App.Controllers
             {
                 EnableCategories = categories,
                 OrderBy = orderBy,
-                Products = products.ToPagedList(pageNumber, pageSize),
+                Products = products.Where(p => p.Quantity > 0).ToPagedList(pageNumber, pageSize),
                 CountOfProductsInCategory=ListOfProduct,
                 OrderList = new List<SelectListItem>
                 {

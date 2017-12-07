@@ -285,6 +285,10 @@
     <Compile Include="Migrations\201712041350108_RestrukturyzacjaBD.Designer.cs">
       <DependentUpon>201712041350108_RestrukturyzacjaBD.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712061347011_quantity.cs" />
+    <Compile Include="Migrations\201712061347011_quantity.Designer.cs">
+      <DependentUpon>201712061347011_quantity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CountOfProduct.cs" />
@@ -447,6 +451,12 @@
     <Content Include="Views\Emails\ConfirmationMakeOrder.cshtml" />
     <Content Include="Views\Emails\ConfirmationMakeOrder.Text.cshtml" />
     <Content Include="Views\Account\CheckYourEmailAccount.cshtml" />
+    <Content Include="Views\Emails\ConfirmationRealizedOrder.cshtml" />
+    <Content Include="Views\Emails\ConfirmationRealizedOrder.Html.cshtml" />
+    <Content Include="Views\Emails\ConfirmationRealizedOrder.Text.cshtml" />
+    <Content Include="Views\Emails\AcceptanceOfTheOrder.cshtml" />
+    <Content Include="Views\Emails\AcceptanceOfTheOrder.Html.cshtml" />
+    <Content Include="Views\Emails\AcceptanceOfTheOrder.Text.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -484,6 +494,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712041350108_RestrukturyzacjaBD.resx">
       <DependentUpon>201712041350108_RestrukturyzacjaBD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712061347011_quantity.resx">
+      <DependentUpon>201712061347011_quantity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

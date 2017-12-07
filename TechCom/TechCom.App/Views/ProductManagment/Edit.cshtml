@@ -48,12 +48,16 @@
                     @Html.TextBoxFor(o => o.Product.Price, new { @class = "form-control", @id = "edit" })
                 </div>
             </div>
-            <div class="form-group ">
-
-                @Html.Label("Pordukt ze zniżką:")<br />
-                @Html.CheckBoxFor(o => o.Product.ProductWithDiscount, new { @class = "custom-control-input" })
-            </div>
-
+            <div class="form-group row">
+                <div class="col-xs-3">
+                    @Html.Label("Produkt ze zniżką:")<br />
+                    @Html.CheckBoxFor(o => o.Product.ProductWithDiscount, new { @class = "custom-control-input" })
+                </div>
+                <div class="col-xs-3">
+                    @Html.Label("Ilość sztuk:")<br />
+                    @Html.TextBoxFor(o=>o.Product.Quantity, new { type = "number", min = "1", @class = "form-control" })
+                </div>
+             </div>
             if (ViewBag.EditMode == null || !ViewBag.EditMode)
             {
                 <label class="custom-file">

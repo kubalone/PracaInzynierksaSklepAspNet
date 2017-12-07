@@ -51,6 +51,8 @@ namespace TechCom.App.Controllers
             {
                 shoppingCartManager.AddProducts(product, quantity);
             }
+           
+            db.SaveChanges();
             return RedirectToAction("Index", new { returnUrl });
         }
         public RedirectToRouteResult RemoveFromShoppingCart(int id,string returnUrl, ShoppingCartManager shoppingCartManager)
@@ -96,9 +98,9 @@ namespace TechCom.App.Controllers
                 TryUpdateModel(user.UserData);
                 await UserManager.UpdateAsync(user);
                 cart.Clear();
-
-                var order=orderRepository.Orders.Include("Orders").Include("Orders.Product").SingleOrDefault(p => p.ShippingID == newOrder.ShippingID);
-                emailRepository.SendConfirmationOrder(order);
+                
+             
+                emailRepository.SendConfirmationOrder(newOrder);
            
                 return RedirectToAction ("OrderConfirmation");
             }

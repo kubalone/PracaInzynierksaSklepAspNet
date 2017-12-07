@@ -26,12 +26,12 @@ namespace TechCom.Model.Domain.Entities
         public DateTime  DateAdded{ get; set; }
         //[DataType(DataType.MultilineText), Display(Name = "Opis")]
         public string Description { get; set; }
-        public string ShortDescription { get; set; }
+        public int Quantity { get; set; }
         //[Display(Name = "Produkt ze zniżką")]
         public bool ProductWithDiscount{ get; set; }
         //[Display(Name = "Zdjęcie produktu")]
         public string ImageProduct { get; set; }
-
+      
         public virtual Category Category { get; set; }
 
        // public virtual ICollection<Category> Categories { get; set; }

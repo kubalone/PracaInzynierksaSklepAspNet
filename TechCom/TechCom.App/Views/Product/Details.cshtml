@@ -13,7 +13,7 @@
 @using (Html.BeginForm("AddToShoppingCart", "ShoppingCart", FormMethod.Post))
 {
     @Html.Hidden("id", Model.DetailsProduct.ProductID)
-    @Html.TextBox("quantity",Model.CountOfProduct=1,  new { type = "number", min = "1", max = "12"})
+    @Html.TextBox("quantity",Model.CountOfProduct=1,  new { type = "number", min = "1", max = Model.DetailsProduct.Quantity})
     
     
     @Html.Hidden("returnUrl", Request.Url.PathAndQuery)

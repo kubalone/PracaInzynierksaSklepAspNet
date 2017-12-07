@@ -22,12 +22,14 @@ namespace TechCom.App.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ApplicationDbContext db=new ApplicationDbContext();
-        //private IMail mailRepository;
-        //public ManageController(ApplicationDbContext db,IMail mailRepository)
-        //{
-        //    this.mailRepository = mailRepository;
-        //    this.db = db;
-        //}
+        private IMail mailRepository;
+        private IOrderDetails orderRepository;
+        public ManageController( IMail mailRepository, IOrderDetails orderRepository)
+        {
+            this.mailRepository = mailRepository;
+            this.orderRepository = orderRepository;
+         
+        }
 
         //public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         //{
@@ -384,7 +386,7 @@ namespace TechCom.App.Controllers
                 searchString = currentFilter;
             }
             ViewBag.CurrentFilter = searchString;
-            int pageSize = 1;
+            int pageSize = 20;
             int pageNumber = page ?? 1;
             var user = User.Identity.Name;
             bool isAdmin = User.IsInRole("Admin");
@@ -404,10 +406,10 @@ namespace TechCom.App.Controllers
             switch (orderBy)
             {
                 case 1:
-                    orderOfUser = db.ShippingDetails.Where(p=>p.OrderStatus==OrderStatus.New).OrderByDescending(p => p.DateOfTheOrder).ToList();
+                    orderOfUser = db.ShippingDetails.Where(p=>p.OrderStatus==OrderStatus.Nowe).OrderByDescending(p => p.DateOfTheOrder).ToList();
                     break;
                 case 2:
-                    orderOfUser = db.ShippingDetails.Where(p => p.OrderStatus == OrderStatus.Completed).OrderByDescending(p => p.DateOfTheOrder).ToList();
+                    orderOfUser = db.ShippingDetails.Where(p => p.OrderStatus == OrderStatus.Zrealizowane).OrderByDescending(p => p.DateOfTheOrder).ToList();
                     break;
             }
             if (!String.IsNullOrEmpty(searchString))
@@ -416,10 +418,10 @@ namespace TechCom.App.Controllers
                 switch (orderBy)
                 {
                     case 1:
-                        orderOfUser = db.ShippingDetails.Where(s => s.OrderStatus == OrderStatus.New && s.Name.Contains(searchString) || s.Surname.Contains(searchString) || s.User.UserName.Contains(searchString)).OrderByDescending(p => p.DateOfTheOrder).ToList();
+                        orderOfUser = db.ShippingDetails.Where(s => s.OrderStatus == OrderStatus.Nowe && s.Name.Contains(searchString) || s.Surname.Contains(searchString) || s.User.UserName.Contains(searchString)).OrderByDescending(p => p.DateOfTheOrder).ToList();
                         break;
                     case 2:
-                        orderOfUser = db.ShippingDetails.Where(s => s.OrderStatus == OrderStatus.Completed && s.Name.Contains(searchString) || s.Surname.Contains(searchString) || s.User.UserName.Contains(searchString)).OrderByDescending(p => p.DateOfTheOrder).OrderByDescending(p => p.DateOfTheOrder).ToList();
+                        orderOfUser = db.ShippingDetails.Where(s => s.OrderStatus == OrderStatus.Zrealizowane && s.Name.Contains(searchString) || s.Surname.Contains(searchString) || s.User.UserName.Contains(searchString)).OrderByDescending(p => p.DateOfTheOrder).OrderByDescending(p => p.DateOfTheOrder).ToList();
                         break;
                 }
             }
@@ -444,46 +446,21 @@ namespace TechCom.App.Controllers
             OrderDetail changeOrderStatus = db.ShippingDetails.Find(item.ShippingID);
             changeOrderStatus.OrderStatus = item.OrderStatus;
             db.SaveChanges();
+           
+            if (changeOrderStatus.OrderStatus == OrderStatus.Przyjete)
+            {
+                this.mailRepository.SendAcceptanceOfTheOrder(changeOrderStatus);
+            }
+            else if (changeOrderStatus.OrderStatus==OrderStatus.Zrealizowane)
+            {
+                this.mailRepository.SendConfirmationRealizeOrder(changeOrderStatus);
+            }
+           
             return RedirectToAction("ListOfOrder", new { returnUrl });
            
             //return item.OrderStatus;
         }
-        //[AllowAnonymous]
-        //public ActionResult SendConfirmationOrder(int orderId, string Name)
-        //{
-        //    var zamowienie = db.ShippingDetails.Include("Order").Include("PozycjeZamowienia.Kurs")
-        //                       .SingleOrDefault(o => o.ZamowienieID == zamowienieId && o.Nazwisko == nazwisko);
-
-        //    if (zamowienie == null) return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-
-        //    PotwierdzenieZamowieniaEmail email = new PotwierdzenieZamowieniaEmail();
-        //    email.To = zamowienie.Email;
-        //    email.From = "mariuszjurczenko@gmail.com";
-        //    email.Wartosc = zamowienie.WartoscZamowienia;
-        //    email.NumerZamowienia = zamowienie.ZamowienieID;
-        //    email.PozycjeZamowienia = zamowienie.PozycjeZamowienia;
-        //    email.sciezkaObrazka = AppConfig.ObrazkiFolderWzgledny;
-        //    email.Send();
-
-        //    return new HttpStatusCodeResult(HttpStatusCode.OK);
-        //}
-
-        //[AllowAnonymous]
-        //public ActionResult WyslanieZamowienieZrealizowaneEmail(int zamowienieId, string nazwisko)
-        //{
-        //    var zamowienie = db.Zamowienia.Include("PozycjeZamowienia").Include("PozycjeZamowienia.Kurs")
-        //                          .SingleOrDefault(o => o.ZamowienieID == zamowienieId && o.Nazwisko == nazwisko);
-
-        //    if (zamowienie == null) return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-
-        //    ZamowienieZrealizowaneEmail email = new ZamowienieZrealizowaneEmail();
-        //    email.To = zamowienie.Email;
-        //    email.From = "mariuszjurczenko@gmail.com";
-        //    email.NumerZamowienia = zamowienie.ZamowienieID;
-        //    email.Send();
-
-        //    return new HttpStatusCodeResult(HttpStatusCode.OK);
-        //}
+       
 
         #region Helpers
         // Used for XSRF protection when adding external logins

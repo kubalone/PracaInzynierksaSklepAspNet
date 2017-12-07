@@ -214,3 +214,4 @@ C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.A
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\es\Hangfire.Core.resources.dll
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\zh\Hangfire.Core.resources.dll
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.Migrations.RestrukturyzacjaBD.resources
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.Migrations.quantity.resources

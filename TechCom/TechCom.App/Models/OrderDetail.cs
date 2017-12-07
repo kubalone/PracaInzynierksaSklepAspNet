@@ -32,7 +32,8 @@ namespace TechCom.App.Models
     }
     public enum OrderStatus
     {
-        New,
-        Completed
+        Nowe,
+        Przyjete,
+        Zrealizowane
     }
 }
