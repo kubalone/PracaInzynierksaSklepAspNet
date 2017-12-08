@@ -6,13 +6,13 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using TechCom.App.Models;
-using TechCom.Model.Domain.Entities;
 using System.Collections.Generic;
-using TechCom.App.DAL;
 using System.Data.Entity;
 using PagedList;
-using TechCom.App.Repository;
+using TechCom.Infrastructure;
+using TechCom.Model.Domain.Interface;
+using TechCom.Model.Domain.ViewModels;
+using TechCom.Model.Domain.Domain;
 
 namespace TechCom.App.Controllers
 {

@@ -1,11 +1,11 @@
 ﻿
-@model TechCom.App.ViewModels.ConfirmationMakeOrder
+@model TechCom.Model.Domain.ViewModels.ConfirmationMakeOrder
     Content-Type: text/plain; charset=utf-8
 
 Dziękujemy za złożone zamówienie.
 Zamówiłeś:
 @{ 
-    IEnumerable<TechCom.App.Models.Order> order = Model.Order;
+    IEnumerable<TechCom.Model.Domain.Domain.Order> order = Model.Order;
 
     for (int i = 0; i < order.Count(); i++)
     {

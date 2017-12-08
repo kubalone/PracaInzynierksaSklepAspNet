@@ -1,9 +1,9 @@
-﻿@model TechCom.Model.Domain.Entities.Product
+﻿@model TechCom.Model.Domain.Domain.Product
 
     <div class="well">
         <a href="@Url.Action("Details", "Product", new { id = Model.ProductID })">
             <h3>
-                <strong>@Model.Name- @Model.Manufacturer</strong>
+                <strong>@Model.Name - @Model.Manufacturer</strong>
             </h3>
         </a>
         <span class="pull-right label label-primary">@Model.Price.ToString("c")</span>

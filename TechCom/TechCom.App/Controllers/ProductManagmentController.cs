@@ -6,11 +6,9 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TechCom.App.DAL;
 using TechCom.App.Infrastructure.Helpers;
-using TechCom.App.Models;
-using TechCom.Model.Domain.Entities;
-using TechCom.Model.Domain.Repository;
+using TechCom.Model.Domain.Domain;
+using TechCom.Model.Domain.Interface;
 using TechCom.Model.Domain.ViewModels;
 
 namespace TechCom.App.Controllers

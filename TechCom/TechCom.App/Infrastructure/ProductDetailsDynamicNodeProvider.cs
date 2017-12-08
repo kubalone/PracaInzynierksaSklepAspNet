@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TechCom.App.DAL;
-using TechCom.Model.Domain.Entities;
-using TechCom.Model.Domain.Repository;
+
+using TechCom.Infrastructure;
+
 
 namespace TechCom.App.Infrastructure
 {

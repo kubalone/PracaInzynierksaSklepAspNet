@@ -8,7 +8,12 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using TechCom.App.Models;
+using TechCom.Model.Domain.ViewModels;
+using TechCom.Model.Domain.Domain;
+
+
+
+//using TechCom.App.Models;
 
 namespace TechCom.App.Controllers
 {
@@ -156,7 +161,7 @@ namespace TechCom.App.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,UserData=new Model.Domain.Entities.UserData() };
+                ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email,UserData=new UserData() };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -372,7 +377,7 @@ namespace TechCom.App.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

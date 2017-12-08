@@ -6,9 +6,15 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechCom.App", "TechCom.App\TechCom.App.csproj", "{030623BB-71F6-47A0-8082-79C5FB5FBB5A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{D6F172A3-DEB9-4678-B75D-A637E23413F3} = {D6F172A3-DEB9-4678-B75D-A637E23413F3}
+		{9A6616FA-54BD-42A5-B767-1FA2E4067E67} = {9A6616FA-54BD-42A5-B767-1FA2E4067E67}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechCom.Model.Domain", "TechCom.Model.Domain\TechCom.Model.Domain.csproj", "{D6F172A3-DEB9-4678-B75D-A637E23413F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechCom.Infrastructure", "TechCom.Infrastructure\TechCom.Infrastructure.csproj", "{9A6616FA-54BD-42A5-B767-1FA2E4067E67}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D6F172A3-DEB9-4678-B75D-A637E23413F3} = {D6F172A3-DEB9-4678-B75D-A637E23413F3}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +30,10 @@ Global
 		{D6F172A3-DEB9-4678-B75D-A637E23413F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6F172A3-DEB9-4678-B75D-A637E23413F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6F172A3-DEB9-4678-B75D-A637E23413F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A6616FA-54BD-42A5-B767-1FA2E4067E67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A6616FA-54BD-42A5-B767-1FA2E4067E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A6616FA-54BD-42A5-B767-1FA2E4067E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A6616FA-54BD-42A5-B767-1FA2E4067E67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

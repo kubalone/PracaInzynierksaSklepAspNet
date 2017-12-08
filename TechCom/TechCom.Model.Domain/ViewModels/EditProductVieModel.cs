@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TechCom.Model.Domain.Entities;
+using TechCom.Model.Domain.Domain;
 
 namespace TechCom.Model.Domain.ViewModels
 {
@@ -11,6 +11,6 @@ namespace TechCom.Model.Domain.ViewModels
         public Product Product { get; set; }
        
         public IEnumerable<Category> Categories { get; set; }
-       // public bool? Potwierdzenie { get; set; }
+       
     }
 }

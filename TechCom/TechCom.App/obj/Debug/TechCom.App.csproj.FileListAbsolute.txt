@@ -190,18 +190,12 @@ C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.A
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.csprojResolveAssemblyReference.cache
-C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.Migrations.structure.resources
-C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.Migrations._03.resources
-C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.Migrations.dodanieDatyDodaniaProduktu.resources
-C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.csproj.GenerateResource.Cache
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.dll
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.pdb
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\MvcSiteMapProvider.dll
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\MvcSiteMapProvider.WebActivator.dll
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\MvcSiteMapProvider.xml
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\MvcSiteMapProvider.WebActivator.xml
-C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.Migrations.identity.resources
-C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.Migrations.DodanieNowychRekordow.resources
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\Postal.dll
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\RazorEngine.dll
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\Postal.xml
@@ -213,5 +207,5 @@ C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.A
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\Hangfire.SqlServer.xml
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\es\Hangfire.Core.resources.dll
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\zh\Hangfire.Core.resources.dll
-C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.Migrations.RestrukturyzacjaBD.resources
-C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\obj\Debug\TechCom.App.Migrations.quantity.resources
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\TechCom.Infrastructure.dll
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.App\bin\TechCom.Infrastructure.pdb

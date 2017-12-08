@@ -5,8 +5,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using TechCom.App.Models;
-using TechCom.App.DAL;
+using TechCom.Infrastructure;
+using TechCom.Model.Domain.Domain;
 
 namespace TechCom.App
 {

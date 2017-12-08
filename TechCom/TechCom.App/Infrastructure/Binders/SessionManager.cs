@@ -4,8 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.ModelBinding;
 using System.Web.Mvc;
-using TechCom.App.Services;
-using TechCom.Model.Domain.Entities;
+using TechCom.Infrastructure;
 
 namespace TechCom.App.Infrastructure.Binders
 {

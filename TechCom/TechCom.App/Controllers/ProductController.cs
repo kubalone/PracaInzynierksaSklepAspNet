@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TechCom.App.Models;
-using TechCom.Model.Domain.Repository;
 using PagedList.Mvc;
 using PagedList;
 using System.Collections;
-using TechCom.Model.Domain.Entities;
 using Microsoft.Ajax.Utilities;
+using TechCom.Model.Domain.Interface;
+using TechCom.Model.Domain.ViewModels;
+using TechCom.Model.Domain.Domain;
 
 namespace TechCom.App.Controllers
 {

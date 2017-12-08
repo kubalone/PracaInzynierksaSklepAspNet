@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -10,11 +7,11 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using TechCom.App.Models;
-using TechCom.App.DAL;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Configuration;
+using TechCom.Model.Domain.Domain;
+using TechCom.Infrastructure;
 
 namespace TechCom.App
 {

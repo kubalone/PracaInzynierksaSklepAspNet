@@ -5,7 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TechCom.App.Repository;
-using TechCom.Model.Domain.Repository;
+using TechCom.Infrastructure;
+using TechCom.Model.Domain.Interface;
 
 namespace TechCom.App.Infrastructure
 {
@@ -27,9 +28,9 @@ namespace TechCom.App.Infrastructure
         }
         private void AddBindings()
         {
-            kernel.Bind<ICategories>().To<AppRepository>();
-            kernel.Bind<IProduct>().To<AppRepository>();
-            kernel.Bind<IOrderDetails>().To<AppRepository>();
+            kernel.Bind<ICategories>().To<CategoryRepository>();
+            kernel.Bind<IProduct>().To<ProductRepository>();
+            kernel.Bind<IOrderDetails>().To<OrderRepository>();
             kernel.Bind<IMail>().To<PostMailRepository>();
           
         }

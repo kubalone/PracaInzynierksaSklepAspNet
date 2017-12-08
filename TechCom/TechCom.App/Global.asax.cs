@@ -6,11 +6,12 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using TechCom.App.DAL;
+
 using TechCom.App.Infrastructure.Binders;
 using TechCom.App.Migrations;
-using TechCom.App.Services;
-using TechCom.Model.Domain.Entities;
+
+using TechCom.Infrastructure;
+
 
 
 namespace TechCom.App

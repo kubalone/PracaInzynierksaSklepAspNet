@@ -6,13 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using TechCom.App.DAL;
-using TechCom.App.Models;
-using TechCom.App.Repository;
-using TechCom.App.Services;
-using TechCom.App.ViewModels;
-using TechCom.Model.Domain.Entities;
-using TechCom.Model.Domain.Repository;
+using TechCom.Infrastructure;
+using TechCom.Infrastructure.ViewModels;
+using TechCom.Model.Domain.Domain;
+using TechCom.Model.Domain.Interface;
 
 namespace TechCom.App.Controllers
 {

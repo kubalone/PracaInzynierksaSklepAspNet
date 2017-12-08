@@ -1,5 +1,5 @@
 ﻿
-@model TechCom.App.ViewModels.ConfirmationMakeOrder
+@model TechCom.Model.Domain.ViewModels.ConfirmationMakeOrder
     Content-Type: text/html; charset=utf-8
 
 <html>
@@ -7,7 +7,7 @@
    <p>Dziękujemy za złożone zamówienie.</p> 
     <p>Zamówiłeś: </p>
     @{
-        IEnumerable<TechCom.App.Models.Order> order = Model.Order;
+        IEnumerable<TechCom.Model.Domain.Domain.Order> order = Model.Order;
 
         for (int i = 0; i < order.Count(); i++)
         {
@@ -17,7 +17,7 @@
             </p>
            
         }
-
+        <p>Numer zamówienia @Model.OrderID</p>
     }
 
 

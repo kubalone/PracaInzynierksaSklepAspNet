@@ -1,4 +1,4 @@
-﻿@model TechCom.App.Models.OrderListViewModel
+﻿@model TechCom.Model.Domain.ViewModels.OrderListViewModel
 @{
     ViewBag.Title = "ListOfOrder";
 }
@@ -38,7 +38,7 @@
                     <th>Koszt zamowienia</th>
                 </tr>
             </thead>
-            <tr @if (item.OrderStatus == TechCom.App.Models.OrderStatus.Nowe) { <text> class="noweZamowienie" </text>        }>
+            <tr @if (item.OrderStatus == TechCom.Model.Domain.Domain.OrderStatus.Nowe) { <text> class="noweZamowienie" </text>        }>
 <tr>
     <td>
         @item.ShippingID
