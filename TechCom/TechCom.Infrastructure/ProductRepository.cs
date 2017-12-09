@@ -118,5 +118,57 @@ namespace TechCom.App.Repository
             }
             return products;
         }
+        //wyszukiwanie produktów na stronie głównej
+        public List<Product> SearchProductInMainView(string searchString)
+        {
+            var product = context.Products.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper())).ToList();
+            return product;
+        }
+        //sortowanie produktów na stronie głownek
+        public List<Product> OrderSearchProductInMainView(int? orderBy, List<Product> products, string searchString)
+        {
+            switch (orderBy)
+            {
+                case 1:
+                    products = context.Products.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper())).OrderByDescending(p => p.Price).ToList();
+                    break;
+                case 2:
+                    products = context.Products.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper())).OrderBy(p => p.Price).ToList();
+                    break;
+            }
+            return products;
+        }
+        public List<CountOfProduct> CountOfProductInCategory(List<Product> categories)
+        {
+            var countOfProductInCategory = categories.GroupBy(c => c.Subcategory.Category.CategoryName).
+                Select(group => new
+                {
+                    Name = group.Key,
+                    Count = group.Count(),
+
+                }).ToList();
+            List<CountOfProduct> ListOfProduct = new List<CountOfProduct>();
+            for (int i = 0; i < countOfProductInCategory.ToList().Count; i++)
+            {
+                ListOfProduct.Add(new CountOfProduct { Categoryname = countOfProductInCategory[i].Name, Count = countOfProductInCategory[i].Count });
+            }
+            return ListOfProduct;
+        }
+        public List<CountOfProduct> CountOfProductInSubategory(List<Product> subCategories)
+        {
+            var countOfProductInSubcategory = subCategories.GroupBy(c => c.Subcategory.SubcategoryName).
+                Select(group => new
+                {
+                    Name = group.Key,
+                    Count = group.Count(),
+
+                }).ToList();
+            List<CountOfProduct> ListOfProduct = new List<CountOfProduct>();
+            for (int i = 0; i < countOfProductInSubcategory.ToList().Count; i++)
+            {
+                ListOfProduct.Add(new CountOfProduct { Categoryname = countOfProductInSubcategory[i].Name, Count = countOfProductInSubcategory[i].Count });
+            }
+            return ListOfProduct;
+        }
     }
 }

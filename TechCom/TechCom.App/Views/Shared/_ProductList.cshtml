@@ -1,6 +1,6 @@
 ﻿@model TechCom.Model.Domain.Domain.Product
 
-    <div class="well">
+    <div class="well" id="productList">
         <a href="@Url.Action("Details", "Product", new { id = Model.ProductID })">
             <h3>
                 <strong>@Model.Name - @Model.Manufacturer</strong>

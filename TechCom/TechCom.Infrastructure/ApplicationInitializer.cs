@@ -126,8 +126,15 @@ namespace TechCom.Infrastructure
 
             var exampleProducts = new List<Product>
             {
+
                 new Product() {ProductID=1, SubcategoryID=1, Name="Asus All in One", Description="",Quantity=10, Manufacturer="Asus", Price=2700, ProductWithDiscount=true,ImageProduct="AsusZ370.jpg", DateAdded=DateTime.Now   },
-                new Product() {ProductID=2, SubcategoryID=2, Name="Lenovo All in One", Description="",Quantity=10, Manufacturer="Lenovo", Price=3700, ProductWithDiscount=false,ImageProduct="Lenovo MIIX 30-10.jpg", DateAdded=DateTime.Now   },
+                new Product() {ProductID=10, SubcategoryID=1, Name="Lenovo II All in One", Description="",Quantity=10, Manufacturer="Asus", Price=2700, ProductWithDiscount=true,ImageProduct="AsusZ370.jpg", DateAdded=DateTime.Now   },
+                new Product() {ProductID=11, SubcategoryID=1, Name="Asus III All in One", Description="",Quantity=10, Manufacturer="Asus", Price=2700, ProductWithDiscount=true,ImageProduct="AsusZ370.jpg", DateAdded=DateTime.Now   },
+
+                new Product() {ProductID=2, SubcategoryID=2, Name="Lenovo All Nettopy/Mini-PC", Description="",Quantity=10, Manufacturer="Lenovo", Price=3700, ProductWithDiscount=false,ImageProduct="Lenovo MIIX 30-10.jpg", DateAdded=DateTime.Now   },
+                new Product() {ProductID=12, SubcategoryID=2, Name="Asus II Nettopy/Mini-PC", Description="",Quantity=10, Manufacturer="Lenovo", Price=3700, ProductWithDiscount=false,ImageProduct="Lenovo MIIX 30-10.jpg", DateAdded=DateTime.Now   },
+                new Product() {ProductID=13, SubcategoryID=2, Name="Lenovo III Nettopy/Mini-PC", Description="",Quantity=10, Manufacturer="Lenovo", Price=3700, ProductWithDiscount=false,ImageProduct="Lenovo MIIX 30-10.jpg", DateAdded=DateTime.Now   },
+
 
                 new Product() {ProductID=3, SubcategoryID=4, Name="Pordukt Monitory LED 21,9' i mniejsze", Description="",Quantity=10, Manufacturer="HP", Price=29, ProductWithDiscount=false,ImageProduct="WdBLUE.jpg", DateAdded=DateTime.Now   },
                 new Product() {ProductID=4, SubcategoryID=4, Name="Pordukt Monitory LED 21,9' i mniejsze", Description="",Quantity=10, Manufacturer="GoPro", Price=200, ProductWithDiscount=false,ImageProduct="gopro.jpg", DateAdded=DateTime.Now   },

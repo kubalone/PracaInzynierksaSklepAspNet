@@ -2,25 +2,24 @@
 
 
 @using (Html.BeginForm("SearchProduct", "Product"))
-{ <p>
-        <input id="SearchString" name="SearchString" type="search" data-autocomplete-source="@Url.Action("HomeSearchSuggestions","Product")" placeholder="czego szukasz?" @ViewBag.CurrentFilter as string/>
-
-
-        <input type="submit" value="Wyszukaj" />
-    </p>
-}
-
-
-<ul id="mainMenu" >
-@foreach (var item in Model.Categories)
 {
-   <li>
-       <a href="@Url.Action("ProductList", "Product", new { categoryName = item.CategoryName,IDcategory=item.CategoryID })">
-           @item.CategoryName
-       </a>
-   </li>
-
+    <div class="form-inline" id="formSearchProductList">
+        <input id="SearchString" name="SearchString" type="search" data-autocomplete-source="@Url.Action("HomeSearchSuggestions","Product")" placeholder="czego szukasz?" @ViewBag.CurrentFilter as string class="form-control" />
+        <button type="submit" value="Search" class="btn btn-primary"><i class="glyphicon glyphicon-search"> Wyszukaj</i> </button>
+    </div>
 }
+
+
+<ul id="mainMenu">
+    @foreach (var item in Model.Categories)
+    {
+        <li>
+            <a href="@Url.Action("ProductList", "Product", new { categoryName = item.CategoryName,IDcategory=item.CategoryID })">
+                @item.CategoryName
+            </a>
+        </li>
+
+    }
 </ul>
 @section Scripts{
     @System.Web.Optimization.Scripts.Render("~/bundles/jquery")

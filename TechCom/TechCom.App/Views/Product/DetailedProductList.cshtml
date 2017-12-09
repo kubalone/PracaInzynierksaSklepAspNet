@@ -43,7 +43,7 @@
         }
 
 
-        @Html.PagedListPager(Model.Products, page => Url.Action("ProductList", new { orderBy = Model.OrderBy, currentFilter = ViewBag.CurrentFilter, categoryName = Model.CurrentCategory, page }))
+        @Html.PagedListPager(Model.Products, page => Url.Action("DetailedProductList", new { orderBy = Model.OrderBy, currentFilter = ViewBag.CurrentFilter, subCategory = Model.SubcategoryName, categoryName = Model.CurrentCategory, page }))
     </div>
 </div>
 
