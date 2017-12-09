@@ -101,6 +101,14 @@
     <Compile Include="Migrations\201712081638440_removeTest.Designer.cs">
       <DependentUpon>201712081638440_removeTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712082138204_m12.cs" />
+    <Compile Include="Migrations\201712082138204_m12.Designer.cs">
+      <DependentUpon>201712082138204_m12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712091242075_mig.cs" />
+    <Compile Include="Migrations\201712091242075_mig.Designer.cs">
+      <DependentUpon>201712091242075_mig.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrderRepository.cs" />
     <Compile Include="ProductRepository.cs" />
     <Compile Include="Migrations\201710191247183_structure.cs" />
@@ -135,6 +143,7 @@
     <Compile Include="PostMailRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingCartManager.cs" />
+    <Compile Include="SubcategoryRepository.cs" />
     <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +181,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712081638440_removeTest.resx">
       <DependentUpon>201712081638440_removeTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712082138204_m12.resx">
+      <DependentUpon>201712082138204_m12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712091242075_mig.resx">
+      <DependentUpon>201712091242075_mig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

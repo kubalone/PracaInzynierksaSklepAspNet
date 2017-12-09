@@ -31,6 +31,10 @@ namespace TechCom.Model.Domain.ViewModels
         
         public int CountOfProduct { get; set; }
 
+        //partial
+        public IEnumerable<Subcategory> Subategories { get; set; }
+
+        public string SubcategoryName { get; set; }
 
     }
 }

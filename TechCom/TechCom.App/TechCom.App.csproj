@@ -411,6 +411,8 @@
     <Content Include="Views\Emails\AcceptanceOfTheOrder.cshtml" />
     <Content Include="Views\Emails\AcceptanceOfTheOrder.Html.cshtml" />
     <Content Include="Views\Emails\AcceptanceOfTheOrder.Text.cshtml" />
+    <Content Include="Views\Shared\_SubCategoriesList.cshtml" />
+    <Content Include="Views\Product\DetailedProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

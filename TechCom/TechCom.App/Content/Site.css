@@ -42,3 +42,15 @@ textarea {
 #edit{
     max-width:100%;
 }
+#subCatList{
+    list-style:none;
+}
+#formSearchProductList{
+    margin-top:10px;
+    margin-left:30%;
+    margin-right:30%;
+}
+#subCategories{
+    text-align:left;
+    margin-left:-7%
+}

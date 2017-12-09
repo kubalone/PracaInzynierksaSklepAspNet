@@ -15,7 +15,7 @@
 @foreach (var item in Model.Categories)
 {
    <li>
-       <a href="@Url.Action("ProductList", "Product", new { categoryName = item.CategoryName })">
+       <a href="@Url.Action("ProductList", "Product", new { categoryName = item.CategoryName,IDcategory=item.CategoryID })">
            @item.CategoryName
        </a>
    </li>

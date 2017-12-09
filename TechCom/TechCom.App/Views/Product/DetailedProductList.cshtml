@@ -1,11 +1,11 @@
 ﻿@model TechCom.Model.Domain.ViewModels.ProductListViewModel
 @using PagedList.Mvc;
 @using PagedList;
- 
-@{
-    ViewBag.Title = "ProductList";
-}
 
+@{
+    ViewBag.Title = "DetailedProductList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <div class="row panel">
     @using (Html.BeginForm())
     {
@@ -22,13 +22,14 @@
 
     </div>
     <div class="col-xs-10">
- 
-      
-        @using (Html.BeginForm("ProductList", "Product", new { categoryName = Model.CurrentCategory, currentFilter = ViewBag.CurrentFilter }))
+
+
+        
+        @using (Html.BeginForm("DetailedProductList", "Product", new { subCategory = Model.SubcategoryName, categoryName = Model.CurrentCategory, currentFilter = ViewBag.CurrentFilter }))
         {
 
-        @Html.LabelFor(m => m.OrderBy)
-        @Html.DropDownListFor(m => m.OrderBy, Model.OrderList, "Najlepiej pasujące", new { onchange = "this.form.submit();", @class = "form-control" })
+            @Html.LabelFor(m => m.OrderBy)
+            @Html.DropDownListFor(m => m.OrderBy, Model.OrderList, "Najlepiej pasujące", new { onchange = "this.form.submit();", @class = "form-control" })
 
         }
         <a href="link">
@@ -38,7 +39,7 @@
         @foreach (var item in Model.Products)
         {
 
-        @Html.Partial("_ProductList", item)
+            @Html.Partial("_ProductList", item)
         }
 
 
@@ -46,11 +47,3 @@
     </div>
 </div>
 
-    @section Scripts{
-        @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
-
-
-        <script src="~/Scripts/Search/SearchSuggestions.js"></script>
-
-
-    }

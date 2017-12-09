@@ -20,7 +20,7 @@ namespace TechCom.App.Infrastructure
                 DynamicNode node = new DynamicNode();
                 node.Title = product.Name;
                 node.Key = "Product_" + product.ProductID;
-                node.ParentKey = "Category_" + product.CategoryID;
+               // node.ParentKey = "Category_" + product.CategoryID;
                 node.RouteValues.Add("id", product.ProductID);
                 returnValue.Add(node);
             }

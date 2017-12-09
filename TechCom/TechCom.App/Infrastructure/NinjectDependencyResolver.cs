@@ -32,7 +32,8 @@ namespace TechCom.App.Infrastructure
             kernel.Bind<IProduct>().To<ProductRepository>();
             kernel.Bind<IOrderDetails>().To<OrderRepository>();
             kernel.Bind<IMail>().To<PostMailRepository>();
-          
+            kernel.Bind<ISubcategories>().To<SubcategoryRepository>();
+
         }
     }
 }
