@@ -10,6 +10,7 @@ namespace TechCom.Model.Domain.Interface
 {
     public interface ISubcategories
     {
+       
         IEnumerable<Subcategory> Subcategories{ get; }
         void SaveSubcategory(EditProductVieModel editProduct);
     }

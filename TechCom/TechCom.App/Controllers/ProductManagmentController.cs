@@ -17,12 +17,12 @@ namespace TechCom.App.Controllers
     {
         private IProduct productRepository;
         private ICategories categoryRepository;
-        
-        public ProductManagmentController(IProduct productRepository, ICategories categoryRepository)
+        private ISubcategories subcategoryRepository;
+        public ProductManagmentController(IProduct productRepository, ICategories categoryRepository, ISubcategories subcategoryRepository)
         {
             this.categoryRepository = categoryRepository;
             this.productRepository = productRepository;
-            
+            this.subcategoryRepository = subcategoryRepository;
         }
         
 
@@ -49,10 +49,13 @@ namespace TechCom.App.Controllers
 
             return View(products.OrderBy(p=>p.ProductID).ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult Edit(int? idProduct)
+        public ActionResult Edit(int? idProduct,int? idCategory)
         {
             Product product;
-        
+            if (idCategory==null)
+            {
+                idCategory = 1;
+            }
             if (idProduct.HasValue)
             {
                 ViewBag.EditMode = true;
@@ -66,11 +69,12 @@ namespace TechCom.App.Controllers
             }
             
            var categories = categoryRepository.Categories.ToList();
-           
+           var subcategories = subcategoryRepository.Subcategories.Where(p=>p.CategoryID==idCategory&&p.SubcategoryName!=null).ToList();
            var model = new EditProductVieModel()
             {
                 Product = product,
                 Categories = categories,
+                Subcategories=subcategories
                
             };
            
@@ -129,6 +133,20 @@ namespace TechCom.App.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public JsonResult GetSubCategoryById(int CategoryID)
+        {
+            var items = from c in subcategoryRepository.Subcategories
+                        where c.CategoryID==CategoryID&&c.SubcategoryName!=null
+                        select new
+                        {
+                            Value = c.SubcategoryID,
+                            Text = c.SubcategoryName
+                        };
+            //var subcategory = subcategoryRepository.Subcategories.Where(p => p.CategoryID == CategoryID).ToList();
+            return Json(items, JsonRequestBehavior.AllowGet);
+        }
+       
 
     }
 }

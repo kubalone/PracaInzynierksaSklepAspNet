@@ -26,17 +26,46 @@ namespace TechCom.App.Repository
 
         public void EditProduct(EditProductVieModel editProduct)
         {
-            context.Entry(editProduct.Product).State = EntityState.Modified;
+            var product = new Product()
+            {
+                ProductID = editProduct.Product.ProductID,
+                Name = editProduct.Product.Name,
+                Manufacturer = editProduct.Product.Manufacturer,
+                DateAdded = DateTime.Now,
+                Description = editProduct.Product.Description,
+                Quantity = editProduct.Product.Quantity,
+                ProductWithDiscount = editProduct.Product.ProductWithDiscount,
+                Price = editProduct.Product.Price,
+                SubcategoryID = editProduct.Product.SubcategoryID
+
+
+            };
+            context.Products.Attach(product);
+            context.Entry(product).State = EntityState.Modified;
             context.SaveChanges();
         }
 
         public void SaveProduct(EditProductVieModel editProduct, string filename)
         {
+            var product = new Product()
+            {
+                ProductID = editProduct.Product.ProductID,
+                Name = editProduct.Product.Name,
+                Manufacturer = editProduct.Product.Manufacturer,
+                DateAdded = DateTime.Now,
+                Description = editProduct.Product.Description,
+                Quantity = editProduct.Product.Quantity,
+                ProductWithDiscount = editProduct.Product.ProductWithDiscount,
+                Price = editProduct.Product.Price,
+                SubcategoryID = editProduct.Product.SubcategoryID,
+                ImageProduct=filename
 
-            editProduct.Product.ImageProduct = filename;
-            editProduct.Product.DateAdded = DateTime.Now;
+            };
 
-            context.Entry(editProduct.Product).State = EntityState.Added;
+            //editProduct.Product.ImageProduct = filename;
+            //editProduct.Product.DateAdded = DateTime.Now;
+
+            context.Entry(product).State = EntityState.Added;
             context.SaveChanges();
          
         }

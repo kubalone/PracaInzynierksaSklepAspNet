@@ -27,9 +27,9 @@
         <table class="table table-striped table-condensed table-bordered">
             <tr>
                 <th class="col-md-0.5">ID</th>
-                <th class="col-md-2">Nazwa</th>
-                <th class="col-md-1">Nazwa Kategorii</th>
-                <th class="col-md-5">Opis</th>
+                <th class="col-md-3">Nazwa</th>
+                <th class="col-md-2">Kateogria</th>
+                <th class="col-md-3">Podkategoria</th>
                 <th class="col-md-1">Cena</th>
                 <th class="col-md-1">Ilość</th>
                 <th class="col-md-1.1 text-center">Akcja</th>
@@ -44,11 +44,12 @@
                         @Html.DisplayFor(models => item.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(models => item.Category.CategoryName)
+                        @Html.DisplayFor(models => item.Subcategory.Category.CategoryName)
                     </td>
                     <td>
-                        @Html.DisplayFor(models => item.Description)
+                        @Html.DisplayFor(models => item.Subcategory.SubcategoryName)
                     </td>
+                  
                     <td>
                         @Html.DisplayFor(models => item.Price)
                     </td>
@@ -57,7 +58,7 @@
                     </td>
                     <td class="text-center">
 
-                        <a href="@Url.Action("Edit", "ProductManagment",new { idProduct = item.ProductID })" class="btn btn-warning btn-sm " id="btnEdit">Edytuj</a>
+                        <a href="@Url.Action("Edit", "ProductManagment",new { idProduct = item.ProductID,idCategory=item.Subcategory.Category.CategoryID })" class="btn btn-warning btn-sm " id="btnEdit">Edytuj</a>
                         <a href="@Url.Action("Delete", "ProductManagment",new { idProduct = item.ProductID })" class="btn btn-danger btn-sm">Usuń</a>
 
                     </td>

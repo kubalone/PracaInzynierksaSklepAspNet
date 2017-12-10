@@ -39,7 +39,7 @@ textarea {
   margin-left: auto;
   margin-right: auto;
 }
-#edit{
+#edit,editMain{
     max-width:100%;
 }
 #subCatList{
