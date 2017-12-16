@@ -1,0 +1,7 @@
+﻿@model TechCom.Infrastructure.ShoppingCartManager
+<li>
+    <a href="@Url.Action("Index","ShoppingCart", new { returnUrl = Request.Url.PathAndQuery })" id="main">
+        <i class="glyphicon glyphicon-shopping-cart"><span id="shoppingCart"> Koszyk(@Model.ContentOfCart.Sum(x => x.Quantity))</span> </i>
+
+    </a>
+</li>

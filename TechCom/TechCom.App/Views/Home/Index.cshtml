@@ -1,28 +1,29 @@
-﻿@model TechCom.Model.Domain.ViewModels.ProductListViewModel
+﻿
 
+@model TechCom.Model.Domain.ViewModels.ProductListViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
 
-@using (Html.BeginForm("SearchProduct", "Product"))
-{
-    <div class="form-inline" id="formSearchProductList">
-        <input id="SearchString" name="SearchString" type="search" data-autocomplete-source="@Url.Action("HomeSearchSuggestions","Product")" placeholder="czego szukasz?" @ViewBag.CurrentFilter as string class="form-control" />
-        <button type="submit" value="Search" class="btn btn-primary"><i class="glyphicon glyphicon-search"> Wyszukaj</i> </button>
+    <div class="col-md-4 products-left">
+        <div class="css-treeview">
+            <h4>Kategorie</h4>
+            <ul class="tree-list-pad">
+                @foreach (var item in Model.Categories)
+                {
+                    <li>
+                        <a href="@Url.Action("ProductList", "Product", new { categoryName = item.CategoryName,IDcategory=item.CategoryID })">
+                            @item.CategoryName
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
     </div>
-}
+    <div class="col-md-8 products-right">
+        Lorem ipsum –
+    </div>
+    <div class="clearfix"></div>
 
 
-<ul id="mainMenu">
-    @foreach (var item in Model.Categories)
-    {
-        <li>
-            <a href="@Url.Action("ProductList", "Product", new { categoryName = item.CategoryName,IDcategory=item.CategoryID })">
-                @item.CategoryName
-            </a>
-        </li>
-
-    }
-</ul>
-@section Scripts{
-    @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
-    <script src="~/Scripts/Search/SearchSuggestions.js"></script>
-
-}

@@ -79,6 +79,38 @@ namespace TechCom.App.Repository
             }
             return dbEntry;
         }
+        //Akcja ProductList
+        //Sortowanie produktów wg kategorii
+        public List<Product> SortProductByCategoryName(string categoryName)
+        {
+          
+            var products = context.Products.Where(b => b.Subcategory.Category.CategoryName == categoryName).ToList();
+            return products;
+        }
+        //Sortowanie produktów wg kategorii
+        public List<Product> SortProductBySubcategoryName(string subCategory)
+        {
+            var products = context.Products.Where(p => p.Subcategory.SubcategoryName == subCategory).ToList();
+            return products;
+        }
+        //produkty dla danej kategorii
+        public List<Product> ProductByCategory(List<Product> products)
+        {
+            var productInCategory = products.Where(s => s.Subcategory.CategoryID == s.Subcategory.Category.CategoryID).ToList();
+            return productInCategory;
+        }
+        //produkty dla danej podkategorii
+        public List<Product> ProductBySubcategory(List<Product> products)
+        {
+            var productInSubcategory = products.Where(s => s.Subcategory.SubcategoryID == s.Subcategory.SubcategoryID).ToList();
+            return productInSubcategory;
+        }
+        //produkt dla danego id
+        public Product GetProductByID(int id)
+        {
+            var product = context.Products.Where(p => p.ProductID == id).Single();
+            return product;
+        }
         //wyszukiwanie produktów
         public List<Product> SearchProduct(string searchString, string categoryName)
         {

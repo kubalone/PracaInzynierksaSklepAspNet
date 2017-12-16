@@ -10,6 +10,11 @@ namespace TechCom.Model.Domain.Interface
         void SaveProduct(EditProductVieModel product, string filename);
         void EditProduct(EditProductVieModel product);
         Product DeleteProduct(int idProduct);
+        List<Product> SortProductByCategoryName(string categoryName);
+        List<Product> SortProductBySubcategoryName(string subCategory);
+        List<Product> ProductByCategory(List<Product> products);
+        List<Product> ProductBySubcategory(List<Product> products);
+        Product GetProductByID(int id);
         List<Product>SearchProduct(string searchString, string categoryName);
         List<Product> OrderProductInCategory(string categoryName, int? orderBy, List<Product> products);
         List<Product> OrderSearchProductInCategory(string searchString,string categoryName, int? orderBy, List<Product> products);

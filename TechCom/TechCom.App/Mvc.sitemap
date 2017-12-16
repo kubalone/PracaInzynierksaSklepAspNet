@@ -3,9 +3,18 @@
             xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
+
+  
   <mvcSiteMapNode title="Home" controller="Home" action="Index">
+    <mvcSiteMapNode title="Category" controller="Product" action="ProductList" dynamicNodeProvider="TechCom.App.Infrastructure.CategoriesDynamicNodeProvider,TechCom.App">
     <mvcSiteMapNode title="Product" controller="Product" action="Details" dynamicNodeProvider="TechCom.App.Infrastructure.ProductDetailsDynamicNodeProvider,TechCom.App"/>
-      <mvcSiteMapNode title="Category" controller="Product" action="ProductList" dynamicNodeProvider="TechCom.App.Infrastructure.CategoriesDynamicNodeProvider,TechCom.App"/>
   </mvcSiteMapNode>
 
+
+  
+  <mvcSiteMapNode title="Koszyk" controller="ShoppingCart" action="Index">
+    <mvcSiteMapNode title="Dane zamowienia" controller="ShoppingCart" action="Index"/>
+    <mvcSiteMapNode title="Potwierdzenie zamowienia" controller="ShoppingCart" action="OrderConfirmation"/>
+  </mvcSiteMapNode>
+  </mvcSiteMapNode>
 </mvcSiteMap>

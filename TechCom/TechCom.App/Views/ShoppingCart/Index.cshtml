@@ -2,49 +2,66 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutWithoutSearch.cshtml";
 }
 
-<h2>Index</h2>
+<div class="page-head_agile_info_w3l">
+    <div class="container">
+        <h3>Twój koszyk</h3>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Ilość</th>
-            <th>Produkt</th>
-            <th class="text-right">Cena</th>
-            <th class="text-right">Wartość</th>
-        </tr>
-    </thead>
-    <tbody>
-      
-        @foreach (var line in Model.ShoppingCartManager.ContentOfCart)
-        {
-         
+        <div class="services-breadcrumb">
+            <div class="agile_inner_breadcrumb">
+
+                <ul class="w3_short">
+                    <li>@Html.MvcSiteMap().SiteMapPath()</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+   
+    <table class="table table-hover table-striped" id="shoppingCart">
+        <thead>
             <tr>
-                <td class="text-center">@line.Quantity</td>
-                <td class="text-left">@line.Product.Name</td>
-                <td class="text-right">@line.Product.Price.ToString("c")</td>
-                <td class="text-right">@((line.Quantity * line.Product.Price).ToString("c"))</td>
-                <td><a href="@Url.Action("RemoveFromShoppingCart","ShoppingCart", new {id=line.Product.ProductID,returnUrl=Request.Url.PathAndQuery})">
-                    <input type="submit" class="btn btn-danger" value="Usuń" />
-                </a>
-                </td>
-            
+                <th class="text-center">Ilość</th>
+                <th>Produkt</th>
+                <th class="text-right">Cena</th>
+                <th class="text-right">Wartość</th>
+                <th></th>
             </tr>
-           
-        }
+        </thead>
+        <tbody>
 
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="3" class="text-right">Razem:</td>
-            <td class="text-right">
-                @Model.ShoppingCartManager.WorthOfProduct().ToString("c")
-            </td>
-        </tr>
-    </tfoot>
-</table>
-<div class="text-center">
-    <a class="btn btn-primary" href="@Url.Content("~/")">Kontynuuj zakupy</a>
-    @Html.ActionLink("Realizuj zamówienie", "MakeAnOrder",null,new { @class="btn btn-primary" })
+            @foreach (var line in Model.ShoppingCartManager.ContentOfCart)
+            { 
+                <tr>
+                    <td class="text-center">@line.Quantity</td>
+                    <td class="text-left">@line.Product.Name</td>
+                    <td class="text-right">@line.Product.Price.ToString("c")</td>
+                    <td class="text-right">@((line.Quantity * line.Product.Price).ToString("c"))</td>
+                    <td class="text-center">
+                        <a href="@Url.Action("RemoveFromShoppingCart","ShoppingCart", new {id=line.Product.ProductID,returnUrl=Request.Url.PathAndQuery})">
+                            <span class="glyphicon glyphicon-remove " value="Usuń" id="remove"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-right"><b>Razem:</b></td>
+                <td class="text-right">
+                    @Model.ShoppingCartManager.WorthOfProduct().ToString("c")
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="col-md-3 col-md-offset-3  col-sm-5 col-sm-offset-1  ">
+        <a class="buttonApp col-xs-11 " href="@Url.Content("~/")">Kontynuuj zakupy</a>
+    </div>
+    <div class="col-md-3 col-md-offset-0 col-sm-5 ">
+        <a class="buttonApp col-xs-11" href="@Url.Action("MakeAnOrder", "ShoppingCar", null)">Realizuj zamówienie</a>
+    </div>
+        
 </div>

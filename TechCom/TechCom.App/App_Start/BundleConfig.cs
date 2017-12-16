@@ -32,6 +32,15 @@ namespace TechCom.App
                                         "~/Content/themes/base/autocomplete.css",
                                         "~/Content/themes/base/theme.css",
                                         "~/Content/themes/base/menu.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/css").Include(
+                     "~/Content/Prototype/css/bootstrap.css",
+                     "~/Content/Prototype/css/easy-responsive-tabs.css",
+                     "~/Content/Prototype/css/flexslider.css",
+                     "~/Content/Prototype/css/font-awesome.css",
+                     "~/Content/Prototype/css/jquery-ui.css",
+                     "~/Content/Prototype/css/style.css",
+                     "~/Content/Prototype/css/team.css" ));
         }
     }
 }

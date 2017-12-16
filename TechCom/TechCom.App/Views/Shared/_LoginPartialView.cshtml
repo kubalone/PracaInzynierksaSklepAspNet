@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <li>
+            <a href="@Url.Action("Index", "Manage", routeValues: null)" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-user" id="main" aria-hidden="true"></i>Moje konto</a>
+        </li>
+        <li>
+
+            <a href="javascript:document.getElementById('logoutForm').submit()" data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-off" id="main" aria-hidden="true"></i>Wyloguj</a>
+        </li>
+    }
+}
+else
+{
+    <li>
+        <a href="@Url.Action("Register", "Account", routeValues: null)" data-toggle="modal" data-target="#myModal" htmlAttributes id="registerLink"><i class="glyphicon glyphicon-lock" id="main" aria-hidden="true"></i>Zarejestruj </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Login", "Account", routeValues: null)" data-toggle="modal" data-target="#myModal2" htmlAttributes id="loginLink"><i class="glyphicon glyphicon-user" id="main" aria-hidden="true"></i>Zaloguj</a>
+    </li>
+
+}

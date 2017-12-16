@@ -25,5 +25,11 @@ namespace TechCom.Infrastructure
             var subategories = context.Subcategories.ToList();
             editProduct.Subcategories = subategories;
         }
+        //sortowanie podkategorii wg kategorii
+        public List<Subcategory> SortProductBySubcategoryName(string categoryName)
+        {
+            var subcategories = context.Subcategories.Where(p => p.Category.CategoryName == categoryName).ToList();
+            return subcategories;
+        }
     }
 }

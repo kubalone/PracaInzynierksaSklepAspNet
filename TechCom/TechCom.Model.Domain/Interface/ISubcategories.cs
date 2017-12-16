@@ -13,5 +13,6 @@ namespace TechCom.Model.Domain.Interface
        
         IEnumerable<Subcategory> Subcategories{ get; }
         void SaveSubcategory(EditProductVieModel editProduct);
+        List<Subcategory> SortProductBySubcategoryName(string categoryName);
     }
 }

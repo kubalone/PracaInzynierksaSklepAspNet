@@ -36,5 +36,6 @@ namespace TechCom.Model.Domain.ViewModels
 
         public string SubcategoryName { get; set; }
 
+        public string CurrentFilter { get; set; }
     }
 }

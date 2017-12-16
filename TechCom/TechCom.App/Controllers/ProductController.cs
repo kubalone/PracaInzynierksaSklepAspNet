@@ -21,6 +21,12 @@ namespace TechCom.App.Controllers
         private ICategories categoryRepository;
         private ISubcategories subcategoryRepository;
 
+        static SelectListGroup price = new SelectListGroup { Name = "Cena" };
+        private List<SelectListItem> list = new List<SelectListItem>
+                {
+                    new SelectListItem {Text="Malejąco",Value="1",Group=price },
+                    new SelectListItem {Text="Rosnąco",Value="2" ,Group=price }
+                };
         public ProductController(IProduct productRepository, ICategories categoryRepository, ISubcategories subcategoryRepository)
         {
             this.productRepository = productRepository;
@@ -31,24 +37,18 @@ namespace TechCom.App.Controllers
 
         public ActionResult ProductList(int? orderBy, string currentFilter, string categoryName, int? page, string searchString, int? id)
         {
-          
+            var products = productRepository.SortProductByCategoryName(categoryName);
+            var subcategories = subcategoryRepository.SortProductBySubcategoryName(categoryName);
             if (searchString != null)
             {
                 page = 1;
+               
             }
             else
             {
                 searchString = currentFilter;
             }
-
-            ViewBag.CurrentFilter = searchString;
-
-            int pageSize = 20;
-            int pageNumber = page ?? 1;
-
-            var price = new SelectListGroup { Name = "Cena" };
-            var products = productRepository.Products.Where(b => b.Subcategory.Category.CategoryName == categoryName).ToList();
-            var subcategories = subcategoryRepository.Subcategories.Where(p => p.Category.CategoryName == categoryName);
+           
             if (orderBy != null)
             {
                 products = productRepository.OrderProductInCategory(categoryName, orderBy, products);
@@ -56,6 +56,7 @@ namespace TechCom.App.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
+
                 products = productRepository.SearchProduct(searchString, categoryName);
                 if (orderBy != null)
                 {
@@ -65,15 +66,12 @@ namespace TechCom.App.Controllers
 
             var vm = new ProductListViewModel()
             {
-               Products = products.Where(p => p.Quantity > 0).ToPagedList(pageNumber, pageSize),
+               Products = products.Where(p => p.Quantity > 0).ToPagedList(page ?? 1, 1),
                CurrentCategory = categoryName,
                OrderBy = orderBy,
                Subategories = subcategories,
-                OrderList = new List<SelectListItem>
-                {
-                    new SelectListItem {Text="Malejąco",Value="1",Group=price},
-                    new SelectListItem {Text="Rosnąco",Value="2" ,Group=price}
-                }
+               CurrentFilter= searchString,
+               OrderList =list
 
             };
 
@@ -81,47 +79,39 @@ namespace TechCom.App.Controllers
         }
         public ActionResult DetailedProductList(int? orderBy, string currentFilter, string subCategory, int? page, string searchString,string categoryName)
         {
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = searchString;
-
-            int pageSize = 20;
-            int pageNumber = page ?? 1;
-
-            var price = new SelectListGroup { Name = "Cena" };
-            var products = productRepository.Products.Where(p => p.Subcategory.SubcategoryName == subCategory).ToList();
-            var subcategories = subcategoryRepository.Subcategories.Where(p => p.Category.CategoryName == categoryName);
+            
+           
+            var products = productRepository.SortProductBySubcategoryName(subCategory);
+           
+            var subcategories = subcategoryRepository.SortProductBySubcategoryName(categoryName);
             if (orderBy != null)
             {
                 products = productRepository.OrderProductInSubcategory(subCategory, orderBy, products);
             }
             if (!String.IsNullOrEmpty(searchString))
             {
+                page = 1;
                 products = productRepository.SearchProductInSubCategory(searchString, subCategory);
                 if (orderBy != null)
                 {
                     products = productRepository.OrderProductInSearchSubcategory(subCategory, orderBy, products, searchString);
                 }
             }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+         
             var vm = new ProductListViewModel()
             {
-                Products = products.ToPagedList(pageNumber, pageSize),
+                Products = products.ToPagedList(page ?? 1, 1),
                 Subategories = subcategories,
                 SubcategoryName= subCategory,
                 OrderBy = orderBy,
                 CurrentCategory = categoryName,
-                OrderList = new List<SelectListItem>
-                {
-                    new SelectListItem {Text="Malejąco",Value="1",Group=price},
-                    new SelectListItem {Text="Rosnąco",Value="2" ,Group=price}
-                }
+                CurrentFilter = searchString,
+                OrderList = list
             };
             return View(vm);
         }
@@ -136,10 +126,7 @@ namespace TechCom.App.Controllers
                 searchString = currentFilter;
             }
             List<Product> products = new List<Product>();
-            ViewBag.CurrentFilter = searchString;
-            int pageSize = 20;
-            int pageNumber = page ?? 1;
-            var price = new SelectListGroup { Name = "Cena" };
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 products = productRepository.SearchProductInMainView(searchString);
@@ -148,21 +135,16 @@ namespace TechCom.App.Controllers
                     products = productRepository.OrderSearchProductInMainView(orderBy, products, searchString);
                 }  
             }
-
-
-            var categories = products.Where(s => s.Subcategory.CategoryID == s.Subcategory.Category.CategoryID).ToList();
-            var ListOfProduct = productRepository.CountOfProductInCategory(categories);
+            var productInCategory = productRepository.ProductByCategory(products);
+            var ListOfProduct = productRepository.CountOfProductInCategory(productInCategory);
             var vm = new ProductListViewModel()
             {
-                EnableCategories = categories,
+                EnableCategories = productInCategory,
                 OrderBy = orderBy,
-                Products = products.Where(p => p.Quantity > 0).ToPagedList(pageNumber, pageSize),
+                Products = products.Where(p => p.Quantity > 0).ToPagedList(page ?? 1, 1),
                 CountOfProductsInCategory = ListOfProduct,
-                OrderList = new List<SelectListItem>
-                {
-                    new SelectListItem {Text="Malejąco",Value="1",Group=price},
-                    new SelectListItem {Text="Rosnąco",Value="2" ,Group=price}
-                }
+                CurrentFilter = searchString,
+                OrderList = list
             };
 
             return View(vm);
@@ -178,10 +160,7 @@ namespace TechCom.App.Controllers
                 searchString = currentFilter;
             }
             List<Product> products = new List<Product>();
-            ViewBag.CurrentFilter = searchString;
-            int pageSize = 20;
-            int pageNumber = page ?? 1;
-            var price = new SelectListGroup { Name = "Cena" };
+                    
             if (!String.IsNullOrEmpty(searchString))
             {
                 products = productRepository.SearchProductInMainView(searchString);
@@ -191,20 +170,16 @@ namespace TechCom.App.Controllers
                 }
             }
 
-
-            var categories = products.Where(s => s.Subcategory.SubcategoryID == s.Subcategory.SubcategoryID).ToList();
-            var ListOfProduct = productRepository.CountOfProductInSubategory(categories);
+            var productInSubcategory = productRepository.ProductBySubcategory(products);
+            var ListOfProduct = productRepository.CountOfProductInSubategory(productInSubcategory);
             var vm = new ProductListViewModel()
             {
-                EnableCategories = categories,
+                EnableCategories = productInSubcategory,
                 OrderBy = orderBy,
-                Products = products.Where(p => p.Quantity > 0).ToPagedList(pageNumber, pageSize),
+                Products = products.Where(p => p.Quantity > 0).ToPagedList(page ?? 1, 1),
                 CountOfProductsInCategory = ListOfProduct,
-                OrderList = new List<SelectListItem>
-                {
-                    new SelectListItem {Text="Malejąco",Value="1",Group=price},
-                    new SelectListItem {Text="Rosnąco",Value="2" ,Group=price}
-                }
+                CurrentFilter = searchString,
+                OrderList = list
             };
 
             return View(vm);
@@ -213,28 +188,10 @@ namespace TechCom.App.Controllers
         {
             var product = new ProductListViewModel()
             {
-                DetailsProduct = productRepository.Products.Where(p => p.ProductID == id).Single()
+                DetailsProduct = productRepository.GetProductByID(id)
             };
             return View(product);
         }
-        //public ActionResult SearchSuggestions(string term, string categoryName)
-        //{
-        //    var products = productRepository.Products.Where(p => p.Name.ToLower().Contains(term.ToLower())
-        //    && p.Category.CategoryName == categoryName).Take(3).Select(a => new { label = a.Name });
-        //    return Json(products, JsonRequestBehavior.AllowGet);
-        //}
-
-        //public ActionResult HomeSearchSuggestions(string term)
-        //{
-        //    var products = productRepository.Products.Where(p => p.Name.ToLower().Contains(term.ToLower())).Take(5).Select(a => new { label = a.Name });
-        //    return Json(products, JsonRequestBehavior.AllowGet);
-        //}
-        //public PartialViewResult CategoryMenu()
-        //{
-        //    // IEnumerable<int> categories = categoryRepository.Categories.Select(x => x.CategoryID);
-        //    // var cat = categoryRepository.Categories.Select(x=>x.CategoryName);
-        //    return PartialView();
-
-        //}
+    
     }
 }
