@@ -10,10 +10,13 @@
     <mvcSiteMapNode title="Product" controller="Product" action="Details" dynamicNodeProvider="TechCom.App.Infrastructure.ProductDetailsDynamicNodeProvider,TechCom.App"/>
   </mvcSiteMapNode>
 
-
-  
   <mvcSiteMapNode title="Koszyk" controller="ShoppingCart" action="Index">
     <mvcSiteMapNode title="Dane zamowienia" controller="ShoppingCart" action="Index"/>
+    <mvcSiteMapNode title="Potwierdzenie zamowienia" controller="ShoppingCart" action="OrderConfirmation"/>
+  </mvcSiteMapNode>
+  
+    <mvcSiteMapNode title="Konto" controller="Manage" action="Index">
+    <mvcSiteMapNode title="Zarządzanie kontem" controller="Manage" action="Index"/>
     <mvcSiteMapNode title="Potwierdzenie zamowienia" controller="ShoppingCart" action="OrderConfirmation"/>
   </mvcSiteMapNode>
   </mvcSiteMapNode>

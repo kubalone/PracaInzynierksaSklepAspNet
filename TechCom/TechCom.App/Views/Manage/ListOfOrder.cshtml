@@ -1,124 +1,131 @@
 ﻿@model TechCom.Model.Domain.ViewModels.OrderListViewModel
 @{
     ViewBag.Title = "ListOfOrder";
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
 }
 @using PagedList.Mvc;
 @using PagedList;
-<h2>ListOfOrder</h2>
-@if (ViewBag.UserIsAdmin)
-{
-    using (Html.BeginForm())
-    {
-        <p>
-            <input id="SearchString" name="SearchString" type="search" placeholder="czego szukasz?" value="@ViewBag.CurrentFilter" />
+<div class="container">
+    <div class="containerManagment">
+        <div class="sort  col-md-12  col-md-offset-2">
 
-            <input type="submit" value="Filter" />
-        </p>
-    }
-}
-@using (Html.BeginForm("ListOfOrder", "Manage", new { currentFilter = ViewBag.CurrentFilter }))
-{
+        <div class="header-middle col-md-4 ">
+            @*@using (Html.BeginForm())
+            {*@
+            <form action="@Url.Action("ListOfOrder","Manage")" method="post">
+                <input id="SearchString" name="SearchString" type="search" placeholder="czego szukasz?" value="@ViewBag.CurrentFilter" />
 
-    @Html.LabelFor(m => m.OrderBy)
-    @Html.DropDownListFor(m => m.OrderBy, Model.OrderUserList, "Najlepiej pasujące", new { onchange = "this.form.submit();" })
+                <input type="submit" value=" " />
+                <div class="clearfix"></div>
+            </form>
+            @*}*@
+        </div>
 
-}
-<div>
-    <table class="table">
+            <div class="sortBy  col-md-5">
+                @using (Html.BeginForm("ListOfOrder", "Manage", new { currentFilter = ViewBag.CurrentFilter }))
+            {
+                    @Html.Label("Sortuj według:  ")
+                    @Html.DropDownListFor(m => m.OrderBy, Model.OrderUserList, "Najlepiej pasujące", new { onchange = "this.form.submit();" })
 
-        @foreach (var item in Model.OrderDetail)
-        {
-            <thead class="thead-inverse" style="background-color:aliceblue">
-                <tr>
-                    <th>Numer zamówienia</th>
-                    <th>Data zamówienia:</th>
-                    <th>Stan zamowienia: </th>
-                    <th>Dane do wysyłki:</th>
-                    <th>Komentarz</th>
-                    <th>Koszt zamowienia</th>
-                </tr>
-            </thead>
-            <tr @if (item.OrderStatus == TechCom.Model.Domain.Domain.OrderStatus.Nowe) { <text> class="noweZamowienie" </text>         }>
-            <tr>
-                <td>
-                    @item.ShippingID
-                </td>
-                <td>
-                    @item.DateOfTheOrder.ToString("dd-MM-yyyy")
-                </td>
-                <td>
-                    <strong></strong> <br />
-                    @if (ViewBag.UserIsAdmin)
-                    {
-                        using (Html.BeginForm("ChangeOrderStatus", "Manage"))
+            }
+            </div>
+            </div>
+        <div class="clearfix"></div>
+        <div class="table-responsive">
+            <table class="table">
+
+                @foreach (var item in Model.OrderDetail)
+            {
+                    <thead class="thead-table">
+                        <tr id="tableTH">
+                            <th class="col-md-2">Nr zamówienia</th>
+                            <th class="col-md-2">Data zamówienia:</th>
+                            <th class="col-md-2 ">Stan zamowienia: </th>
+                            <th class="col-md-2">Dane do wysyłki:</th>
+                            <th class="col-md-3 text-center">Komentarz</th>
+                            <th class="col-md-1">Koszt zamowienia</th>
+                        </tr>
+                    </thead>
+
+                        <tr @if (item.OrderStatus == TechCom.Model.Domain.Domain.OrderStatus.Nowe) { <text> class="noweZamowienie" </text>              }>
+                        <tr>
+                            <td class="text-center">
+                                @item.ShippingID
+                            </td>
+                            <td>
+                                @item.DateOfTheOrder.ToString("dd-MM-yyyy")
+                            </td>
+                            <td id="orderStatus">
+                                <strong></strong> <br />
+                                @if (ViewBag.UserIsAdmin)
+                                {
+                                    using (Html.BeginForm("ChangeOrderStatus", "Manage"))
+                                    {
+                                        @Html.HiddenFor(o => item.ShippingID)
+                                        @Html.EnumDropDownListFor(o => item.OrderStatus, new { onchange = "this.form.submit();" })
+                                        @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                    }
+
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(o => item.OrderStatus)
+                                }
+                            </td>
+                            <td>
+
+                                @item.Name @item.Surname <br />
+                                @item.Adress <br />
+                                @item.ZipCode <br />
+                            </td>
+                            <td>
+
+                                @item.Comments
+                            </td>
+                            <td>
+                                @item.ValueOfOrder zł
+                            </td>
+                        </tr>
+
+                        <thead>
+                            <tr class="info">
+                                <th colspan="3" class="text-center">Zamówionie produkty:</th>
+                                <th>Nazwa Produktu</th>
+                                <th class="text-center">Sztuk: </th>
+                                <th>Cena</th>
+
+                            </tr>
+                        </thead>
+
+                        @foreach (var items in item.Orders)
                         {
-                            @Html.HiddenFor(o => item.ShippingID)
-                            @Html.EnumDropDownListFor(o => item.OrderStatus, new { onchange = "this.form.submit();" })
-                            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+
+                            <tr>
+                                <td colspan="3"></td>
+                                <td id="tableTD">
+                                    <a href="@Url.Action("Details", "Product", new { id = items.ProductID })">@items.product.Name</a>
+                                </td>
+                                <td class="text-center" id="tableTD">
+                                    @items.Quantity
+                                </td>
+                                <td id="tableTD">
+                                    @(items.Quantity * items.Price) zł
+                                </td>
+
+                            </tr>
+
                         }
 
-                    }
-                    else
-                    {
-                        @Html.DisplayFor(o => item.OrderStatus)
-                    }
-                </td>
-                <td>
-
-                    @item.Name @item.Surname <br />
-                    @item.Adress <br />
-                    @item.ZipCode <br />
-                </td>
-                <td>
-
-                    @item.Comments
-                </td>
-                <td>
-
-                    @item.ValueOfOrder pln
-                </td>
-
-
-            </tr>
-            <thead class="thead-inverse">
-                <tr>
-                    <th></th>
-                    <th>Nazwa Produktu</th>
-                    <th>Sztuk: </th>
-                    <th>Cena</th>
-
-                </tr>
-            </thead>
-            <tr>
-                <td></td>
-
-
-                @foreach (var items in item.Orders)
-                {
-
-                    <td>
-
-                        <a href="@Url.Action("Details", "Product", new { id = items.ProductID })">@items.product.Name</a>
-                    </td>
-
-                        <td>
-                            @items.Quantity
-                        </td>
-                        <td>
-                            @(items.Quantity * items.Price)
-                        </td>
-
-
-                    <tr></tr>
-
+                        </tr>
 
                 }
 
-                </tr>
-                </tr>
-        }
 
-    </table>
-    @Html.PagedListPager(Model.OrderDetail, page => Url.Action("ListOfOrder", new { orderBy = Model.OrderBy, currentFilter = ViewBag.CurrentFilter, page }))
+            </table>
+            </div>
+            @Html.PagedListPager(Model.OrderDetail, page => Url.Action("ListOfOrder", new { orderBy = Model.OrderBy, currentFilter = ViewBag.CurrentFilter, page }))
 
-</div>
+        </div>
+
+        </div>
+
