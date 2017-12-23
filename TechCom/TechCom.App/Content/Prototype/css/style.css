@@ -63,7 +63,7 @@ label{
 }
 .header ul li {
     display: inline-block;
-    width: 24.5%;
+    /*width: 24.5%;*/
     text-align: center;
     color: #fff;
     font-size: 13px;
@@ -4532,7 +4532,7 @@ p.w3ls_para {
 	}
 	.header ul li {
 		display: inline-block;
-		width: 49%;
+		/*width: 49%;*/
 	}
 	.men-wear-right p {
 		line-height: 2em;
@@ -5507,7 +5507,7 @@ p.w3ls_para {
 @media (max-width: 320px){
 	.header ul li {
 		display: inline-block;
-		width: 100%;
+		/*width: 100%;*/
 	}
 	.header-middle form input[type="search"] {
 		width:80%;
@@ -5692,5 +5692,45 @@ color:#7cd0f2
 .containerManagment{
     overflow-x:hidden;
 }
+.control-label{
+    padding-bottom:2%;
+}
+.btn-form{
+    margin-top:1.5%;
+    border-width:1px;
+    border-style:solid;
+    border-color: #3bb3e4;
+    color:#3bb3e4;
+    background-color:white;
+    padding:5px;
+    font-weight:600;
+}
+.btn-form:hover{
+    background-color:#3bb3e4;
+    color:#fff;
+    font-weight:600;
+}
+#editData:hover{
+    cursor:pointer;
+    color:gray;
+}
+.dataContainter{
+    margin-top:1%;
+}
 
+.header ul li :hover
+{
+    color:#e5e5e5;
+    cursor:pointer;
+}
+.validation-message{
+    color:red;
+}
+.message-value{
+    margin-bottom:2%;
+}
+    
+/*.header ul li :hover{
+   span color:#eaeaea;
+}*/
 /*-- //responsive media queries --*/

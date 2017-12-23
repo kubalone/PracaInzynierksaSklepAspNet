@@ -125,6 +125,18 @@
     <Compile Include="Migrations\201712101514446_examss.Designer.cs">
       <DependentUpon>201712101514446_examss.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712212109583_add.cs" />
+    <Compile Include="Migrations\201712212109583_add.Designer.cs">
+      <DependentUpon>201712212109583_add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712221313490_regex.cs" />
+    <Compile Include="Migrations\201712221313490_regex.Designer.cs">
+      <DependentUpon>201712221313490_regex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712221614470_removeField.cs" />
+    <Compile Include="Migrations\201712221614470_removeField.Designer.cs">
+      <DependentUpon>201712221614470_removeField.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrderRepository.cs" />
     <Compile Include="ProductRepository.cs" />
     <Compile Include="Migrations\201710191247183_structure.cs" />
@@ -215,6 +227,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712101514446_examss.resx">
       <DependentUpon>201712101514446_examss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712212109583_add.resx">
+      <DependentUpon>201712212109583_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712221313490_regex.resx">
+      <DependentUpon>201712221313490_regex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712221614470_removeField.resx">
+      <DependentUpon>201712221614470_removeField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -1,7 +1,7 @@
 ﻿@model TechCom.Infrastructure.ShoppingCartManager
 
-<li>
+<li class="col-xs-3">
     <a href="@Url.Action("Index","ShoppingCart", new { returnUrl = Request.Url.PathAndQuery })" >
-        <i class="glyphicon glyphicon-shopping-cart" id="main"> </i>Koszyk (@Model.ContentOfCart.Sum(x => x.Quantity))
-    </a>
+        <i class="glyphicon glyphicon-shopping-cart" id="main"> </i><span class="hidden-xs">Koszyk (@Model.ContentOfCart.Sum(x => x.Quantity))</span>
+</a>
 </li>

@@ -13,8 +13,8 @@
 <body>
     <div class="header" id="home">
         <div class="container">
-            <ul id="homeList">
-                <li><i class="glyphicon glyphicon-phone" id="main" aria-hidden="true"></i> Zadzwoń : 514443740</li>
+            <ul class="col-xs-12" id="homeList">
+                <li class="col-xs-3"><i class="glyphicon glyphicon-phone" id="main" aria-hidden="true"></i><span class="hidden-xs"> Kontakt</span></li>
                 @Html.Action("Cart", "ShoppingCart")
                 @Html.Partial("_LoginPartialView")
             </ul>
@@ -89,12 +89,12 @@
     </footer>
 
 
-
+   
 
     @Scripts.Render("~/bundles/modernizr")
-
-
     @Scripts.Render("~/bundles/jquery")
+
+    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

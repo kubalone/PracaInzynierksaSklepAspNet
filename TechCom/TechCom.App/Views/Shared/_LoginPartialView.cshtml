@@ -4,22 +4,22 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
     {
         @Html.AntiForgeryToken()
-        <li>
-            <a href="@Url.Action("Index", "Manage", routeValues: null)" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-user" id="main" aria-hidden="true"></i>Moje konto</a>
+        <li class="col-xs-3">
+            <a href="@Url.Action("Index", "Manage", routeValues: null)" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-user" id="main" aria-hidden="true"></i><span class="hidden-xs">Moje konto</span></a>
         </li>
-        <li>
+        <li class="col-xs-3">
 
-            <a href="javascript:document.getElementById('logoutForm').submit()" data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-off" id="main" aria-hidden="true"></i>Wyloguj</a>
+            <a href="javascript:document.getElementById('logoutForm').submit()" data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-off" id="main" aria-hidden="true"></i><span class="hidden-xs">Wyloguj</span></a>
         </li>
     }
 }
 else
 {
-    <li>
-        <a href="@Url.Action("Register", "Account", routeValues: null)" data-toggle="modal" data-target="#myModal" htmlAttributes id="registerLink"><i class="glyphicon glyphicon-lock" id="main" aria-hidden="true"></i>Zarejestruj </a>
+    <li class="col-xs-3">
+        <a href="@Url.Action("Register", "Account", routeValues: null)" data-toggle="modal" data-target="#myModal" htmlAttributes id="registerLink"><i class="glyphicon glyphicon-lock" id="main" aria-hidden="true"></i><span class="hidden-xs">Zarejestruj</span> </a>
     </li>
-    <li>
-        <a href="@Url.Action("Login", "Account", routeValues: null)" data-toggle="modal" data-target="#myModal2" htmlAttributes id="loginLink"><i class="glyphicon glyphicon-user" id="main" aria-hidden="true"></i>Zaloguj</a>
+    <li class="col-xs-3">
+        <a href="@Url.Action("Login", "Account", routeValues: null)" data-toggle="modal" data-target="#myModal2" htmlAttributes id="loginLink"><i class="glyphicon glyphicon-user" id="main" aria-hidden="true"></i><span class="hidden-xs">Zaloguj</span></a>
     </li>
 
 }

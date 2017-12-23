@@ -52,3 +52,6 @@ C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.I
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Infrastructure\obj\Debug\TechCom.Infrastructure.Migrations.databaseRem.resources
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Infrastructure\obj\Debug\TechCom.Infrastructure.Migrations.exams.resources
 C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Infrastructure\obj\Debug\TechCom.Infrastructure.Migrations.examss.resources
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Infrastructure\obj\Debug\TechCom.Infrastructure.Migrations.add.resources
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Infrastructure\obj\Debug\TechCom.Infrastructure.Migrations.regex.resources
+C:\Users\Kubalone\Documents\GitHub\PracaInzynierksaSklepAspNet\TechCom\TechCom.Infrastructure\obj\Debug\TechCom.Infrastructure.Migrations.removeField.resources

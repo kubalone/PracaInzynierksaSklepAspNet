@@ -13,8 +13,10 @@ namespace TechCom.Model.Domain.ViewModels
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public ManageMessageId? Message { get; set; }
         public ChangePasswordViewModel ChangePasswordViewModel { get; set; }
         public UserData UserData{ get; set; }
+     
 
     }
 
@@ -32,14 +34,14 @@ namespace TechCom.Model.Domain.ViewModels
     public class SetPasswordViewModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Hasło musi składać się przynajmniej z {2} znaków.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "New password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Compare("NewPassword", ErrorMessage = "Podane hasła nie pasują do siebie.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -48,18 +50,21 @@ namespace TechCom.Model.Domain.ViewModels
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Current password")]
+        
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Hasło musi składać się przynajmniej z {2} znaków.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "New password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Compare("NewPassword", ErrorMessage = "Podane hasła nie pasują do siebie.")]
         public string ConfirmPassword { get; set; }
+
+    
     }
 
     public class AddPhoneNumberViewModel
@@ -86,5 +91,16 @@ namespace TechCom.Model.Domain.ViewModels
     {
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
+    }
+    public enum ManageMessageId
+    {
+        AddPhoneSuccess,
+        ChangePasswordSuccess,
+        SetTwoFactorSuccess,
+        SetPasswordSuccess,
+        RemoveLoginSuccess,
+        RemovePhoneSuccess,
+        Error,
+        ErrorPassword
     }
 }
