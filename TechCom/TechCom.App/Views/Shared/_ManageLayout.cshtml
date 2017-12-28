@@ -48,7 +48,10 @@
                             <ul class="nav navbar-nav menu__list">
                                 <li class="menu__item"><a class="menu__link" href="@Url.Action("Index","Manage")">Twoje konto</a></li>
                                 <li class="menu__item "><a class="menu__link" href="@Url.Action("ListOfOrder","Manage")">Lista zamówień</a></li>
-                                <li class="menu__item"><a class="menu__link"  href="@Url.Action("Index","ProductManagmentController")">Zarządzanie produkatami</a></li>
+                                    @if (@User.IsInRole("Admin"))
+                                    {
+                                        <li class="menu__item"><a class="menu__link"  href="@Url.Action("Index", "ProductManagment")">Zarządzanie produkatami</a></li>
+                                    }
                             </ul>
                         </div>
                     </div>
@@ -94,7 +97,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
 
-    @Scripts.Render("~/bundles/bootstrap")
+  
     @RenderSection("scripts", required: false)
 </body>
 </html>

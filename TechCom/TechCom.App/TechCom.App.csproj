@@ -257,9 +257,12 @@
     <Compile Include="Infrastructure\Helpers\ImageConfig.cs" />
     <Compile Include="Infrastructure\Helpers\UrlHelpers.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-    <Compile Include="Infrastructure\ProductDetailsDynamicNodeProvider.cs" />
     <Compile Include="Infrastructure\CategoriesDynamicNodeProvider.cs" />
     <Compile Include="Infrastructure\Binders\SessionManager.cs" />
+    <Compile Include="Infrastructure\ProductDetailsDynamicNodeProvider.cs" />
+    <Compile Include="Infrastructure\SearchCategoriesDynamicNodeProvider.cs" />
+    <Compile Include="Infrastructure\SearchSubCategoryDynamicNodeProvider.cs" />
+    <Compile Include="Infrastructure\SubcategoryDynamicNodeProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -441,6 +444,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Prototype\bootstrap.js" />
+    <Content Include="Scripts\Prototype\Category.js" />
     <Content Include="Scripts\Prototype\easy-responsive-tabs.js" />
     <Content Include="Scripts\Prototype\imagezoom.js" />
     <Content Include="Scripts\Prototype\jquery-3.2.1.js" />
@@ -452,6 +456,7 @@
     <Content Include="Scripts\Prototype\modernizr.custom.js" />
     <Content Include="Scripts\Prototype\move-top.js" />
     <Content Include="Scripts\Prototype\responsiveslides.min.js" />
+    <Content Include="Scripts\Prototype\Validate.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Search\SearchSuggestions.js" />
@@ -535,6 +540,8 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_CartPartial.cshtml" />
     <Content Include="Views\Shared\_ManageLayout.cshtml" />
+    <Content Include="Views\Shared\_ProductInCategoryLayout.cshtml" />
+    <Content Include="Views\Product\DetailSearchProductInSubCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -79,6 +79,19 @@ namespace TechCom.App.Repository
             }
             return dbEntry;
         }
+        //wyszukiwanie produktu
+        public List <Product> SearchProduct(string searchString, List<Product> products )
+        {
+           var product = products.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper())).ToList();
+            return product;
+        }
+        //zwróc produkt po id
+        public Product GetProductById(int? idProduct)
+        {
+           var product = context.Products.FirstOrDefault(p => p.ProductID == idProduct);
+           return product;
+
+        }
         //Akcja ProductList
         //Sortowanie produktów wg kategorii
         public List<Product> SortProductByCategoryName(string categoryName)
@@ -185,6 +198,7 @@ namespace TechCom.App.Repository
             var product = context.Products.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper())).ToList();
             return product;
         }
+        //
         //sortowanie produktów na stronie głownek
         public List<Product> OrderSearchProductInMainView(int? orderBy, List<Product> products, string searchString)
         {

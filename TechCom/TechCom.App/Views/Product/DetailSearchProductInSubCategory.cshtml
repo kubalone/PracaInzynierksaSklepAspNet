@@ -1,0 +1,64 @@
+﻿@model TechCom.Model.Domain.ViewModels.ProductListViewModel
+@using PagedList.Mvc;
+@using PagedList;
+@using System.Linq
+@{
+    ViewBag.Title = "DetailSearchProductInSubCategory";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<div class="page-head_agile_info_w3l">
+    <div class="container">
+        <h3>@Model.CurrentCategory</h3>
+
+        <div class="services-breadcrumb">
+            <div class="agile_inner_breadcrumb">
+
+                <ul class="w3_short">
+                    <li>@Html.MvcSiteMap().SiteMapPath()</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel-body">
+    <div class="col-md-3 products-left">
+        <div class="css-treeview" id="side">
+            <h4>Podkategorie</h4>
+            <ul class="tree-list-pad">
+                @foreach (var item in Model.CountOfProductsInCategory)
+                {
+                    <li>
+                        <a href="@Url.Action("DetailSearchProductInSubCategory","Product", new
+                        { categoryName=item.Categoryname,currentFilter = ViewBag.CurrentFilter, searchString= ViewBag.CurrentFilter })">
+                            @item.Categoryname (@item.Count)
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-9 products-right">
+        @using (Html.BeginForm("DetailSearchProductInSubCategory", "Product", new { currentFilter = ViewBag.CurrentFilter, categoryName = Model.CurrentCategory }))
+        {
+            @Html.LabelFor(m => m.OrderBy)
+            @Html.DropDownListFor(m => m.OrderBy, Model.OrderList, "Najlepiej pasujące", new { onchange = "this.form.submit();", @class = "form-control" })
+
+        }
+
+
+
+        @foreach (var item in Model.Products)
+            {
+
+            @Html.Partial("_ProductList", item)
+
+        }
+
+        @Html.PagedListPager(Model.Products, page => Url.Action("DetailSearchProductInSubCategory", new { orderBy = Model.OrderBy, page, currentFilter = ViewBag.CurrentFilter, categoryName = Model.CurrentCategory}))
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+

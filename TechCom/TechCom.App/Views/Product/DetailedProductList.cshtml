@@ -4,29 +4,63 @@
 
 @{
     ViewBag.Title = "DetailedProductList";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_ProductInCategoryLayout.cshtml";
 }
-<div class="row panel">
-    @using (Html.BeginForm())
-    {
-        <div class="form-inline" id="formSearchProductList">
-            <input id="SearchString" name="SearchString" data-autocomplete-source="@Url.Action("SearchSuggestions","Product",new { categoryName = Model.CurrentCategory })" type="search" placeholder="czego szukasz?" value="@ViewBag.CurrentFilter" class="form-control" />
-            <button type="submit" value="Search" class="btn btn-primary"><i class="glyphicon glyphicon-search"> Wyszukaj</i> </button>
+<div class="header-bot">
+    <div class="header-bot_inner_wthreeinfo_header_mid">
+        <div class="col-md-4 logo_agile">
+            <h1><a href="@Url.Action("Index","Home")"><span>T</span>ech Com </a></h1>
         </div>
-    }
-    <div id="subCategories" class="col-xs-2">
-        @foreach (var item in Model.Subategories)
-        {
-            @Html.Partial("_SubCategoriesList", item)
-        }
+        <div class="col-md-4 header-middle">
 
+            @using (Html.BeginForm("DetailSearchProductInSubCategory", "Product", new { categoryName = Model.SubcategoryName }))
+            {
+                <input type="search" name="SearchString" placeholder="Czego szukasz?" required="" value="@ViewBag.CurrentFilter">
+                <button type="submit">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            }
+
+        </div>
+        <div class="clearfix"></div>
     </div>
-    <div class="col-xs-10">
+</div>
+
+<div class="page-head_agile_info_w3l">
+    <div class="container">
+        <h3>@Model.SubcategoryName</h3>
+
+        <div class="services-breadcrumb">
+            <div class="agile_inner_breadcrumb">
+
+                <ul class="w3_short">
+                    <li>@Html.MvcSiteMap().SiteMapPath()</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel-body">
+    <div class="col-md-3 products-left">
+        <div class="css-treeview">
+            <h4>Podkategorie</h4>
+            <ul class="tree-list-pad">
+                @foreach (var item in Model.Subategories)
+                {
+                    @Html.Partial("_SubCategoriesList", item)
+                }
+
+            </ul>
+        </div>
+    </div>
 
 
-        
+    <div class="col-md-9 products-right">
+
+
+
         @using (Html.BeginForm("DetailedProductList", "Product", new { subCategory = Model.SubcategoryName, categoryName = Model.CurrentCategory, currentFilter = ViewBag.CurrentFilter }))
-        {
+            {
 
             @Html.LabelFor(m => m.OrderBy)
             @Html.DropDownListFor(m => m.OrderBy, Model.OrderList, "Najlepiej pasujące", new { onchange = "this.form.submit();", @class = "form-control" })
@@ -37,7 +71,7 @@
         </a>
 
         @foreach (var item in Model.Products)
-        {
+            {
 
             @Html.Partial("_ProductList", item)
         }
@@ -45,5 +79,6 @@
 
         @Html.PagedListPager(Model.Products, page => Url.Action("DetailedProductList", new { orderBy = Model.OrderBy, currentFilter = ViewBag.CurrentFilter, subCategory = Model.SubcategoryName, categoryName = Model.CurrentCategory, page }))
     </div>
-</div>
 
+    <div class="clearfix"></div>
+</div>

@@ -77,6 +77,12 @@ namespace TechCom.App.Controllers
             {
                 return View(model);
             }
+          
+            if(await UserManager.FindByNameAsync(model.Email)==null)
+            {
+                ModelState.AddModelError("", "Podany użytkownik nie istnieje");
+                return View(model);
+            }
             var userid = UserManager.FindByEmail(model.Email).Id;
             if (!UserManager.IsEmailConfirmed(userid))
             {
@@ -96,7 +102,7 @@ namespace TechCom.App.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Nieudana próba logowania");
                     return View(model);
             }
         }

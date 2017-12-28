@@ -41,13 +41,13 @@ namespace TechCom.App.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
-            var products = productRepository.Products;
+            var products = productRepository.Products.OrderBy(p => p.ProductID).ToList();
             if (!String.IsNullOrEmpty(searchString))
             {
-                products = products.Where(s => s.Name.Contains(searchString));
+                products = productRepository.SearchProduct(searchString, products);
             }
 
-            return View(products.OrderBy(p=>p.ProductID).ToPagedList(pageNumber, pageSize));
+            return View(products.ToPagedList(pageNumber, pageSize));
         }
         public ActionResult Edit(int? idProduct,int? idCategory)
         {
@@ -59,7 +59,7 @@ namespace TechCom.App.Controllers
             if (idProduct.HasValue)
             {
                 ViewBag.EditMode = true;
-                product = productRepository.Products.FirstOrDefault(p => p.ProductID == idProduct);
+                product = productRepository.GetProductById(idProduct);
             }
         
             else 
@@ -69,7 +69,7 @@ namespace TechCom.App.Controllers
             }
             
            var categories = categoryRepository.Categories.ToList();
-           var subcategories = subcategoryRepository.Subcategories.Where(p=>p.CategoryID==idCategory&&p.SubcategoryName!=null).ToList();
+           var subcategories = subcategoryRepository.GetSubcategories(idCategory).ToList();
            var model = new EditProductVieModel()
             {
                 Product = product,
@@ -87,7 +87,7 @@ namespace TechCom.App.Controllers
             if (editProduct.Product.ProductID > 0)
             {
                 productRepository.EditProduct(editProduct);
-                
+                TempData["message"] = string.Format("Zmodyfikowano ");
                 return RedirectToAction("Index");
             }
             else
@@ -104,6 +104,7 @@ namespace TechCom.App.Controllers
                         var path = Path.Combine(Server.MapPath(ImageConfig.ImageSource), filename);
                         file.SaveAs(path);
                         productRepository.SaveProduct(editProduct, filename);
+                        TempData["message"] = string.Format("Dodano ");
                         return RedirectToAction("Index");
                     }
                     else
@@ -112,11 +113,12 @@ namespace TechCom.App.Controllers
                         return View(editProduct);
                     }
                 }
-                else
+                else 
                 {
-                    TempData["message"] = string.Format("Nie wskazano pliku ", editProduct);
+
+                    TempData["message"] = string.Format("Nie wskazano pliku ");            
                     categoryRepository.SaveCategory(editProduct);
-                   
+                    subcategoryRepository.SaveSubcategory(editProduct);
                     return View(editProduct);
                 }
             }

@@ -6,27 +6,31 @@
 }
 
 
-<div class="container">
+
     <div class="col-md-4 col-md-offset-4  col-sm-7 col-sm-offset-3  col-xs-12 contact-form">
         <h4 class="white-w3ls">Utwórz <span>konto</span></h4>
 
-        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post))
         {
 
             <div class="styled-input agile-styled-input-top">
                 @Html.TextBoxFor(m => m.Email)
                 <label>Email</label>
                 <span></span>
+               
             </div>
             <div class="styled-input">
                 @Html.PasswordFor(m => m.Password)
                 <label>Hasło</label>
                 <span></span>
+                
             </div>
             <div class="styled-input">
                 @Html.PasswordFor(m => m.ConfirmPassword)
                 <label>Powtórz hasło</label>
                 <span></span>
+                
+                
             </div>
             <input type="submit" value="Zarejestruj" id="registerButton">
             @Html.AntiForgeryToken()
@@ -35,7 +39,7 @@
         }
     </div>
     <div class="clearfix"> </div>
-</div>
+
    
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")

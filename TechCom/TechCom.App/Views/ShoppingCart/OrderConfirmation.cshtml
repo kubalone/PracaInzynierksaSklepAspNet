@@ -1,8 +1,26 @@
 ﻿
 @{
     ViewBag.Title = "OrderConfirmation";
+    Layout = "~/Views/Shared/_LayoutWithoutSearch.cshtml";
 }
-<p>
-    Dziękujemy za zakpuy dokonane w sklepie
-</p>
+<div class="page-head_agile_info_w3l">
+    <div class="container">
+        <h3>&nbsp;&nbsp;</h3>
+
+        <div class="services-breadcrumb">
+            <div class="agile_inner_breadcrumb">
+
+                <ul class="w3_short">
+                    <li>@Html.MvcSiteMap().SiteMapPath()</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <p class="text-center" style="font-size:16px;">
+        Dziękujemy za zakupy dokonane w sklepie
+    </p>
+</div>
+
 

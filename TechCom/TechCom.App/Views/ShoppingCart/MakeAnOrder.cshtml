@@ -1,57 +1,102 @@
 ﻿@model TechCom.Model.Domain.Domain.OrderDetail
 @{
     ViewBag.Title = "MakeAnOrder";
+    Layout = "~/Views/Shared/_LayoutWithoutSearch.cshtml";
 }
-@*DODAC VALIDATORY W KLASIE ORDERDETAIL*@
+<div class="page-head_agile_info_w3l">
+    <div class="container">
+        <h3>Twoje <span>dane</span></h3>
 
-@using (@Html.BeginForm("MakeAnOrder", "ShoppingCart"))
-{
-    @Html.HiddenFor(o => o.Email)
-    <table id="checkout-address-table">
-        <tr>
-            <td>@Html.LabelFor(o => o.Name, "Name:")</td>
-            <td>@Html.TextBoxFor(o => o.Name)</td>
-            @*<td>@Html.ValidationMessageFor(o => o.Name)</td>*@
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(o => o.Surname, "Surname")</td>
-            <td>@Html.TextBoxFor(o => o.Surname)</td>
-            @*<td>@Html.ValidationMessageFor(o => o.Surname)</td>*@
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(o => o.Adress, "Adress")</td>
-            <td>@Html.TextBoxFor(o => o.Adress)</td>
-            @*<td>@Html.ValidationMessageFor(o => o.Adress)</td>*@
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(o => o.City, "City")</td>
-            <td>@Html.TextBoxFor(o => o.City)</td>
-            @*<td>@Html.ValidationMessageFor(o => o.City)</td>*@
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(o => o.ZipCode, "ZipCode")</td>
-            <td>@Html.TextBoxFor(o => o.ZipCode)</td>
-            @*<td>@Html.ValidationMessageFor(o => o.ZipCode)</td>*@
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(o => o.Phone, "Phone number")</td>
-            <td>@Html.TextBoxFor(o => o.Phone)</td>
-            @*<td>@Html.ValidationMessageFor(o => o.Phone)</td>*@
-        </tr>
-        @*<tr>
-            <td>@Html.LabelFor(o => o.Email, "Email adress")</td>
-            <td>@Html.TextBoxFor(o => o.Email)</td>
-            
-        </tr>*@
-        <tr>
-            <td><label>Comments</label></td>
-            <td>
-                <textarea cols="30" rows="2">@Model.Comments</textarea>
-            </td>
-        </tr>
-    </table>
-    <div class="text-center">
-        <input class="btn btn-primary" type="submit" value="Make an order" />
+        <div class="services-breadcrumb">
+            <div class="agile_inner_breadcrumb">
+                <ul class="w3_short">
+                    <li>@Html.MvcSiteMap().SiteMapPath()</li>
+                </ul>
+            </div>
+        </div>
     </div>
+</div>
+<div class="container">
+    @using (@Html.BeginForm("MakeAnOrder", "ShoppingCart"))
+    {
+        @Html.AntiForgeryToken()
 
+        @Html.HiddenFor(o => o.Email)
+        <div class="form-group row">
+            @Html.Label("Imię:", new { @class = "col-md-2 col-sm-12  col-xs-12 col-form-label" })
+            <div class="col-md-4 col-sm-6 col-xs-10">
+                @Html.TextBoxFor(o => o.Name, new { @class = "form-control" })
+                <div class="validation-message">
+                    @Html.ValidationMessageFor(o => o.Name)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.Label("Nazwisko:", new { @class = " col-md-2 col-sm-12  col-xs-12 col-form-label" })
+            <div class="col-md-4 col-sm-6 col-xs-10">
+                @Html.TextBoxFor(o => o.Surname, new { @class = "form-control" })
+                <div class="validation-message">
+                    @Html.ValidationMessageFor(o => o.Surname)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row ">
+            @Html.Label("Adres:", new { @class = "col-md-2 col-sm-12  col-xs-12 col-form-label" })
+            <div class="col-md-4 col-sm-6 col-xs-10">
+               @Html.TextBoxFor(o => o.Adress, new { @class = "form-control" })
+                <div class="validation-message">
+                    @Html.ValidationMessageFor(o => o.Adress)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.Label("Miasto:", new { @class = "col-md-2 col-sm-12  col-xs-12 col-form-label" })
+            <div class="col-md-4 col-sm-6 col-xs-10">
+                @Html.TextBoxFor(o => o.City, new { @class = "form-control" })
+                <div class="validation-message">
+                    @Html.ValidationMessageFor(o => o.City)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.Label("Kod pocztowy:", new { @class = "col-md-2 col-sm-12  col-xs-12 col-form-label" })
+            <div class="col-md-4 col-sm-6 col-xs-10">
+               @Html.TextBoxFor(o => o.ZipCode, new { @class = "form-control" })
+                <div class="validation-message">
+                    @Html.ValidationMessageFor(o => o.ZipCode)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.Label("Telefon:", new { @class = "col-md-2 col-sm-12  col-xs-12 col-form-label" })
+            <div class="col-md-4 col-sm-6 col-xs-10">
+                @Html.TextBoxFor(o => o.Phone, new { @class = "form-control" })
+                <div class="validation-message">
+                    @Html.ValidationMessageFor(o => o.Phone)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.Label("Komentarz:", new { @class = "col-md-2 col-sm-12  col-xs-12 col-form-label" })
+            <div class="col-md-4 col-sm-6 col-xs-10">
+                @Html.TextAreaFor(o => o.Comments, new { @class = "form-control", cols = "30", rows = "5" })             
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <div class="col-md-offset-2 col-md-10 ">
+                <input type="submit" value="Dalej" class="btn-form col-md-2 col-sm-3 col-xs-4" />
+            </div>
+        </div>               
+
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

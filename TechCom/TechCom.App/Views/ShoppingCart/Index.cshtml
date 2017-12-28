@@ -7,7 +7,7 @@
 
 <div class="page-head_agile_info_w3l">
     <div class="container">
-        <h3>Twój koszyk</h3>
+        <h3>Twój <span>koszyk</span></h3>
 
         <div class="services-breadcrumb">
             <div class="agile_inner_breadcrumb">
@@ -20,7 +20,14 @@
     </div>
 </div>
 <div class="container">
-   
+   @if (Model.ShoppingCartManager.ContentOfCart.Count() <= 0)
+   {
+    <p class="text-center"> Twój koszyk jest pusty</p>
+   }
+   else
+   {
+
+  
     <table class="table table-hover table-striped" id="tableTH">
         <thead>
             <tr>
@@ -49,11 +56,12 @@
             }
         </tbody>
         <tfoot>
-            <tr>
+            <tr class="info">
                 <td colspan="3" class="text-right"><b>Razem:</b></td>
                 <td class="text-right">
                     @Model.ShoppingCartManager.WorthOfProduct().ToString("c")
                 </td>
+                <td></td>
             </tr>
         </tfoot>
     </table>
@@ -63,5 +71,5 @@
     <div class="col-md-3 col-md-offset-0 col-sm-5 ">
         <a class="buttonApp col-xs-11" href="@Url.Action("MakeAnOrder", "ShoppingCart", null)">Realizuj zamówienie</a>
     </div>
-        
+   }
 </div>

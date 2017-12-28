@@ -16,6 +16,7 @@ namespace TechCom.Model.Domain.Domain
         
         [RegularExpression(@"^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\-'\s]+$", ErrorMessage = "Błędnie wprowadzone nazwisko")]
         public string Surname { get; set; }
+
         [RegularExpression(@"^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+(?:[\s-][A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+)*$", ErrorMessage = "Błędna nazwa miasta")]
         public string City { get; set; }
       

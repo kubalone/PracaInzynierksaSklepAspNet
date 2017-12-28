@@ -2,18 +2,21 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
 }
 
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-danger text-center">@TempData["message"]</div>
+}
 
 <div class="container" id="editContainer">
     <div class="panel-body ">
-
+        @Html.AntiForgeryToken()
         @using (@Html.BeginForm("Edit", "ProductManagment", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-            @*<div class="error-summary-centered">
-                    @Html.ValidationSummary()
-                </div>*@
+        {
+
+           
             @Html.HiddenFor(o => o.Product.ProductID)
             @Html.HiddenFor(o => o.Product.DateAdded)
             @Html.HiddenFor(o => o.Product.ImageProduct)
@@ -22,6 +25,9 @@
                 <div class="col-xs-5">
                     @Html.Label("Nazwa:")
                     @Html.TextBoxFor(o => o.Product.Name, new { @class = "form-control " ,@id = "edit" })
+                    <div class="validation-message">
+                        @Html.ValidationMessageFor(o => o.Product.Name)
+                    </div>
                 </div>
             </div>
 
@@ -29,13 +35,20 @@
                 <div class="col-xs-5">
                     @Html.Label("Producent:")
                     @Html.TextBoxFor(o => o.Product.Manufacturer, new { @class = "form-control", @id="edit"})
+                    <div class="validation-message">
+                        @Html.ValidationMessageFor(o => o.Product.Manufacturer)
+                    </div>
                 </div>
+
             </div>
 
             <div class="form-group row">
                 <div class="col-xs-6">
                     @Html.Label("Opis:")
                     @Html.TextAreaFor(o => o.Product.Description, new { @class = "form-control", rows = 5, @id = "edit" })
+                    <div class="validation-message">
+                        @Html.ValidationMessageFor(o => o.Product.Description)
+                    </div>
                 </div>
             </div>
 
@@ -56,15 +69,21 @@
                 <div class="col-xs-3">
                     @Html.Label("Ilość sztuk:")<br />
                     @Html.TextBoxFor(o=>o.Product.Quantity, new { type = "number", min = "1", @class = "form-control" })
+                    <div class="validation-message">
+                        @Html.ValidationMessageFor(o => o.Product.Quantity)
+                    </div>
                 </div>
                 <div class="col-xs-3">
                     @Html.Label("Cena:")
                     @Html.TextBoxFor(o => o.Product.Price, new { @class = "form-control", @id = "edit" })
+                    <div class="validation-message">
+                        @Html.ValidationMessageFor(o => o.Product.Price)
+                    </div>
                 </div>
              </div>
             <div class="form-group row">
                 <div class="col-xs-3">
-                    @Html.Label("Produkt ze zniżką:")<br />
+                    @Html.Label("Produkt ze zniżką:")
                     @Html.CheckBoxFor(o => o.Product.ProductWithDiscount, new { @class = "custom-control-input" })
                 </div>
             </div>
@@ -77,22 +96,12 @@
                 </label>
                 }
                 <br /><br />
-                <input type="submit" value="Zapisz" class="btn btn-primary" />
+                <input type="submit" value="Zapisz" class="buttonApp col-md-2"  />
                 }
             </div>
 </div>
-<script src="~/Scripts/jquery-3.2.1.js"></script>
+@section Scripts {
 
-<script>
-    $(document).ready(function () {
-        $("#editMain").change(function () {
-            $.get("/ProductManagment/GetSubCategoryById", { CategoryID: $("#editMain").val() }, function (data) {
-                $("#editSub").empty();
-                $.each(data, function (index, row) {
-                    $("#editSub").append("<option value='" + row.Value + "'>" + row.Text + "</option>")
-                });
-            });
-        })
-    });
-
-</script>
+<script src="~/Scripts/Prototype/Validate.js"></script>
+<script src="~/Scripts/Prototype/Category.js"></script>
+}

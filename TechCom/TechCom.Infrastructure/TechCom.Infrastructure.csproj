@@ -137,6 +137,18 @@
     <Compile Include="Migrations\201712221614470_removeField.Designer.cs">
       <DependentUpon>201712221614470_removeField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712242030410_productValidation.cs" />
+    <Compile Include="Migrations\201712242030410_productValidation.Designer.cs">
+      <DependentUpon>201712242030410_productValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712242212587_produkty.cs" />
+    <Compile Include="Migrations\201712242212587_produkty.Designer.cs">
+      <DependentUpon>201712242212587_produkty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712242243037_pr.cs" />
+    <Compile Include="Migrations\201712242243037_pr.Designer.cs">
+      <DependentUpon>201712242243037_pr.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrderRepository.cs" />
     <Compile Include="ProductRepository.cs" />
     <Compile Include="Migrations\201710191247183_structure.cs" />
@@ -236,6 +248,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712221614470_removeField.resx">
       <DependentUpon>201712221614470_removeField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712242030410_productValidation.resx">
+      <DependentUpon>201712242030410_productValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712242212587_produkty.resx">
+      <DependentUpon>201712242212587_produkty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712242243037_pr.resx">
+      <DependentUpon>201712242243037_pr.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

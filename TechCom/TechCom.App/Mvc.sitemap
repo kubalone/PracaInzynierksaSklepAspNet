@@ -5,16 +5,36 @@
 
 
   
-  <mvcSiteMapNode title="Home" controller="Home" action="Index">
+  <mvcSiteMapNode title="Sklep" controller="Home" action="Index">     
+      <mvcSiteMapNode title="Wyszukiwanie" controller="Product" action="SearchProduct"/>
+      <mvcSiteMapNode title="Category" controller="Product" action="SearchProductInSubCategory" dynamicNodeProvider="TechCom.App.Infrastructure.SearchCategoriesDynamicNodeProvider,TechCom.App" preservedRouteParameters="currentFilter,searchString"/>
+      <mvcSiteMapNode title="Subcategories" controller="Product" action="DetailSearchProductInSubCategory" dynamicNodeProvider="TechCom.App.Infrastructure.SearchSubCategoryDynamicNodeProvider,TechCom.App" preservedRouteParameters="currentFilter,searchString"/>
+
     <mvcSiteMapNode title="Category" controller="Product" action="ProductList" dynamicNodeProvider="TechCom.App.Infrastructure.CategoriesDynamicNodeProvider,TechCom.App">
-    <mvcSiteMapNode title="Product" controller="Product" action="Details" dynamicNodeProvider="TechCom.App.Infrastructure.ProductDetailsDynamicNodeProvider,TechCom.App"/>
+      <mvcSiteMapNode title="Subcategory" controller="Product" action="DetailedProductList" dynamicNodeProvider="TechCom.App.Infrastructure.SubcategoryDynamicNodeProvider,TechCom.App"/>
+    <mvcSiteMapNode title="Product" controller="Product" action="Details" dynamicNodeProvider="TechCom.App.Infrastructure.ProductDetailsDynamicNodeProvider,TechCom.App"/> 
   </mvcSiteMapNode>
+    
+   
+   <mvcSiteMapNode title="Sklep" controller="Home" action="Index">     
+ 
+    
+     
+  </mvcSiteMapNode>
+  
 
   <mvcSiteMapNode title="Koszyk" controller="ShoppingCart" action="Index">
     <mvcSiteMapNode title="Dane zamowienia" controller="ShoppingCart" action="Index"/>
-    <mvcSiteMapNode title="Potwierdzenie zamowienia" controller="ShoppingCart" action="OrderConfirmation"/>
   </mvcSiteMapNode>
+    
   
+    
+   <mvcSiteMapNode title="Realizacja zamówienia" controller="ShoppingCart" action="MakeAnOrder">
+    <mvcSiteMapNode title="Realizacja zamówienia" controller="ShoppingCart" action="MakeAnOrder"/>    
+   </mvcSiteMapNode>
+
+    <mvcSiteMapNode title="Realizacja zamówienia" controller="ShoppingCart" action="OrderConfirmation"></mvcSiteMapNode>
+    
     <mvcSiteMapNode title="Konto" controller="Manage" action="Index">
     <mvcSiteMapNode title="Zarządzanie kontem" controller="Manage" action="Index"/>
     <mvcSiteMapNode title="Potwierdzenie zamowienia" controller="ShoppingCart" action="OrderConfirmation"/>

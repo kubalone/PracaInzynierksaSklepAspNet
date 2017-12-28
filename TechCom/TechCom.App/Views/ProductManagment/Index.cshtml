@@ -4,67 +4,84 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
 }
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-success  text-center">@TempData["message"]</div>
+}
+<div class="container-fluid">
 
-<div class="panel-body">
-    <h2 id="h2ProductManagment">
-        Zarządzanie produktami
-    </h2>
-   
-        @using (Html.BeginForm())
-        {
-            <div class="form-inline" id="formProductManagment">
-            
-                    <input id="SearchString" name="SearchString" type="search" placeholder="czego szukasz?" @ViewBag.CurrentFilter as string class="form-control " />
+    <div class="panel-body">
+        
+        <div class="navigationMan col-md-10 col-md-offset-2">
+            <div class="col-md-5 header-middle">
+                @using (Html.BeginForm())
+                {
+                     <input id="SearchString" name="SearchString" type="search" placeholder="czego szukasz?" value=@ViewBag.CurrentFilter as string />
+                      <button type="submit">
+                         <span class="glyphicon glyphicon-search"></span>
+                      </button>
+                }
+            </div>
+            <div class="btnAdd col-md-4 col-md-offset-1">
+                <a href="@Url.Action("Edit", "ProductManagment")" class="buttonApp " id="addProductManagment">Dodaj nowy produkt</a>
+            </div>
+        </div>
+       @if (Model.Count == 0)
+       {
+        <p class="text-center"> Nic nie znaleziono</p>
+       }
+       else
+       {
 
-                    <button type="submit" value="Search" class="btn btn-primary"><i class="glyphicon glyphicon-search"> Wyszukaj</i> </button>
-             
-                </div>
-        }
-        <a href="@Url.Action("Edit", "ProductManagment")" class="btn btn-success btn-md" id="addProductManagment">+ Dodaj nowy produkt</a>
-
-        <table class="table table-striped table-condensed table-bordered">
-            <tr>
-                <th class="col-md-0.5">ID</th>
-                <th class="col-md-3">Nazwa</th>
-                <th class="col-md-2">Kateogria</th>
-                <th class="col-md-3">Podkategoria</th>
-                <th class="col-md-1">Cena</th>
-                <th class="col-md-1">Ilość</th>
-                <th class="col-md-1.1 text-center">Akcja</th>
-            </tr>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(models => item.ProductID)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(models => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(models => item.Subcategory.Category.CategoryName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(models => item.Subcategory.SubcategoryName)
-                    </td>
-                  
-                    <td>
-                        @Html.DisplayFor(models => item.Price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(models => item.Quantity)
-                    </td>
-                    <td class="text-center">
-
-                        <a href="@Url.Action("Edit", "ProductManagment",new { idProduct = item.ProductID,idCategory=item.Subcategory.Category.CategoryID })" class="btn btn-warning btn-sm " id="btnEdit">Edytuj</a>
-                        <a href="@Url.Action("Delete", "ProductManagment",new { idProduct = item.ProductID })" class="btn btn-danger btn-sm">Usuń</a>
-
-                    </td>
+        <div class="clearfix"></div>
+            <table class="table table-striped table-condensed table-bordered table-hover ">
+                <tr id="tableTH">
+                    <th class="col-md-0.5">ID</th>
+                    <th class="col-md-3">Nazwa</th>
+                    <th class="col-md-2">Kateogria</th>
+                    <th class="col-md-3">Podkategoria</th>
+                    <th class="col-md-1">Cena</th>
+                    <th class="col-md-1 text-center">Ilość</th>
+                    <th class="col-md-1.1 text-center">Akcja</th>
                 </tr>
-            }
-        </table>
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
-    </div>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(models => item.ProductID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(models => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(models => item.Subcategory.Category.CategoryName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(models => item.Subcategory.SubcategoryName)
+                        </td>
 
+                        <td>
+                            @Html.DisplayFor(models => item.Price)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(models => item.Quantity)
+                        </td>
+                        <td class="text-center">
+
+                            <a href="@Url.Action("Edit", "ProductManagment", new { idProduct = item.ProductID, idCategory = item.Subcategory.Category.CategoryID })" class="btn btn-warning btn-sm " id="btnEdit">Edytuj</a>
+                            <a href="@Url.Action("Delete", "ProductManagment", new { idProduct = item.ProductID })" class="btn btn-danger btn-sm">Usuń</a>
+
+                        </td>
+                    </tr>
+                }
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilter = ViewBag.CurrentFilter }))
+
+       }
+        </div>
+
+
+</div>
+<script src="~/Scripts/bootstrap.js"></script>

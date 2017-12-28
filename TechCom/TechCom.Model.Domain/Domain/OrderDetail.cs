@@ -13,34 +13,37 @@ namespace TechCom.Model.Domain.Domain
         public virtual ApplicationUser User { get; set; }
         public OrderStatus OrderStatus { get; set; }
         [Required(ErrorMessage = "Wprowadź imię")]
-        [StringLength(50)]
-        [RegularExpression(@"/^[a-z ,.'-]+$/i", ErrorMessage = "Błędnie wprowadzone imię")]
+        [RegularExpression(@"^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\-'\s]+$", ErrorMessage = "Błędnie wprowadzone imię")]
+        [StringLength(50)]   
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Wprowadź nazwisko")]
         [StringLength(50)]
-        [RegularExpression(@"/^[a-z ,.'-]+$/i", ErrorMessage = "Błędnie wprowadzone nazwisko")]
+        [RegularExpression(@"^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ\-'\s]+$", ErrorMessage = "Błędnie wprowadzone nazwisko")]
         public string Surname { get; set; }
 
         [Required(ErrorMessage = "Wprowadź adres")]
-        [StringLength(100)] 
-        [RegularExpression(@"/^\d+\w*\s*(?:(?:[\-\/]?\s*)?\d*(?:\s*\d+\/\s*)?\d+)?\s+/", ErrorMessage = "Błędnie wprowadzony adres")]
+        [StringLength(100)]
+        [RegularExpression(@"^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ0-9'\.\-\s\,\/]+$", ErrorMessage = "Błędnie wprowadzony adres")]
         public string Adress { get; set; }
 
        
         [Required(ErrorMessage = "Wprowadź miasto")]
         [StringLength(100)]
-        [RegularExpression(@"^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$", ErrorMessage = "Błędna nazwa miasta")]
+        [RegularExpression(@"^[A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+(?:[\s-][A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]+)*$", ErrorMessage = "Błędna nazwa miasta")]
         public string City { get; set; }
 
         [Required(ErrorMessage = "Wprowadź kod pocztowy")]
         [StringLength(6)]
         [RegularExpression(@"^\d{2}(-\d{3})?$", ErrorMessage = "Błędny kod pocztowy")]
         public string ZipCode { get; set; }
+
         public string Email { get; set; }
+
         [Required(ErrorMessage = "Musisz wprowadzić numer telefonu")]
         [StringLength(20)]
-        [RegularExpression(@"(\+\d{2})*[\d\s-]+", ErrorMessage = "Błędny format numeru telefonu")]
+        [RegularExpression(@"^[0-9\-\+\s\(\)]{7,15}$", ErrorMessage = "Błędny format numeru telefonu")]
+
         public string Phone { get; set; }
         public string Comments  { get; set; }
         public DateTime DateOfTheOrder { get; set; }

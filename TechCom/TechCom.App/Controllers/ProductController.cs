@@ -35,42 +35,23 @@ namespace TechCom.App.Controllers
         }
 
 
-        public ActionResult ProductList(int? orderBy, string currentFilter, string categoryName, int? page, string searchString, int? id)
+        public ActionResult ProductList(int? orderBy, string categoryName, int? page,  int? id)
         {
             var products = productRepository.SortProductByCategoryName(categoryName);
             var subcategories = subcategoryRepository.SortProductBySubcategoryName(categoryName);
-            if (searchString != null)
-            {
-                page = 1;
-               
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
            
             if (orderBy != null)
             {
                 products = productRepository.OrderProductInCategory(categoryName, orderBy, products);
             }
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-
-                products = productRepository.SearchProduct(searchString, categoryName);
-                if (orderBy != null)
-                {
-                    products = productRepository.OrderSearchProductInCategory(searchString, categoryName, orderBy, products);
-                }
-            }
-
+         
             var vm = new ProductListViewModel()
             {
                Products = products.Where(p => p.Quantity > 0).ToPagedList(page ?? 1, 1),
                CurrentCategory = categoryName,
                OrderBy = orderBy,
                Subategories = subcategories,
-               CurrentFilter= searchString,
                OrderList =list
 
             };
@@ -101,8 +82,8 @@ namespace TechCom.App.Controllers
             {
                 searchString = currentFilter;
             }
+            ViewBag.CurrentFilter = searchString;
 
-         
             var vm = new ProductListViewModel()
             {
                 Products = products.ToPagedList(page ?? 1, 1),
@@ -110,7 +91,7 @@ namespace TechCom.App.Controllers
                 SubcategoryName= subCategory,
                 OrderBy = orderBy,
                 CurrentCategory = categoryName,
-                CurrentFilter = searchString,
+              
                 OrderList = list
             };
             return View(vm);
@@ -125,6 +106,7 @@ namespace TechCom.App.Controllers
             {
                 searchString = currentFilter;
             }
+            ViewBag.CurrentFilter = searchString;
             List<Product> products = new List<Product>();
 
             if (!String.IsNullOrEmpty(searchString))
@@ -142,14 +124,13 @@ namespace TechCom.App.Controllers
                 EnableCategories = productInCategory,
                 OrderBy = orderBy,
                 Products = products.Where(p => p.Quantity > 0).ToPagedList(page ?? 1, 1),
-                CountOfProductsInCategory = ListOfProduct,
-                CurrentFilter = searchString,
+                CountOfProductsInCategory = ListOfProduct,               
                 OrderList = list
             };
 
             return View(vm);
         }
-        public ActionResult SearchProductInSubCategory(int? orderBy, string currentFilter, string searchString, int? page)
+        public ActionResult SearchProductInSubCategory(int? orderBy, string currentFilter, string searchString, int? page, string categoryName)
         {
             if (searchString != null)
             {
@@ -159,6 +140,7 @@ namespace TechCom.App.Controllers
             {
                 searchString = currentFilter;
             }
+            ViewBag.CurrentFilter = searchString;
             List<Product> products = new List<Product>();
                     
             if (!String.IsNullOrEmpty(searchString))
@@ -178,12 +160,50 @@ namespace TechCom.App.Controllers
                 OrderBy = orderBy,
                 Products = products.Where(p => p.Quantity > 0).ToPagedList(page ?? 1, 1),
                 CountOfProductsInCategory = ListOfProduct,
-                CurrentFilter = searchString,
+                OrderList = list,
+                CurrentCategory= categoryName
+            };
+
+            return View(vm);
+        }
+
+        public ActionResult DetailSearchProductInSubCategory(int? orderBy, string currentFilter, string searchString, int? page,string categoryName)
+        {
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+            List<Product> products = new List<Product>();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = productRepository.SearchProductInSubCategory(searchString, categoryName);
+                if (orderBy != null)
+                {
+                    products = productRepository.OrderProductInSearchSubcategory(categoryName,orderBy, products, searchString);
+                }
+            }
+
+            var productInSubcategory = productRepository.ProductBySubcategory(products);
+            var ListOfProduct = productRepository.CountOfProductInSubategory(productInSubcategory);
+            var vm = new ProductListViewModel()
+            {
+                EnableCategories = productInSubcategory,
+                OrderBy = orderBy,
+                Products = products.Where(p => p.Quantity > 0).ToPagedList(page ?? 1, 1),
+                CountOfProductsInCategory = ListOfProduct,
+                CurrentCategory=categoryName,
                 OrderList = list
             };
 
             return View(vm);
         }
+
         public ActionResult Details(int id)
         {
             var product = new ProductListViewModel()
