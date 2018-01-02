@@ -47,6 +47,7 @@ namespace TechCom.App.Repository
 
         public void SaveProduct(EditProductVieModel editProduct, string filename)
         {
+           
             var product = new Product()
             {
                 ProductID = editProduct.Product.ProductID,
@@ -58,10 +59,12 @@ namespace TechCom.App.Repository
                 ProductWithDiscount = editProduct.Product.ProductWithDiscount,
                 Price = editProduct.Product.Price,
                 SubcategoryID = editProduct.Product.SubcategoryID,
-                ImageProduct=filename
+                ImageProduct=filename,
+                
+                
 
             };
-
+       
             //editProduct.Product.ImageProduct = filename;
             //editProduct.Product.DateAdded = DateTime.Now;
 

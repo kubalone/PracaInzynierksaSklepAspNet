@@ -16,7 +16,7 @@
         @using (@Html.BeginForm("Edit", "ProductManagment", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
 
-           
+
             @Html.HiddenFor(o => o.Product.ProductID)
             @Html.HiddenFor(o => o.Product.DateAdded)
             @Html.HiddenFor(o => o.Product.ImageProduct)
@@ -24,7 +24,7 @@
             <div class="form-group row">
                 <div class="col-xs-5">
                     @Html.Label("Nazwa:")
-                    @Html.TextBoxFor(o => o.Product.Name, new { @class = "form-control " ,@id = "edit" })
+                    @Html.TextBoxFor(o => o.Product.Name, new { @class = "form-control ", @id = "edit" })
                     <div class="validation-message">
                         @Html.ValidationMessageFor(o => o.Product.Name)
                     </div>
@@ -34,7 +34,7 @@
             <div class="form-group row">
                 <div class="col-xs-5">
                     @Html.Label("Producent:")
-                    @Html.TextBoxFor(o => o.Product.Manufacturer, new { @class = "form-control", @id="edit"})
+                    @Html.TextBoxFor(o => o.Product.Manufacturer, new { @class = "form-control", @id = "edit" })
                     <div class="validation-message">
                         @Html.ValidationMessageFor(o => o.Product.Manufacturer)
                     </div>
@@ -68,7 +68,7 @@
             <div class="form-group row">
                 <div class="col-xs-3">
                     @Html.Label("Ilość sztuk:")<br />
-                    @Html.TextBoxFor(o=>o.Product.Quantity, new { type = "number", min = "1", @class = "form-control" })
+                    @Html.TextBoxFor(o => o.Product.Quantity, new { type = "number", min = "1", @class = "form-control" })
                     <div class="validation-message">
                         @Html.ValidationMessageFor(o => o.Product.Quantity)
                     </div>
@@ -87,15 +87,16 @@
                     @Html.CheckBoxFor(o => o.Product.ProductWithDiscount, new { @class = "custom-control-input" })
                 </div>
             </div>
-
+            <br />
             if (ViewBag.EditMode == null || !ViewBag.EditMode)
             {
                 <label class="custom-file">
                     <input type="file" name="file" class="custom-file-input">
                     <span class="custom-file-control"></span>
                 </label>
-                }
-                <br /><br />
+            }
+           
+                <br />
                 <input type="submit" value="Zapisz" class="buttonApp col-md-2"  />
                 }
             </div>

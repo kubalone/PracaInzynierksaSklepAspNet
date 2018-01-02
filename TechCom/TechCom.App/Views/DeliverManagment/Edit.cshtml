@@ -1,0 +1,52 @@
+﻿@model TechCom.Model.Domain.Domain.DeliveryOption
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+}
+
+@if (TempData["message"] != null)
+{
+    <div class="alert alert-danger text-center">@TempData["message"]</div>
+}
+
+<div class="container" id="editContainer">
+    <div class="panel-body ">
+        @Html.AntiForgeryToken()
+        @using (@Html.BeginForm("Edit", "DeliverManagment", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+
+            @Html.HiddenFor(o => o.DeliveryOptionID)
+          
+
+            <div class="form-group row">
+                <div class="col-xs-5">
+                    @Html.Label("Opcja dostawy:")
+                    @Html.TextBoxFor(o => o.TypeOfDelivery, new { @class = "form-control ", @id = "edit" })
+                    <div class="validation-message">
+                        @Html.ValidationMessageFor(o => o.TypeOfDelivery)
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-xs-2">
+                    @Html.Label("Cena Dostawy:")
+                    @Html.TextBoxFor(o => o.PriceOfDelivery, new { @class = "form-control", @id = "edit" })
+                    <div class="validation-message">
+                        @Html.ValidationMessageFor(o => o.PriceOfDelivery)
+                    </div>
+                </div>
+
+            </div>
+
+                <input type="submit" value="Zapisz" class="buttonApp col-md-2" />
+        }
+    </div>
+</div>
+@section Scripts {
+@Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/Prototype/Validate.js"></script>
+    
+}

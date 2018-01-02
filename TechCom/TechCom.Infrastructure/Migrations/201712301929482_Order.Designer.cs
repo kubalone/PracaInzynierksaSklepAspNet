@@ -7,13 +7,13 @@ namespace TechCom.Infrastructure.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class removeField : IMigrationMetadata
+    public sealed partial class Order : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(removeField));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Order));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712221614470_removeField"; }
+            get { return "201712301929482_Order"; }
         }
         
         string IMigrationMetadata.Source

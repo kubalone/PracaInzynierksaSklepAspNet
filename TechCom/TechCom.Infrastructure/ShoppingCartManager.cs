@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TechCom.Model.Domain.Domain;
 using TechCom.Model.Domain.Interface;
+using TechCom.Model.Domain.ViewModels;
 
 namespace TechCom.Infrastructure
 {
@@ -31,7 +32,8 @@ namespace TechCom.Infrastructure
             {
                 cart.Quantity += quantity;
             }
-           
+            db.SaveChanges();
+
         }
      
         public void RemoveProduct(Product product)
@@ -50,20 +52,22 @@ namespace TechCom.Infrastructure
         {
            get{ return productCollection; }
         }
-        public OrderDetail CreateAnOrder(OrderDetail newOrder, string userID)
+        public OrderListViewModel CreateAnOrder(OrderListViewModel newOrder, string userID, DeliveryOption delivery)
         {
             
             var shoppingCart = ContentOfCart;
             
-            newOrder.DateOfTheOrder = DateTime.Now;
-            newOrder.UserID = userID;
-            newOrder.ValueOfOrder = WorthOfProduct();
+            newOrder.OrderDetails.DateOfTheOrder = DateTime.Now;
+            newOrder.OrderDetails.UserID = userID;
+            newOrder.OrderDetails.ValueOfOrder = WorthOfProduct();
+            newOrder.OrderDetails.TypeOfDelivery = delivery.TypeOfDelivery;
+            newOrder.OrderDetails.PriceDelivery = delivery.PriceOfDelivery;
+
+            db.ShippingDetails.Add(newOrder.OrderDetails);
             
-            db.ShippingDetails.Add(newOrder);
-            
-            if (newOrder.Orders == null)
+            if (newOrder.OrderDetails.Orders == null)
             {
-                newOrder.Orders = new List<Order>();
+                newOrder.OrderDetails.Orders = new List<Order>();
             }
             decimal worthOfCard = 0;
             foreach (var item in shoppingCart)
@@ -72,16 +76,17 @@ namespace TechCom.Infrastructure
                 {
                     ProductID = item.Product.ProductID,
                     Quantity = item.Quantity,
-                    Price = item.Product.Price,                            
+                    Price = item.Product.Price,
+                                           
                };
                              
                 worthOfCard += (item.Quantity * item.Product.Price);
-                newOrder.Orders.Add(order);
+                newOrder.OrderDetails.Orders.Add(order);
                 Product prod = (from p in db.Products where p.ProductID == order.ProductID select p).Single();
                 prod.Quantity -= order.Quantity;
             }
             
-            newOrder.ValueOfOrder = worthOfCard;
+            newOrder.OrderDetails.ValueOfOrder = worthOfCard + delivery.PriceOfDelivery; 
 
             db.SaveChanges();
             return newOrder;

@@ -7,13 +7,13 @@ namespace TechCom.Infrastructure.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class produkty : IMigrationMetadata
+    public sealed partial class neww : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(produkty));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(neww));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712242212587_produkty"; }
+            get { return "201712301629412_neww"; }
         }
         
         string IMigrationMetadata.Source

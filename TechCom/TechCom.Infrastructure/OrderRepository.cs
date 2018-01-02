@@ -19,5 +19,20 @@ namespace TechCom.Infrastructure
                 return context.ShippingDetails;
             }
         }
+        public OrderDetail NewOrderDetail(ApplicationUser user)
+        {
+            var oderDetails = new OrderDetail()
+            {
+                Name = user.UserData.Name,
+                Surname = user.UserData.Surname,
+                Adress = user.UserData.Adress,
+                City = user.UserData.City,
+                ZipCode = user.UserData.ZipCode,
+                Email = user.Email,
+                Phone = user.UserData.Phone
+            };
+            return oderDetails;
+        }
+        
     }
 }

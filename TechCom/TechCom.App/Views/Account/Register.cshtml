@@ -29,13 +29,12 @@
                 @Html.PasswordFor(m => m.ConfirmPassword)
                 <label>Powtórz hasło</label>
                 <span></span>
-                
-                
             </div>
+            @Html.ValidationSummary("", new { @class = "text-danger" })
             <input type="submit" value="Zarejestruj" id="registerButton">
             @Html.AntiForgeryToken()
 
-            @Html.ValidationSummary("", new { @class = "text-danger" })
+           
         }
     </div>
     <div class="clearfix"> </div>

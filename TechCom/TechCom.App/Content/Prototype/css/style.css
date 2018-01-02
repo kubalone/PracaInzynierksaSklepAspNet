@@ -804,10 +804,7 @@ figure.effect-roxy:hover p,.agileinfo_banner_bottom_grid_three_left:hover figcap
 }
 /*-- //banner-bottom --*/
 /*-- footer --*/
-.footer{
-    padding: 1em 0;
-    background: #000;
-}
+
 .footer_agile_inner_info_w3l {
     width: 90%;
     margin: 0 auto;
@@ -5787,8 +5784,32 @@ a:active{
 ul.w3_short li a[title="Sklep"]{
     color:#3bb3e4;
 }
-.navbar{
+#footer{
+    background-color:#000;
+    padding:18px;
+    text-align:center
+}
+#check-inline{
+    color:#7cd0f2;
+    margin-top:-11px;
+    margin-bottom:20px;
     
+}
+#check-inline label {
+    font-weight:400;
+    font-size:15px;
+    margin-left:5px;
+   
+}
+#check-inline a{
+    color:#7cd0f2;
+    float:right;
+    margin-top:13px;  
+    font-weight:400;
+    font-size:15px;
+} 
+#btn-Frg{
+    margin-top:10px;
 }
 /*.header ul li :hover{
    span color:#eaeaea;

@@ -7,15 +7,15 @@ namespace TechCom.Infrastructure
 {
     public class PostMailRepository : IMail
     {
-        public void SendConfirmationOrder(OrderDetail order)
+        public void SendConfirmationOrder(OrderListViewModel order)
         {
             var email = new ConfirmationMakeOrder()
             {
-                To = order.Email,
+                To = order.OrderDetails.Email,
                 From = "skleptechcom@gmail.com",
-                Worth = order.ValueOfOrder,
-                OrderID = order.ShippingID,
-                Order = order.Orders      
+                Worth = order.OrderDetails.ValueOfOrder,
+                OrderID = order.OrderDetails.ShippingID,
+                Order = order.OrderDetails.Orders
             };
             email.Send();
         }

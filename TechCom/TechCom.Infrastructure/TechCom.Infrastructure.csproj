@@ -97,6 +97,7 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="ApplicationInitializer.cs" />
     <Compile Include="CategoryRepository.cs" />
+    <Compile Include="DeliverOptionRepository.cs" />
     <Compile Include="Migrations\201712081638440_removeTest.cs" />
     <Compile Include="Migrations\201712081638440_removeTest.Designer.cs">
       <DependentUpon>201712081638440_removeTest.cs</DependentUpon>
@@ -133,21 +134,29 @@
     <Compile Include="Migrations\201712221313490_regex.Designer.cs">
       <DependentUpon>201712221313490_regex.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712221614470_removeField.cs" />
-    <Compile Include="Migrations\201712221614470_removeField.Designer.cs">
-      <DependentUpon>201712221614470_removeField.cs</DependentUpon>
+    <Compile Include="Migrations\201712301623478_new.cs" />
+    <Compile Include="Migrations\201712301623478_new.Designer.cs">
+      <DependentUpon>201712301623478_new.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712242030410_productValidation.cs" />
-    <Compile Include="Migrations\201712242030410_productValidation.Designer.cs">
-      <DependentUpon>201712242030410_productValidation.cs</DependentUpon>
+    <Compile Include="Migrations\201712301629412_neww.cs" />
+    <Compile Include="Migrations\201712301629412_neww.Designer.cs">
+      <DependentUpon>201712301629412_neww.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712242212587_produkty.cs" />
-    <Compile Include="Migrations\201712242212587_produkty.Designer.cs">
-      <DependentUpon>201712242212587_produkty.cs</DependentUpon>
+    <Compile Include="Migrations\201712301820340_newMigration.cs" />
+    <Compile Include="Migrations\201712301820340_newMigration.Designer.cs">
+      <DependentUpon>201712301820340_newMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201712242243037_pr.cs" />
-    <Compile Include="Migrations\201712242243037_pr.Designer.cs">
-      <DependentUpon>201712242243037_pr.cs</DependentUpon>
+    <Compile Include="Migrations\201712301827334_newMigrations.cs" />
+    <Compile Include="Migrations\201712301827334_newMigrations.Designer.cs">
+      <DependentUpon>201712301827334_newMigrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712301929482_Order.cs" />
+    <Compile Include="Migrations\201712301929482_Order.Designer.cs">
+      <DependentUpon>201712301929482_Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712302036475_addNewItem.cs" />
+    <Compile Include="Migrations\201712302036475_addNewItem.Designer.cs">
+      <DependentUpon>201712302036475_addNewItem.cs</DependentUpon>
     </Compile>
     <Compile Include="OrderRepository.cs" />
     <Compile Include="ProductRepository.cs" />
@@ -246,17 +255,23 @@
     <EmbeddedResource Include="Migrations\201712221313490_regex.resx">
       <DependentUpon>201712221313490_regex.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712221614470_removeField.resx">
-      <DependentUpon>201712221614470_removeField.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712301623478_new.resx">
+      <DependentUpon>201712301623478_new.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712242030410_productValidation.resx">
-      <DependentUpon>201712242030410_productValidation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712301629412_neww.resx">
+      <DependentUpon>201712301629412_neww.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712242212587_produkty.resx">
-      <DependentUpon>201712242212587_produkty.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712301820340_newMigration.resx">
+      <DependentUpon>201712301820340_newMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712242243037_pr.resx">
-      <DependentUpon>201712242243037_pr.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712301827334_newMigrations.resx">
+      <DependentUpon>201712301827334_newMigrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712301929482_Order.resx">
+      <DependentUpon>201712301929482_Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712302036475_addNewItem.resx">
+      <DependentUpon>201712302036475_addNewItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

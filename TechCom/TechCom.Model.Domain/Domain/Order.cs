@@ -14,7 +14,10 @@ namespace TechCom.Model.Domain.Domain
         public int ProductID { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
+      
         public virtual OrderDetail orderDetails { get; set; }
         public virtual Product product { get; set; }
+       
+
     }
 }

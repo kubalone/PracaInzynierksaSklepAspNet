@@ -25,18 +25,17 @@
             <label>Hasło</label>
             <span></span>
         </div>
-        <div class="styled-input">
-            @Html.CheckBoxFor(m => m.RememberMe,new { id="remeberMe"})
-            
+
+        <div id="check-inline" >
+            @Html.CheckBoxFor(m => m.RememberMe, new { id = "remeberMe" })
             <label>Zapamiętaj mnie</label>
-            <span></span>
+            <a href="@Url.Action("ForgotPassword","Account")">Zapomniałeś hasła?</a>
+           
         </div>
+      
         <input type="submit" value="Zaloguj">
-    <div class="clearfix"> </div>
+    @Html.ValidationSummary("", new { @class = "text-danger" })
         @Html.AntiForgeryToken()
-       
-        
-        @Html.ValidationSummary("", new { @class = "text-danger" })
     }
 </div>
 <div class="clearfix"> </div>

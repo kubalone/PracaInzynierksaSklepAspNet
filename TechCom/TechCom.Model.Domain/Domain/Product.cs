@@ -35,8 +35,6 @@ namespace TechCom.Model.Domain.Domain
         [Required(ErrorMessage = "Proszę podać opis.")]
         public string Description { get; set; }
 
-        
-     
         public int Quantity { get; set; }
 
         public bool ProductWithDiscount { get; set; }
@@ -47,11 +45,9 @@ namespace TechCom.Model.Domain.Domain
         public virtual Subcategory Subcategory { get; set; }
 
         public int SubcategoryID { get; set; }
-    
-      // public virtual Category Category { get; set; }
-        //public int CategoryID { get; set; }
+        
 
-        // public virtual ICollection<Category> Categories { get; set; }
+        
     }
 
 }

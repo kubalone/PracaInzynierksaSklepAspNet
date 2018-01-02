@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TechCom.App.Infrastructure.Helpers;
+using TechCom.Infrastructure;
 using TechCom.Model.Domain.Domain;
 using TechCom.Model.Domain.Interface;
 using TechCom.Model.Domain.ViewModels;
@@ -18,11 +19,15 @@ namespace TechCom.App.Controllers
         private IProduct productRepository;
         private ICategories categoryRepository;
         private ISubcategories subcategoryRepository;
-        public ProductManagmentController(IProduct productRepository, ICategories categoryRepository, ISubcategories subcategoryRepository)
+        private IDeliverOption deliveryRepository;
+        private ApplicationDbContext db;
+        public ProductManagmentController(IProduct productRepository, ICategories categoryRepository, ISubcategories subcategoryRepository, IDeliverOption deliveryRepository, ApplicationDbContext db)
         {
             this.categoryRepository = categoryRepository;
             this.productRepository = productRepository;
             this.subcategoryRepository = subcategoryRepository;
+            this.deliveryRepository = deliveryRepository;
+            this.db = db;
         }
         
 
@@ -49,6 +54,9 @@ namespace TechCom.App.Controllers
 
             return View(products.ToPagedList(pageNumber, pageSize));
         }
+
+        
+
         public ActionResult Edit(int? idProduct,int? idCategory)
         {
             Product product;
@@ -70,23 +78,27 @@ namespace TechCom.App.Controllers
             
            var categories = categoryRepository.Categories.ToList();
            var subcategories = subcategoryRepository.GetSubcategories(idCategory).ToList();
-           var model = new EditProductVieModel()
+         
+           
+             var model = new EditProductVieModel()
             {
                 Product = product,
                 Categories = categories,
-                Subcategories=subcategories
+                Subcategories=subcategories,
+         
                
             };
            
             return View(model);
         }
         [HttpPost]
-        public ActionResult Edit(EditProductVieModel editProduct, HttpPostedFileBase file)
+        public ActionResult Edit(EditProductVieModel model, HttpPostedFileBase file)
         {
 
-            if (editProduct.Product.ProductID > 0)
+            if (model.Product.ProductID > 0)
             {
-                productRepository.EditProduct(editProduct);
+                productRepository.EditProduct(model);
+               
                 TempData["message"] = string.Format("Zmodyfikowano ");
                 return RedirectToAction("Index");
             }
@@ -103,23 +115,23 @@ namespace TechCom.App.Controllers
 
                         var path = Path.Combine(Server.MapPath(ImageConfig.ImageSource), filename);
                         file.SaveAs(path);
-                        productRepository.SaveProduct(editProduct, filename);
+                        productRepository.SaveProduct(model, filename);
                         TempData["message"] = string.Format("Dodano ");
                         return RedirectToAction("Index");
                     }
                     else
                     {
-                        categoryRepository.SaveCategory(editProduct);
-                        return View(editProduct);
+                        categoryRepository.SaveCategory(model);
+                        return View(model);
                     }
                 }
                 else 
                 {
 
                     TempData["message"] = string.Format("Nie wskazano pliku ");            
-                    categoryRepository.SaveCategory(editProduct);
-                    subcategoryRepository.SaveSubcategory(editProduct);
-                    return View(editProduct);
+                    categoryRepository.SaveCategory(model);
+                    subcategoryRepository.SaveSubcategory(model);
+                    return View(model);
                 }
             }
 
@@ -148,7 +160,8 @@ namespace TechCom.App.Controllers
             //var subcategory = subcategoryRepository.Subcategories.Where(p => p.CategoryID == CategoryID).ToList();
             return Json(items, JsonRequestBehavior.AllowGet);
         }
+        
        
-
+       
     }
 }

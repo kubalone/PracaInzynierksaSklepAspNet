@@ -10,6 +10,7 @@ using TechCom.Infrastructure;
 using TechCom.Infrastructure.ViewModels;
 using TechCom.Model.Domain.Domain;
 using TechCom.Model.Domain.Interface;
+using TechCom.Model.Domain.ViewModels;
 
 namespace TechCom.App.Controllers
 {
@@ -19,15 +20,16 @@ namespace TechCom.App.Controllers
         private IProduct productRepository;
         private IMail emailRepository;
         private IOrderDetails orderRepository;
-        private ApplicationDbContext db;
+        private IDeliverOption deliverRepository;
 
-        public ShoppingCartController(IProduct productRepository, IMail emailRepository, IOrderDetails orderRepository, ApplicationDbContext db)
+
+        public ShoppingCartController(IProduct productRepository, IMail emailRepository, IOrderDetails orderRepository, IDeliverOption deliverRepository)
         {
-            this.productRepository = productRepository;
-            this.emailRepository = emailRepository;
+           this.productRepository = productRepository;
+           this.emailRepository = emailRepository;
            this.orderRepository = orderRepository;
-            this.db = db;
-           // this.cart = cart;
+           this.deliverRepository = deliverRepository;
+          
         }
         public ViewResult Index(string returnUrl, ShoppingCartManager shoppingCartManager)
         {
@@ -41,20 +43,19 @@ namespace TechCom.App.Controllers
         [HttpPost]
         public RedirectToRouteResult AddToShoppingCart(int? id, int quantity,string returnUrl, ShoppingCartManager shoppingCartManager)
         {
-           
-           
-            Product product = productRepository.Products.FirstOrDefault(p => p.ProductID == id);
+
+            Product product = productRepository.GetProductById(id);      
             if (product!=null)
             {
                 shoppingCartManager.AddProducts(product, quantity);
             }
            
-            db.SaveChanges();
+          
             return RedirectToAction("Index", new { returnUrl });
         }
         public RedirectToRouteResult RemoveFromShoppingCart(int id,string returnUrl, ShoppingCartManager shoppingCartManager)
         {
-            Product product = productRepository.Products.FirstOrDefault(p => p.ProductID == id);
+            Product product = productRepository.GetProductById(id);
             if (product!=null)
             {
                 shoppingCartManager.RemoveProduct(product);
@@ -66,17 +67,16 @@ namespace TechCom.App.Controllers
             if (Request.IsAuthenticated)//jesli zalogowany
             {
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                var oderDetails = new OrderDetail()
+                var orderDetails = orderRepository.NewOrderDetail(user);
+
+                var model = new OrderListViewModel()
                 {
-                    Name = user.UserData.Name,
-                    Surname = user.UserData.Surname,
-                    Adress = user.UserData.Adress,
-                    City = user.UserData.City,
-                    ZipCode = user.UserData.ZipCode,
-                    Email = user.Email,
-                    Phone = user.UserData.Phone
+                    OrderDetails = orderDetails,
+                    DeliveryOptions = deliverRepository.SortDeliveryOption()
                 };
-                return View(oderDetails);
+
+
+                return View(model);
             }
             else
             {
@@ -84,12 +84,15 @@ namespace TechCom.App.Controllers
             }
         }
         [HttpPost]
-        public async Task<ActionResult> MakeAnOrder(ShoppingCartManager cart ,OrderDetail orderDetails)
+        public async Task<ActionResult> MakeAnOrder(ShoppingCartManager cart , OrderListViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var delivery = deliverRepository.GetDeliveryOption(model);
+
+
                 var userID = User.Identity.GetUserId();
-                var newOrder = cart.CreateAnOrder(orderDetails, userID);
+                var newOrder = cart.CreateAnOrder(model, userID, delivery);
 
                 var user = await UserManager.FindByIdAsync(userID);
                 TryUpdateModel(user.UserData);
@@ -103,7 +106,7 @@ namespace TechCom.App.Controllers
             }
             else
             {
-                return View(orderDetails);
+                return View(model);
             }
            
         }

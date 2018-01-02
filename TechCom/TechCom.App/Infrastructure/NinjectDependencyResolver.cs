@@ -33,6 +33,7 @@ namespace TechCom.App.Infrastructure
             kernel.Bind<IOrderDetails>().To<OrderRepository>();
             kernel.Bind<IMail>().To<PostMailRepository>();
             kernel.Bind<ISubcategories>().To<SubcategoryRepository>();
+            kernel.Bind<IDeliverOption>().To<DeliverOptionRepository>();
 
         }
     }

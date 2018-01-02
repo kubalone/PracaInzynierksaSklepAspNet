@@ -1,4 +1,4 @@
-﻿@model TechCom.Model.Domain.Domain.OrderDetail
+﻿@model TechCom.Model.Domain.ViewModels.OrderListViewModel
 @{
     ViewBag.Title = "MakeAnOrder";
     Layout = "~/Views/Shared/_LayoutWithoutSearch.cshtml";
@@ -17,17 +17,17 @@
     </div>
 </div>
 <div class="container">
-    @using (@Html.BeginForm("MakeAnOrder", "ShoppingCart"))
+    @using (Html.BeginForm("MakeAnOrder", "ShoppingCart"))
     {
         @Html.AntiForgeryToken()
 
-        @Html.HiddenFor(o => o.Email)
+        @Html.HiddenFor(o => o.OrderDetails.Email)
         <div class="form-group row">
             @Html.Label("Imię:", new { @class = "col-md-2 col-sm-12  col-xs-12 col-form-label" })
             <div class="col-md-4 col-sm-6 col-xs-10">
-                @Html.TextBoxFor(o => o.Name, new { @class = "form-control" })
+                @Html.TextBoxFor(o => o.OrderDetails.Name, new { @class = "form-control" })
                 <div class="validation-message">
-                    @Html.ValidationMessageFor(o => o.Name)
+                    @Html.ValidationMessageFor(o => o.OrderDetails.Name)
                 </div>
             </div>
         </div>
@@ -35,9 +35,9 @@
         <div class="form-group row">
             @Html.Label("Nazwisko:", new { @class = " col-md-2 col-sm-12  col-xs-12 col-form-label" })
             <div class="col-md-4 col-sm-6 col-xs-10">
-                @Html.TextBoxFor(o => o.Surname, new { @class = "form-control" })
+                @Html.TextBoxFor(o => o.OrderDetails.Surname, new { @class = "form-control" })
                 <div class="validation-message">
-                    @Html.ValidationMessageFor(o => o.Surname)
+                    @Html.ValidationMessageFor(o => o.OrderDetails.Surname)
                 </div>
             </div>
         </div>
@@ -45,9 +45,9 @@
         <div class="form-group row ">
             @Html.Label("Adres:", new { @class = "col-md-2 col-sm-12  col-xs-12 col-form-label" })
             <div class="col-md-4 col-sm-6 col-xs-10">
-               @Html.TextBoxFor(o => o.Adress, new { @class = "form-control" })
+               @Html.TextBoxFor(o => o.OrderDetails.Adress, new { @class = "form-control" })
                 <div class="validation-message">
-                    @Html.ValidationMessageFor(o => o.Adress)
+                    @Html.ValidationMessageFor(o => o.OrderDetails.Adress)
                 </div>
             </div>
         </div>
@@ -55,9 +55,9 @@
         <div class="form-group row">
             @Html.Label("Miasto:", new { @class = "col-md-2 col-sm-12  col-xs-12 col-form-label" })
             <div class="col-md-4 col-sm-6 col-xs-10">
-                @Html.TextBoxFor(o => o.City, new { @class = "form-control" })
+                @Html.TextBoxFor(o => o.OrderDetails.City, new { @class = "form-control" })
                 <div class="validation-message">
-                    @Html.ValidationMessageFor(o => o.City)
+                    @Html.ValidationMessageFor(o => o.OrderDetails.City)
                 </div>
             </div>
         </div>
@@ -65,9 +65,9 @@
         <div class="form-group row">
             @Html.Label("Kod pocztowy:", new { @class = "col-md-2 col-sm-12  col-xs-12 col-form-label" })
             <div class="col-md-4 col-sm-6 col-xs-10">
-               @Html.TextBoxFor(o => o.ZipCode, new { @class = "form-control" })
+               @Html.TextBoxFor(o => o.OrderDetails.ZipCode, new { @class = "form-control" })
                 <div class="validation-message">
-                    @Html.ValidationMessageFor(o => o.ZipCode)
+                    @Html.ValidationMessageFor(o => o.OrderDetails.ZipCode)
                 </div>
             </div>
         </div>
@@ -75,9 +75,9 @@
         <div class="form-group row">
             @Html.Label("Telefon:", new { @class = "col-md-2 col-sm-12  col-xs-12 col-form-label" })
             <div class="col-md-4 col-sm-6 col-xs-10">
-                @Html.TextBoxFor(o => o.Phone, new { @class = "form-control" })
+                @Html.TextBoxFor(o => o.OrderDetails.Phone, new { @class = "form-control" })
                 <div class="validation-message">
-                    @Html.ValidationMessageFor(o => o.Phone)
+                    @Html.ValidationMessageFor(o => o.OrderDetails.Phone)
                 </div>
             </div>
         </div>
@@ -85,18 +85,31 @@
         <div class="form-group row">
             @Html.Label("Komentarz:", new { @class = "col-md-2 col-sm-12  col-xs-12 col-form-label" })
             <div class="col-md-4 col-sm-6 col-xs-10">
-                @Html.TextAreaFor(o => o.Comments, new { @class = "form-control", cols = "30", rows = "5" })             
+      
+                @Html.TextAreaFor(o => o.OrderDetails.Comments, new { @class = "form-control", cols = "30", rows = "5" })             
             </div>
         </div>
 
-        <div class="form-group ">
-            <div class="col-md-offset-2 col-md-10 ">
-                <input type="submit" value="Dalej" class="btn-form col-md-2 col-sm-3 col-xs-4" />
+        <div class="form-group row">
+            @Html.Label("Opcja dostawy:", new { @class = "col-md-2 col-sm-12  col-xs-12 col-form-label" })
+            <div class="col-md-offset-2 col-md-10">
+                @foreach (var item in Model.DeliveryOptions)
+                {
+                    @Html.RadioButtonFor(model => model.OrderDetails.SelectedDeliveryId, item.DeliveryOptionID, new { id = "option" + item.DeliveryOptionID })
+                    @Html.Label("option" + item.DeliveryOptionID, item.TypeOfDelivery + " - " + item.PriceOfDelivery + " zł" )
+                <br/>
+                 }
             </div>
-        </div>               
+        </div>
 
-    }
-</div>
+            <div class="form-group ">
+                <div class="col-md-offset-2 col-md-10 ">
+                    <input type="submit" value="Dalej" class="btn-form col-md-2 col-sm-3 col-xs-4" />
+                </div>
+            </div>
+
+            }
+        </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -413,6 +413,7 @@ namespace TechCom.App.Controllers
             {
                 var userID = User.Identity.GetUserId();
                 orderOfUser = db.ShippingDetails.Where(p => p.UserID == userID).Include("Orders").OrderByDescending(p => p.DateOfTheOrder).ToList();
+                //DeliveryPrice=db.Orders.Where(p=>p.OrderID==p.)
             }
            
             switch (orderBy)

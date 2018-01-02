@@ -51,6 +51,12 @@ namespace TechCom.Model.Domain.Domain
         public decimal ValueOfOrder { get; set; }
         public List<Order> Orders { get; set; }
 
+        public decimal PriceDelivery { get; set; }
+        public string TypeOfDelivery { get; set; }
+        public virtual List<DeliveryOption> DeliveryOptions { get; set; }
+        //public virtual DeliveryOption SelectedDelivery { get; set; }
+        public int? SelectedDeliveryId { get; set; }
+
     }
     public enum OrderStatus
     {

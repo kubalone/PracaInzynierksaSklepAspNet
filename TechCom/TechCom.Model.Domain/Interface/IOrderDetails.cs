@@ -11,5 +11,6 @@ namespace TechCom.Model.Domain.Interface
    public interface IOrderDetails
     {
        DbSet< OrderDetail> Orders { get; }
+        OrderDetail NewOrderDetail(ApplicationUser user);
     }
 }

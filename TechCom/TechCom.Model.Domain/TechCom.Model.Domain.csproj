@@ -123,9 +123,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\DeliveryOption.cs" />
     <Compile Include="Domain\IdentityModels.cs" />
     <Compile Include="Domain\Subcategory.cs" />
     <Compile Include="Interface\ICategories.cs" />
+    <Compile Include="Interface\IDeliverOption.cs" />
     <Compile Include="Interface\IMail.cs" />
     <Compile Include="Domain\Category.cs" />
     <Compile Include="Domain\CountOfProduct.cs" />
