@@ -8,12 +8,7 @@
 <div class="panel-body">
     <div class="containerManagment">
 
-        @if (Model.OrderDetail.Count() <= 0)
-            {
-            <p class="text-center"> Nie ma żadnych zamówień</p>
-        }
-        else
-        {
+      
 
             <div class="sort  col-md-12  col-md-offset-2">
                 <div class="header-middle col-md-4 ">
@@ -36,70 +31,76 @@
                     }
                 </div>
             </div>
+            @if (Model.OrderDetail.Count() <= 0)
+                        {
+                <p class="text-center"> Nie ma żadnych zamówień</p>
+            }
+            else
+            {
                 <div class="clearfix"></div>
                 <div class="table-responsive ">
                     <table class="table table-bordered">
-                      
+                        <thead class="thead-table">
+                            <tr id="tableTH">
+                                <th class="col-md-1">Nr zamówienia</th>
+                                <th class="col-md-2">Data zamówienia:</th>
+                                <th class="col-md-2 ">Stan zamowienia: </th>
+                                <th class="col-md-2">Dane do wysyłki:</th>
+                                <th class="col-md-3 text-center">Komentarz</th>
+                                <th class="col-md-2">Typ dostawy</th>
+                                <th class="col-md-2">Cena dostawy</th>
+                            </tr>
+                        </thead>
                         @foreach (var item in Model.OrderDetail)
                         {
-                            <thead class="thead-table">
-                                <tr id="tableTH">
-                                    <th class="col-md-1">Nr zamówienia</th>
-                                    <th class="col-md-2">Data zamówienia:</th>
-                                    <th class="col-md-2 ">Stan zamowienia: </th>
-                                    <th class="col-md-2">Dane do wysyłki:</th>
-                                    <th class="col-md-3 text-center">Komentarz</th>
-                                    <th class="col-md-2">Typ dostawy</th>
-                                    <th class="col-md-2">Cena dostawy</th>                                 
-                                </tr>
-                            </thead>
+                            
 
-                            <tr @if (item.OrderStatus == TechCom.Model.Domain.Domain.OrderStatus.Nowe) { <text> class="noweZamowienie" </text> }>
-                            <tr>
-                                <td class="text-center">
-                                    @item.ShippingID
-                                </td>
-                                <td>
-                                    @item.DateOfTheOrder.ToString("dd-MM-yyyy")
-                                </td>
-                                <td id="orderStatus">
-                                    <strong></strong> <br />
-                                    @if (ViewBag.UserIsAdmin)
-                                    {
-                                        using (Html.BeginForm("ChangeOrderStatus", "Manage"))
-                                        {
-                                            @Html.HiddenFor(o => item.ShippingID)
-                                            @Html.EnumDropDownListFor(o => item.OrderStatus, new { onchange = "this.form.submit();" })
-                                            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                                        }
-
-                                    }
-                                    else
-                                    {
-                                        @Html.DisplayFor(o => item.OrderStatus)
-                                    }
-                                </td>
-                                <td>
-
-                                    @item.Name @item.Surname <br />
-                                    @item.Adress <br />
-                                    @item.ZipCode <br />
-                                </td>
-                                <td>
-
-                                    @item.Comments
-                                </td>
-                                <td>
-                                    @item.TypeOfDelivery
-                                </td>
-                                <td>
-                                    @item.PriceDelivery
-                                </td>
-                                
-                            </tr>
-
-                            <thead>
+                                <tr @if (item.OrderStatus == TechCom.Model.Domain.Domain.OrderStatus.Nowe) { <text> class="noweZamowienie" </text>  } >
                                 <tr class="info">
+                                    <td class="text-center">
+                                        @item.ShippingID
+                                    </td>
+                                    <td>
+                                        @item.DateOfTheOrder.ToString("dd-MM-yyyy")
+                                    </td>
+                                    <td id="orderStatus">
+                                        <strong></strong> <br />
+                                        @if (ViewBag.UserIsAdmin)
+                                        {
+                                            using (Html.BeginForm("ChangeOrderStatus", "Manage"))
+                                            {
+                                                @Html.HiddenFor(o => item.ShippingID)
+                                                @Html.EnumDropDownListFor(o => item.OrderStatus, new { onchange = "this.form.submit();" })
+                                                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            @Html.DisplayFor(o => item.OrderStatus)
+                                        }
+                                    </td>
+                                    <td>
+
+                                        @item.Name @item.Surname <br />
+                                        @item.Adress <br />
+                                        @item.ZipCode <br />
+                                    </td>
+                                    <td>
+
+                                        @item.Comments
+                                    </td>
+                                    <td>
+                                        @item.TypeOfDelivery
+                                    </td>
+                                    <td>
+                                        @item.PriceDelivery
+                                    </td>
+
+                                </tr>
+                      
+                            <thead>
+                                <tr >
                                     <th colspan="4"></th>
                                     
                                     <th>Nazwa Produktu</th>
@@ -136,8 +137,9 @@
 
                             </tr>
                         </thead>
-                        <tr>
-                            <td colspan="7" > </td>
+                        <tr id="tableOrder">
+                            
+                          
                         </tr>
                             </tr>
                             

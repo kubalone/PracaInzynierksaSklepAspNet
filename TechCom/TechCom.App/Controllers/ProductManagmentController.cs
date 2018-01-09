@@ -14,24 +14,25 @@ using TechCom.Model.Domain.ViewModels;
 
 namespace TechCom.App.Controllers
 {
+    [Authorize]
     public class ProductManagmentController : Controller
     {
+        
         private IProduct productRepository;
         private ICategories categoryRepository;
         private ISubcategories subcategoryRepository;
         private IDeliverOption deliveryRepository;
-        private ApplicationDbContext db;
+  
         public ProductManagmentController(IProduct productRepository, ICategories categoryRepository, ISubcategories subcategoryRepository, IDeliverOption deliveryRepository, ApplicationDbContext db)
         {
             this.categoryRepository = categoryRepository;
             this.productRepository = productRepository;
             this.subcategoryRepository = subcategoryRepository;
             this.deliveryRepository = deliveryRepository;
-            this.db = db;
+           
         }
-        
-
         // GET: ProductManagment
+        [Authorize(Roles = "Admin")]
         public ViewResult Index(string currentFilter, string searchString, int? page)
         {
             int pageSize = 20;
@@ -46,7 +47,7 @@ namespace TechCom.App.Controllers
             }
 
             ViewBag.CurrentFilter = searchString;
-            var products = productRepository.Products.OrderBy(p => p.ProductID).ToList();
+            var products = productRepository.SortByID();
             if (!String.IsNullOrEmpty(searchString))
             {
                 products = productRepository.SearchProduct(searchString, products);
@@ -55,15 +56,14 @@ namespace TechCom.App.Controllers
             return View(products.ToPagedList(pageNumber, pageSize));
         }
 
-        
-
-        public ActionResult Edit(int? idProduct,int? idCategory)
+        [Authorize(Roles = "Admin")]
+        public ActionResult Edit(int? idProduct)
         {
             Product product;
-            if (idCategory==null)
-            {
-                idCategory = 1;
-            }
+            //if (idCategory==null)
+            //{
+            //    idCategory = 1;
+            //}
             if (idProduct.HasValue)
             {
                 ViewBag.EditMode = true;
@@ -77,10 +77,11 @@ namespace TechCom.App.Controllers
             }
             
            var categories = categoryRepository.Categories.ToList();
-           var subcategories = subcategoryRepository.GetSubcategories(idCategory).ToList();
-         
-           
-             var model = new EditProductVieModel()
+           //var subcategories = subcategoryRepository.GetSubcategories(idCategory).ToList();
+            var subcategories = subcategoryRepository.Subcategories.ToList();
+
+
+            var model = new EditProductVieModel()
             {
                 Product = product,
                 Categories = categories,
@@ -92,6 +93,7 @@ namespace TechCom.App.Controllers
             return View(model);
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(EditProductVieModel model, HttpPostedFileBase file)
         {
 
@@ -134,10 +136,9 @@ namespace TechCom.App.Controllers
                     return View(model);
                 }
             }
-
-  
         }
-       
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int idProduct)
         {
             Product deleteProduct = productRepository.DeleteProduct(idProduct);
@@ -156,12 +157,9 @@ namespace TechCom.App.Controllers
                         {
                             Value = c.SubcategoryID,
                             Text = c.SubcategoryName
-                        };
-            //var subcategory = subcategoryRepository.Subcategories.Where(p => p.CategoryID == CategoryID).ToList();
+                        };          
             return Json(items, JsonRequestBehavior.AllowGet);
         }
-        
-       
-       
+    
     }
 }

@@ -33,6 +33,47 @@ namespace TechCom.Infrastructure
             };
             return oderDetails;
         }
-        
+        //zwraca wszystkie zamówienia
+        public IEnumerable<OrderDetail> GetOrder()
+        {
+            var orderOfUser = context.ShippingDetails.Include("Orders").OrderByDescending(p => p.DateOfTheOrder).ToList();
+            return orderOfUser;
+        }
+        //zwraca zamównie dla danego użytkownika
+        public IEnumerable<OrderDetail> GetOrderForUser(string userID)
+        {
+           var orderOfUser = context.ShippingDetails.Where(p => p.UserID == userID).Include("Orders").OrderByDescending(p => p.DateOfTheOrder).ToList();
+           return orderOfUser;
+
+        }
+        //sortowanie zamówień
+        public IEnumerable<OrderDetail> SortOrder(OrderStatus status)
+        {
+            var orderOfUser = context.ShippingDetails.Where(p => p.OrderStatus == status).OrderByDescending(p => p.DateOfTheOrder).ToList();
+            return orderOfUser;
+        }
+        //wyszukiwanie zamówień
+        public IEnumerable<OrderDetail> SearchOrder(IEnumerable<OrderDetail> ordersOfUser,string searchString)
+        {
+            var orderOfUser = ordersOfUser.Where(s => s.Name.ToLower().Contains(searchString) || s.Surname.ToLower().Contains(searchString) || s.User.UserName.ToLower().Contains(searchString)).ToList();
+            return orderOfUser;
+        }
+        //sortowanie wyszukanych zamówień
+        public IEnumerable<OrderDetail> SortSearchOrders(string searchString, OrderStatus status)
+        {
+           var  orderOfUser = context.ShippingDetails.Where(s => s.OrderStatus == status && s.Name.ToLower().Contains(searchString) || s.Surname.ToLower().Contains(searchString) || s.User.UserName.ToLower().Contains(searchString)).OrderByDescending(p => p.DateOfTheOrder).ToList();
+           return orderOfUser;
+        }
+        //zwraca wyszukane zamówienie
+        public OrderDetail GetOrderByID(OrderDetail item)
+        {
+           var order = context.ShippingDetails.Find(item.ShippingID);
+            order.OrderStatus = item.OrderStatus;
+            context.SaveChanges();
+            return order;
+        }
+
+
+
     }
 }

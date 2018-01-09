@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sklep TechCom</title>
     @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery")
 
 
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
@@ -28,35 +32,13 @@
      </div>
        
 
-    <footer class="footer ">
+    <div class="clearfix"></div>
 
-        <div class="footerLink col-md-12 col-sm-12 col-xs-12">
+    <footer class="footer fixed-bottom" id="footer">
 
-            <div class="col-md-3 col-md-offset-1  col-sm-3  col-xs-4">
-                <h4><a href="index.html">Informacje </a></h4>
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-4">
-                <h4><a href="index.html">Kontakt</a></h4>
-
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-4">
-                <h4><a href="index.html">Regulamin</a></h4>
-
-            </div>
-
-            <div class="lastLink col-md-2 col-sm-3 col-xs-4">
-                <h4><a href="index.html">Pomoc </a></h4>
-            </div>
-        </div>
         <p>&copy 2017/2018 TechCom. Design by <span id="name">  Jakub Kubala</span></p>
 
     </footer>
-
-
-    @Scripts.Render("~/bundles/modernizr")
-
-
-    @Scripts.Render("~/bundles/jquery")
 
 </body>
 </html>

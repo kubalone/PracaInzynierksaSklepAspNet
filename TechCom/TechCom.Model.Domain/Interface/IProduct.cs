@@ -14,7 +14,7 @@ namespace TechCom.Model.Domain.Interface
         List<Product> SortProductBySubcategoryName(string subCategory);
         List<Product> ProductByCategory(List<Product> products);
         List<Product> ProductBySubcategory(List<Product> products);
-        Product GetProductByID(int id);
+        //Product GetProductByID(int id);
         List<Product> SearchProduct(string searchString, string categoryName);
         List<Product> OrderProductInCategory(string categoryName, int? orderBy, List<Product> products);
         List<Product> OrderSearchProductInCategory(string searchString, string categoryName, int? orderBy, List<Product> products);
@@ -27,6 +27,6 @@ namespace TechCom.Model.Domain.Interface
         List<CountOfProduct> CountOfProductInSubategory(List<Product> subCategories);
         Product GetProductById(int? idProduct);
         List<Product> SearchProduct(string searchString, List<Product> products);
-
+        List<Product> SortByID();
     }
 }

@@ -68,11 +68,11 @@ namespace TechCom.App.Controllers
             var name = User.Identity.Name;
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Twoje hasło zostało zmienione."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.SetPasswordSuccess ? "Twoje hasło zostało ustawione."
+                : message == ManageMessageId.SetTwoFactorSuccess ? "Dwu etapowe uwierzytelnianie zostało ustawione."
+                : message == ManageMessageId.Error ? "Wystąpił błąd."
+                : message == ManageMessageId.AddPhoneSuccess ? "Twój numer telefonu został dodany."
+                : message == ManageMessageId.RemovePhoneSuccess ? "Twój numer telefonu został usunięty."
                 : message == ManageMessageId.ErrorPassword ? "Podane Hasła nie pasują do siebie." 
                 : "";
 
@@ -407,34 +407,41 @@ namespace TechCom.App.Controllers
             if (isAdmin)
             {
 
-                orderOfUser = db.ShippingDetails.Include("Orders").OrderByDescending(p => p.DateOfTheOrder).ToList();
+                orderOfUser = orderRepository.GetOrder();
             }
             else
             {
                 var userID = User.Identity.GetUserId();
-                orderOfUser = db.ShippingDetails.Where(p => p.UserID == userID).Include("Orders").OrderByDescending(p => p.DateOfTheOrder).ToList();
-                //DeliveryPrice=db.Orders.Where(p=>p.OrderID==p.)
+                orderOfUser = orderRepository.GetOrderForUser(userID);
+                
             }
            
             switch (orderBy)
             {
                 case 1:
-                    orderOfUser = db.ShippingDetails.Where(p=>p.OrderStatus==OrderStatus.Nowe).OrderByDescending(p => p.DateOfTheOrder).ToList();
+                    orderOfUser = orderRepository.SortOrder(OrderStatus.Nowe);
                     break;
                 case 2:
-                    orderOfUser = db.ShippingDetails.Where(p => p.OrderStatus == OrderStatus.Zrealizowane).OrderByDescending(p => p.DateOfTheOrder).ToList();
+                    orderOfUser = orderRepository.SortOrder(OrderStatus.Przyjete);
                     break;
+                case 3:
+                    orderOfUser = orderRepository.SortOrder(OrderStatus.Zrealizowane);
+                    break;
+
             }
             if (!String.IsNullOrEmpty(searchString))
             {
-                orderOfUser = orderOfUser.Where(s => s.Name.Contains(searchString)|| s.Surname.Contains(searchString) || s.User.UserName.Contains(searchString)).ToList(); 
+                orderOfUser = orderRepository.SearchOrder(orderOfUser, searchString);
                 switch (orderBy)
                 {
                     case 1:
-                        orderOfUser = db.ShippingDetails.Where(s => s.OrderStatus == OrderStatus.Nowe && s.Name.Contains(searchString) || s.Surname.Contains(searchString) || s.User.UserName.Contains(searchString)).OrderByDescending(p => p.DateOfTheOrder).ToList();
+                        orderOfUser = orderRepository.SortSearchOrders(searchString, OrderStatus.Nowe);
                         break;
                     case 2:
-                        orderOfUser = db.ShippingDetails.Where(s => s.OrderStatus == OrderStatus.Zrealizowane && s.Name.Contains(searchString) || s.Surname.Contains(searchString) || s.User.UserName.Contains(searchString)).OrderByDescending(p => p.DateOfTheOrder).OrderByDescending(p => p.DateOfTheOrder).ToList();
+                        orderOfUser = orderRepository.SortSearchOrders(searchString, OrderStatus.Przyjete);
+                        break;
+                    case 3:
+                        orderOfUser = orderRepository.SortSearchOrders(searchString, OrderStatus.Zrealizowane);
                         break;
                 }
             }
@@ -444,7 +451,8 @@ namespace TechCom.App.Controllers
                 OrderUserList= new List<SelectListItem>
                 {
                     new SelectListItem {Text="Nowe",Value="1"},
-                    new SelectListItem {Text="Zrealizowane",Value="2" }
+                    new SelectListItem {Text="Przyjęte",Value="2" },
+                    new SelectListItem {Text="Zrealizowane",Value="3" }
                 },
             OrderBy = orderBy
             };
@@ -456,9 +464,9 @@ namespace TechCom.App.Controllers
         [Authorize(Roles = "Admin")]
         public RedirectToRouteResult ChangeOrderStatus(OrderDetail item, string returnUrl)
         {
-            OrderDetail changeOrderStatus = db.ShippingDetails.Find(item.ShippingID);
-            changeOrderStatus.OrderStatus = item.OrderStatus;
-            db.SaveChanges();
+            var changeOrderStatus = orderRepository.GetOrderByID(item);
+            //changeOrderStatus.OrderStatus = item.OrderStatus;
+            //db.SaveChanges();
            
             if (changeOrderStatus.OrderStatus == OrderStatus.Przyjete)
             {

@@ -26,22 +26,25 @@ namespace TechCom.App.Repository
 
         public void EditProduct(EditProductVieModel editProduct)
         {
-            var product = new Product()
-            {
-                ProductID = editProduct.Product.ProductID,
-                Name = editProduct.Product.Name,
-                Manufacturer = editProduct.Product.Manufacturer,
-                DateAdded = DateTime.Now,
-                Description = editProduct.Product.Description,
-                Quantity = editProduct.Product.Quantity,
-                ProductWithDiscount = editProduct.Product.ProductWithDiscount,
-                Price = editProduct.Product.Price,
-                SubcategoryID = editProduct.Product.SubcategoryID
+            //var product = new Product()
+            //{
+            //    ProductID = editProduct.Product.ProductID,
+            //    Name = editProduct.Product.Name,
+            //    Manufacturer = editProduct.Product.Manufacturer,
+            //    DateAdded = DateTime.Now,
+            //    Description = editProduct.Product.Description,
+            //    Quantity = editProduct.Product.Quantity,
+            //    ProductWithDiscount = editProduct.Product.ProductWithDiscount,
+            //    Price = editProduct.Product.Price,
+            //    SubcategoryID = editProduct.Product.SubcategoryID
 
 
-            };
-            context.Products.Attach(product);
-            context.Entry(product).State = EntityState.Modified;
+            //};
+            //context.Products.Attach(product);
+            ////context.Entry(product).State = EntityState.Modified;
+            //var entry = context.Entry(product);
+            editProduct.Product.Subcategory.SubcategoryID = editProduct.Product.SubcategoryID;
+            context.Entry(editProduct.Product).State = EntityState.Modified;
             context.SaveChanges();
         }
 
@@ -95,6 +98,12 @@ namespace TechCom.App.Repository
            return product;
 
         }
+        //produkt dla danego id
+        //public Product GetProductByID(int id)
+        //{
+        //    var product = context.Products.Where(p => p.ProductID == id).Single();
+        //    return product;
+        //}
         //Akcja ProductList
         //Sortowanie produktów wg kategorii
         public List<Product> SortProductByCategoryName(string categoryName)
@@ -121,12 +130,7 @@ namespace TechCom.App.Repository
             var productInSubcategory = products.Where(s => s.Subcategory.SubcategoryID == s.Subcategory.SubcategoryID).ToList();
             return productInSubcategory;
         }
-        //produkt dla danego id
-        public Product GetProductByID(int id)
-        {
-            var product = context.Products.Where(p => p.ProductID == id).Single();
-            return product;
-        }
+        
         //wyszukiwanie produktów
         public List<Product> SearchProduct(string searchString, string categoryName)
         {
@@ -248,5 +252,12 @@ namespace TechCom.App.Repository
             }
             return ListOfProduct;
         }
+        //sortowanie produktów po id
+        public List<Product> SortByID()
+        {
+            var products=context.Products.OrderBy(p => p.ProductID).ToList();
+            return products;
+        }
+     
     }
 }

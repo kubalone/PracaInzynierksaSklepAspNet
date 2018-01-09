@@ -50,10 +50,11 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(models => item.ProductID)
+                           
+                           @Html.DisplayFor(models => item.ProductID)
                         </td>
                         <td>
-                            @Html.DisplayFor(models => item.Name)
+                            <a href="@Url.Action("Details","Product",new { id=item.ProductID})">@item.Name</a>
                         </td>
                         <td>
                             @Html.DisplayFor(models => item.Subcategory.Category.CategoryName)
@@ -70,7 +71,7 @@
                         </td>
                         <td class="text-center">
 
-                            <a href="@Url.Action("Edit", "ProductManagment", new { idProduct = item.ProductID, idCategory = item.Subcategory.Category.CategoryID })" class="btn btn-warning btn-sm " id="btnEdit">Edytuj</a>
+                            <a href="@Url.Action("Edit", "ProductManagment", new { idProduct = item.ProductID})" class="btn btn-warning btn-sm " id="btnEdit">Edytuj</a>
                             <a href="@Url.Action("Delete", "ProductManagment", new { idProduct = item.ProductID })" class="btn btn-danger btn-sm">Usuń</a>
 
                         </td>

@@ -20,6 +20,9 @@
             @Html.HiddenFor(o => o.Product.ProductID)
             @Html.HiddenFor(o => o.Product.DateAdded)
             @Html.HiddenFor(o => o.Product.ImageProduct)
+           
+
+
 
             <div class="form-group row">
                 <div class="col-xs-5">
@@ -45,7 +48,7 @@
             <div class="form-group row">
                 <div class="col-xs-6">
                     @Html.Label("Opis:")
-                    @Html.TextAreaFor(o => o.Product.Description, new { @class = "form-control", rows = 5, @id = "edit" })
+                    @Html.TextAreaFor(o => o.Product.Description, new { @class = "form-control", rows = 10, @id = "edit" })
                     <div class="validation-message">
                         @Html.ValidationMessageFor(o => o.Product.Description)
                     </div>
@@ -57,12 +60,13 @@
                 <div class="col-xs-3">
                     @Html.Label("Kategoria:")
                     @Html.DropDownListFor(m => m.Product.Subcategory.CategoryID, new SelectList(Model.Categories, "CategoryID", "CategoryName", Model.Categories.First().CategoryID), new { @class = "form-control", id = "editMain", })
+                
                 </div>
                 <div class="col-xs-3">
                    
                     @Html.Label("Podkategoria:")
                    
-                    @Html.DropDownListFor(m => m.Product.SubcategoryID, new SelectList(Model.Subcategories, "SubcategoryID", "SubcategoryName", Model.Subcategories.First().SubcategoryID), new { @class = "form-control", id = "editSub" })
+                    @Html.DropDownListFor(m => m.Product.SubcategoryID, new SelectList(Model.Subcategories, "SubcategoryID", "SubcategoryName", Model.Subcategories.First().SubcategoryID), new { @class = "form-control", id = "editSub"})
                 </div>               
             </div>
             <div class="form-group row">
@@ -87,16 +91,18 @@
                     @Html.CheckBoxFor(o => o.Product.ProductWithDiscount, new { @class = "custom-control-input" })
                 </div>
             </div>
-            <br />
+
             if (ViewBag.EditMode == null || !ViewBag.EditMode)
             {
+                <br />
                 <label class="custom-file">
                     <input type="file" name="file" class="custom-file-input">
                     <span class="custom-file-control"></span>
                 </label>
+                <br /> <br />
             }
-           
-                <br />
+
+
                 <input type="submit" value="Zapisz" class="buttonApp col-md-2"  />
                 }
             </div>

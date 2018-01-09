@@ -208,7 +208,7 @@ namespace TechCom.App.Controllers
         {
             var product = new ProductListViewModel()
             {
-                DetailsProduct = productRepository.GetProductByID(id)
+                DetailsProduct = productRepository.GetProductById(id)
             };
             return View(product);
         }

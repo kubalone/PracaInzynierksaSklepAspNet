@@ -1177,7 +1177,7 @@ button.close.top_wthree_agile {
     font-weight: 700;
 }
 .w3ls_schedule_bottom_right_grid h3 span{
-	color:#fc636b;
+	color:#3cbc98;
 }
 .w3ls_schedule_bottom_right_grid p{
 	margin:1em 0 2em;
@@ -1534,7 +1534,7 @@ button.w3view-cart {
     z-index: 10;
 }
 .product-new-top {
-    background:#fc636b none repeat scroll 0 0;
+    background:#3cbc98 none repeat scroll 0 0;
     color: #fff;
     display: inline-block;
     right: 0;
@@ -1634,7 +1634,7 @@ button.w3view-cart {
 /*-- //effect --*/
 .item-info-product h4 a {
     font-size: 0.9em;
-    color: #fc636b;
+    color: #3cbc98;
     text-decoration: none;
     font-weight: 600;
 }
@@ -3181,7 +3181,7 @@ font-weight: 300;
 .single-right-left h3 {
     text-transform: capitalize;
     font-size: 23px;
-    color:#3bb3e4 ;
+    color:#262b3e;
     margin: 0;
     letter-spacing: 1px;
     font-weight: 600;
@@ -3245,7 +3245,7 @@ color: #000;
     text-transform: uppercase;
 }
 .description input[type="submit"]:hover{
-	background:#fc636b;
+	background:#3cbc98;
 }
 .occasion-cart a{
     padding: 8px 20px;
@@ -5781,9 +5781,7 @@ a:active{
 .w3_short{
     margin-top:10px;
 }
-ul.w3_short li a[title="Sklep"]{
-    color:#3bb3e4;
-}
+
 #footer{
     background-color:#000;
     padding:18px;
@@ -5810,6 +5808,38 @@ ul.w3_short li a[title="Sklep"]{
 } 
 #btn-Frg{
     margin-top:10px;
+}
+#tableOrder{
+   height:40px;
+}
+.productSiteMap{
+    display: inline-block;
+    text-transform: uppercase;
+    color: #000;
+    font-size: 0.9em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom:5%;
+}
+.productSiteMap a{
+    color:#262b3e;
+}
+.productSiteMap a[title="Sklep"]{
+    color:#3bb3e4;
+}
+ul.w3_short li a[title="Sklep"]{
+    color:#3bb3e4;
+}
+.item_price{
+    color: #3cbc98;
+}
+
+#divImage{
+    padding:0px;
+    
+}
+#add-btn{
+    padding:10px;
 }
 /*.header ul li :hover{
    span color:#eaeaea;

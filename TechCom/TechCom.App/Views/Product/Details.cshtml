@@ -1,36 +1,77 @@
 ﻿@model TechCom.Model.Domain.ViewModels.ProductListViewModel
 @using TechCom.App.Infrastructure.Helpers
-<a href="link">
-    @Html.MvcSiteMap().SiteMapPath()
-</a>
-<h3>
-
-    @Model.DetailsProduct.Name -@Model.DetailsProduct.Manufacturer 
-</h3>
-@*<a href="@Url.Action("AddToShoppingCart","ShoppingCart", new {id=Model.DetailsProduct.ProductID})">
-    <input type="submit" class="btn btn-success" value="Dodaj do koszyka" />
-</a>*@
-@using (Html.BeginForm("AddToShoppingCart", "ShoppingCart", FormMethod.Post))
-{
-    @Html.Hidden("id", Model.DetailsProduct.ProductID)
-    @Html.TextBox("quantity",Model.CountOfProduct=1,  new { type = "number", min = "1", max = Model.DetailsProduct.Quantity})
-    
-    
-    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-    
-
-    
-    <input type="submit" class="btn btn-success" value="Dodaj do koszyka" />
+@{
+    ViewBag.Title = "Szczegóły produktu";
+    Layout = "~/Views/Shared/_LayoutWithoutSearch.cshtml";
 }
-<div>
-    @string.Format("{0:0.##}", Model.DetailsProduct.Price)<span>PLN</span> 
+
+<div class="container">
+
+    <ul class="productSiteMap">
+        <li>@Html.MvcSiteMap().SiteMapPath()</li>
+    </ul>
+    <div class="clearfix"></div>
+
+    <div class="col-md-6" id="divImage">      
+            <img src="@Url.ImageHelper(Model.DetailsProduct.ImageProduct)" data-imagezoom="true" class="img-responsive"> 
+            <div class="clearfix"></div>
+    </div>
+
+    <div class="col-md-6 single-right-left simpleCart_shelfItem">
+        <h3>@Model.DetailsProduct.Name -@Model.DetailsProduct.Manufacturer</h3>
+
+        <p><span class="item_price">@string.Format("{0:0.##}", Model.DetailsProduct.Price)<span>ZŁ</span></span> </p>
+
+        @using (Html.BeginForm("AddToShoppingCart", "ShoppingCart", FormMethod.Post))
+        {
+          
+                    <h5>Ilość :</h5>
+                    <div>
+                        @Html.Hidden("id", Model.DetailsProduct.ProductID)
+                        @Html.TextBox("quantity", Model.CountOfProduct = 1, new { type = "number", min = "1", max = Model.DetailsProduct.Quantity }) z @Model.DetailsProduct.Quantity sztuk
+                    </div>
+
+
+                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                    <input type="submit" value="Dodaj do koszyka" class="btn-form" id="add-btn" />
+              
+        }
+    </div>
+
+    <div class="clearfix"> </div>
+    <div class="responsive_tabs_agileits">
+        <div id="horizontalTab">
+            <ul class="resp-tabs-list">
+                <li class="resp-tab-active resp-tab-item" aria-controls="tab_item-0" role="tab">Opis</li>
+            </ul>
+            <div class="resp-tabs-container">
+                <div class="single_page_agile_its_w3ls">
+                    <p>@Model.DetailsProduct.Description</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <img src="@Url.ImageHelper(Model.DetailsProduct.ImageProduct)" />
-</div>
-<div >
-    @Model.DetailsProduct.Description
-</div>
-<a href="@Url.Action("Edit", "ProductManagment", new { idProduct = Model.DetailsProduct.ProductID })" style="margin-top: 20px; font-weight: bold; display: block;">Edytuj</a>
+
+
+<script src="~/Content/Prototype/js/jquery-2.1.4.min.js"></script>
+<script src="~/Content/Prototype/js/imagezoom.js"></script>
+
+
+
+
+
+
+
+
+
+
+    
+   
+ 
+    @*<a href="@Url.Action("Edit", "ProductManagment", new { idProduct = Model.DetailsProduct.ProductID })" style="margin-top: 20px; font-weight: bold; display: block;">Edytuj</a>*@
+
+
+
 
 
