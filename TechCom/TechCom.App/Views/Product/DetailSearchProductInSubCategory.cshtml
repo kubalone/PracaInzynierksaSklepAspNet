@@ -40,13 +40,18 @@
     </div>
 
     <div class="col-md-9 products-right">
-        @using (Html.BeginForm("DetailSearchProductInSubCategory", "Product", new { currentFilter = ViewBag.CurrentFilter, categoryName = Model.CurrentCategory }))
-        {
-            @Html.LabelFor(m => m.OrderBy)
-            @Html.DropDownListFor(m => m.OrderBy, Model.OrderList, "Najlepiej pasujące", new { onchange = "this.form.submit();", @class = "form-control" })
+        <div class="col-md-3 col-xs-5">
+            @using (Html.BeginForm("DetailSearchProductInSubCategory", "Product", new { currentFilter = ViewBag.CurrentFilter, categoryName = Model.CurrentCategory }))
+            {
 
-        }
+                @Html.DropDownListFor(m => m.OrderBy, Model.OrderList, "Najlepiej pasujące", new { onchange = "this.form.submit();", @class = "form-control" })
 
+            }
+        </div>
+
+
+
+    <div class="col-md-12 col-xs-12" id="products">
 
 
         @foreach (var item in Model.Products)
@@ -55,10 +60,9 @@
             @Html.Partial("_ProductList", item)
 
         }
-
-        @Html.PagedListPager(Model.Products, page => Url.Action("DetailSearchProductInSubCategory", new { orderBy = Model.OrderBy, page, currentFilter = ViewBag.CurrentFilter, categoryName = Model.CurrentCategory}))
+        <div class="clearfix"></div>
+        @Html.PagedListPager(Model.Products, page => Url.Action("DetailSearchProductInSubCategory", new { orderBy = Model.OrderBy, page, currentFilter = ViewBag.CurrentFilter, categoryName = Model.CurrentCategory }))
     </div>
-
-    <div class="clearfix"></div>
 </div>
+
 

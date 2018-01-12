@@ -1,13 +1,36 @@
 ﻿@model TechCom.Model.Domain.Domain.Product
+@using TechCom.App.Infrastructure.Helpers
 
-    <div class="well" id="productList">
-        <a href="@Url.Action("Details", "Product", new { id = Model.ProductID })">
-            <h3>
-                <strong>@Model.Name - @Model.Manufacturer</strong>
-            </h3>
-        </a>
-        <span class="pull-right label label-primary">@Model.Price.ToString("c")</span>
-       
-            <span class="lead">@Model.Description</span>
 
-</div>
+   
+        <div class="col-xs-12  col-sm-4 col-md-4 row display-flex">
+            <div class="thumbnail  shadow">
+                <img src="@Url.ImageHelper(Model.ImageProduct)" alt="">
+                <div class="caption">
+                    <h4 id="productListHeading" class="text-center">
+                        <a href="@Url.Action("Details", "Product", new { id = Model.ProductID })">
+
+                            @Model.Name - @Model.Manufacturer
+
+                        </a>
+                    </h4>       
+                    <div>
+                        @using (Html.BeginForm("AddToShoppingCart", "ShoppingCart", FormMethod.Post))
+                        {
+
+                            @Html.Hidden("id", Model.ProductID);
+                            @Html.Hidden("quantity", Model.Quantity = 1) ;
+                            @Html.Hidden("returnUrl", Request.Url.PathAndQuery);
+                            <div id="priceList" >
+                               @Model.Price.ToString("c")
+                            </div>
+                            
+                            <div class="text-center">
+                                <input type="submit" value="Dodaj do koszyka" id="btn-add-List"/>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+

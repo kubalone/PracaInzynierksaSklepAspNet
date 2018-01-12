@@ -48,7 +48,7 @@ namespace TechCom.App.Controllers
          
             var vm = new ProductListViewModel()
             {
-               Products = products.Where(p => p.Quantity > 0).ToPagedList(page ?? 1, 1),
+               Products = products.Where(p => p.Quantity > 0).ToPagedList(page ?? 1, 20),
                CurrentCategory = categoryName,
                OrderBy = orderBy,
                Subategories = subcategories,
@@ -86,7 +86,7 @@ namespace TechCom.App.Controllers
 
             var vm = new ProductListViewModel()
             {
-                Products = products.ToPagedList(page ?? 1, 1),
+                Products = products.ToPagedList(page ?? 1, 20),
                 Subategories = subcategories,
                 SubcategoryName= subCategory,
                 OrderBy = orderBy,
@@ -123,7 +123,7 @@ namespace TechCom.App.Controllers
             {
                 EnableCategories = productInCategory,
                 OrderBy = orderBy,
-                Products = products.Where(p => p.Quantity > 0).ToPagedList(page ?? 1, 1),
+                Products = products.Where(p => p.Quantity > 0).ToPagedList(page ?? 1,20),
                 CountOfProductsInCategory = ListOfProduct,               
                 OrderList = list
             };
@@ -158,7 +158,7 @@ namespace TechCom.App.Controllers
             {
                 EnableCategories = productInSubcategory,
                 OrderBy = orderBy,
-                Products = products.Where(p => p.Quantity > 0).ToPagedList(page ?? 1, 1),
+                Products = products.Where(p => p.Quantity > 0).ToPagedList(page ?? 1, 20),
                 CountOfProductsInCategory = ListOfProduct,
                 OrderList = list,
                 CurrentCategory= categoryName
@@ -195,7 +195,7 @@ namespace TechCom.App.Controllers
             {
                 EnableCategories = productInSubcategory,
                 OrderBy = orderBy,
-                Products = products.Where(p => p.Quantity > 0).ToPagedList(page ?? 1, 1),
+                Products = products.Where(p => p.Quantity > 0).ToPagedList(page ?? 1, 20),
                 CountOfProductsInCategory = ListOfProduct,
                 CurrentCategory=categoryName,
                 OrderList = list

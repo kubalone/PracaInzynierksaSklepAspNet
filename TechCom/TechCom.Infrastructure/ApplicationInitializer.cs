@@ -125,33 +125,33 @@ namespace TechCom.Infrastructure
             subcategories.ForEach(c => context.Subcategories.AddOrUpdate(c));
             context.SaveChanges();
             
-                var exampleProducts = new List<Product>
-            {
+            //    var exampleProducts = new List<Product>
+            //{
                 
-                new Product() { ProductID = 1, SubcategoryID = 1, Name = "Asus All in One", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Asus", Price = 2700, ProductWithDiscount = true, ImageProduct = "AsusZ370.jpg", DateAdded = DateTime.Now },
-                new Product() { ProductID = 10, SubcategoryID = 1, Name = "Lenovo II All in One", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Asus", Price = 2700, ProductWithDiscount = true, ImageProduct = "AsusZ370.jpg", DateAdded = DateTime.Now },
-                new Product() { ProductID = 11, SubcategoryID = 1, Name = "Asus III All in One", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Asus", Price = 2700, ProductWithDiscount = true, ImageProduct = "AsusZ370.jpg", DateAdded = DateTime.Now },
+            //    new Product() { ProductID = 1, SubcategoryID = 1, Name = "Asus All in One", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Asus", Price = 2700, ProductWithDiscount = true, ImageProduct = "AsusZ370.jpg", DateAdded = DateTime.Now },
+            //    new Product() { ProductID = 10, SubcategoryID = 1, Name = "Lenovo II All in One", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Asus", Price = 2700, ProductWithDiscount = true, ImageProduct = "AsusZ370.jpg", DateAdded = DateTime.Now },
+            //    new Product() { ProductID = 11, SubcategoryID = 1, Name = "Asus III All in One", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Asus", Price = 2700, ProductWithDiscount = true, ImageProduct = "AsusZ370.jpg", DateAdded = DateTime.Now },
 
-                new Product() { ProductID = 2, SubcategoryID = 2, Name = "Lenovo All Nettopy/Mini-PC", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Lenovo", Price = 3700, ProductWithDiscount = false, ImageProduct = "Lenovo MIIX 30-10.jpg", DateAdded = DateTime.Now },
-                new Product() { ProductID = 12, SubcategoryID = 2, Name = "Asus II Nettopy/Mini-PC", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Lenovo", Price = 3700, ProductWithDiscount = false, ImageProduct = "Lenovo MIIX 30-10.jpg", DateAdded = DateTime.Now },
-                new Product() { ProductID = 13, SubcategoryID = 2, Name = "Lenovo III Nettopy/Mini-PC", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Lenovo", Price = 3700, ProductWithDiscount = false, ImageProduct = "Lenovo MIIX 30-10.jpg", DateAdded = DateTime.Now },
+            //    new Product() { ProductID = 2, SubcategoryID = 2, Name = "Lenovo All Nettopy/Mini-PC", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Lenovo", Price = 3700, ProductWithDiscount = false, ImageProduct = "Lenovo MIIX 30-10.jpg", DateAdded = DateTime.Now },
+            //    new Product() { ProductID = 12, SubcategoryID = 2, Name = "Asus II Nettopy/Mini-PC", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Lenovo", Price = 3700, ProductWithDiscount = false, ImageProduct = "Lenovo MIIX 30-10.jpg", DateAdded = DateTime.Now },
+            //    new Product() { ProductID = 13, SubcategoryID = 2, Name = "Lenovo III Nettopy/Mini-PC", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Lenovo", Price = 3700, ProductWithDiscount = false, ImageProduct = "Lenovo MIIX 30-10.jpg", DateAdded = DateTime.Now },
 
 
-                new Product() { ProductID = 3, SubcategoryID = 4, Name = "Pordukt Monitory LED 21,9' i mniejsze", Description = "LoremIpsum", Quantity = 10, Manufacturer = "HP", Price = 29, ProductWithDiscount = false, ImageProduct = "WdBLUE.jpg", DateAdded = DateTime.Now },
-                new Product() { ProductID = 4, SubcategoryID = 4, Name = "Pordukt Monitory LED 21,9' i mniejsze", Description = "LoremIpsum", Quantity = 10, Manufacturer = "GoPro", Price = 200, ProductWithDiscount = false, ImageProduct = "gopro.jpg", DateAdded = DateTime.Now },
+            //    new Product() { ProductID = 3, SubcategoryID = 4, Name = "Pordukt Monitory LED 21,9' i mniejsze", Description = "LoremIpsum", Quantity = 10, Manufacturer = "HP", Price = 29, ProductWithDiscount = false, ImageProduct = "WdBLUE.jpg", DateAdded = DateTime.Now },
+            //    new Product() { ProductID = 4, SubcategoryID = 4, Name = "Pordukt Monitory LED 21,9' i mniejsze", Description = "LoremIpsum", Quantity = 10, Manufacturer = "GoPro", Price = 200, ProductWithDiscount = false, ImageProduct = "gopro.jpg", DateAdded = DateTime.Now },
 
-                new Product() { ProductID = 5, SubcategoryID = 10, Name = "Pordukt Notebooki, Laptopy", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Genesis", Price = 70, ProductWithDiscount = true, ImageProduct = "Genesis.jpg", DateAdded = DateTime.Now },
-                new Product() { ProductID = 6, SubcategoryID = 11, Name = "Pordukt Torby i plecaki", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Asus", Price = 8700, ProductWithDiscount = true, ImageProduct = "AsusZ370.jpg", DateAdded = DateTime.Now },
+            //    new Product() { ProductID = 5, SubcategoryID = 10, Name = "Pordukt Notebooki, Laptopy", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Genesis", Price = 70, ProductWithDiscount = true, ImageProduct = "Genesis.jpg", DateAdded = DateTime.Now },
+            //    new Product() { ProductID = 6, SubcategoryID = 11, Name = "Pordukt Torby i plecaki", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Asus", Price = 8700, ProductWithDiscount = true, ImageProduct = "AsusZ370.jpg", DateAdded = DateTime.Now },
 
-                new Product() { ProductID = 7, SubcategoryID = 16, Name = "Dyski twarde SATA", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Asus", Price = 8700, ProductWithDiscount = true, ImageProduct = "AsusZ370.jpg", DateAdded = DateTime.Now },
-                new Product() { ProductID = 8, SubcategoryID = 17, Name = "Dyski twarde USB zewnętrzne", Description = "LoremIpsum", Quantity = 10, Manufacturer = "HP", Price = 8700, ProductWithDiscount = true, ImageProduct = "AsusZ370.jpg", DateAdded = DateTime.Now },
-                new Product() { ProductID = 9, SubcategoryID = 18, Name = "Dyski SSD", Description = "LoremIpsum", Quantity = 10, Manufacturer = "HP", Price = 8700, ProductWithDiscount = true, ImageProduct = "AsusZ370.jpg", DateAdded = DateTime.Now }
+            //    new Product() { ProductID = 7, SubcategoryID = 16, Name = "Dyski twarde SATA", Description = "LoremIpsum", Quantity = 10, Manufacturer = "Asus", Price = 8700, ProductWithDiscount = true, ImageProduct = "AsusZ370.jpg", DateAdded = DateTime.Now },
+            //    new Product() { ProductID = 8, SubcategoryID = 17, Name = "Dyski twarde USB zewnętrzne", Description = "LoremIpsum", Quantity = 10, Manufacturer = "HP", Price = 8700, ProductWithDiscount = true, ImageProduct = "AsusZ370.jpg", DateAdded = DateTime.Now },
+            //    new Product() { ProductID = 9, SubcategoryID = 18, Name = "Dyski SSD", Description = "LoremIpsum", Quantity = 10, Manufacturer = "HP", Price = 8700, ProductWithDiscount = true, ImageProduct = "AsusZ370.jpg", DateAdded = DateTime.Now }
 
-            };
+            //};
             
-                exampleProducts.ForEach(e => context.Products.AddOrUpdate(e));
+            //    exampleProducts.ForEach(e => context.Products.AddOrUpdate(e));
        
-                context.SaveChanges();
+            //    context.SaveChanges();
             
            
       

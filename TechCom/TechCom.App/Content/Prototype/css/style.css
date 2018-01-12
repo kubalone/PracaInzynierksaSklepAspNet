@@ -5824,7 +5824,8 @@ a:active{
 .productSiteMap a{
     color:#262b3e;
 }
-.productSiteMap a[title="Sklep"]{
+.productSiteMap a[title="Sklep"],
+.SiteMap a[title="Sklep"]{
     color:#3bb3e4;
 }
 ul.w3_short li a[title="Sklep"]{
@@ -5836,12 +5837,121 @@ ul.w3_short li a[title="Sklep"]{
 
 #divImage{
     padding:0px;
-    
+   
 }
 #add-btn{
     padding:10px;
 }
-/*.header ul li :hover{
-   span color:#eaeaea;
-}*/
-/*-- //responsive media queries --*/
+#add-btn{
+    padding:10px;
+    background-color:#3bb3e4;
+    color:#fff;
+}
+#add-btn:hover{
+    background-color:#35a1cd;
+    border-color:#35a1cd;
+}
+#btn-add-List{
+     padding:9px 10px;
+    background-color:#3bb3e4;
+    color:#fff;
+    border-radius:5px;
+    font-size:15px;
+    border:none;
+
+}
+#btn-add-List:hover{
+     background-color:#35a1cd;
+    border-color:#35a1cd;
+}
+.right-side{
+
+}
+.price {
+    font-size: 20px;
+    font-weight: 600;
+    color: #60a006;
+}
+.price p{
+    margin-top:12px;
+}
+#title{
+    font-weight:600;
+}
+#headerDetail{
+    border-bottom-style:solid;
+    border-top-style:solid;
+    border-width:thin;
+    border-color:#eaeaea;
+    margin-bottom:3%;
+    padding-top:10px;
+   
+}
+#productTitle{
+    color:#4a4a4a;
+}
+.SiteMap{
+    display: inline-block;
+   
+    color: #000;
+    font-size: 0.8em;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-bottom:1%;
+    margin-top:2%
+}
+.SiteMap a{
+    color: #000;
+}
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right:10px;
+
+}
+.thumbnail {
+  height: 360px;
+
+}
+
+.thumbnail {
+  display: flex;
+  flex-direction: column;
+}
+
+.thumbnail .caption {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.thumbnail img{
+    min-height:180px;
+    padding: 10px;
+    
+}
+#productListHeading a {
+    
+      
+    font-weight: 600;
+    color:#131d5f;
+    
+}
+.shadow {
+    box-shadow: 0px 0px 15px 0px #D6D6D6;
+}
+
+#quantity{
+    width:60px;
+}
+#priceList{
+    text-align:center;
+    font-weight:600;
+    margin-bottom:10%;
+}
+#products{
+    margin-top:3%;
+}
+.tree-list-pad li a:active{
+    color:red;
+}

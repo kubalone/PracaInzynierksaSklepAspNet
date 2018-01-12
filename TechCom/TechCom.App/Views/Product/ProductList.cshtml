@@ -56,27 +56,28 @@
 
     <div class="col-md-9 products-right">
 
+        <div class="col-md-3 col-xs-5">
+            @using (Html.BeginForm("ProductList", "Product", new { categoryName = Model.CurrentCategory, currentFilter = ViewBag.CurrentFilter }))
+            {
 
-        @using (Html.BeginForm("ProductList", "Product", new { categoryName = Model.CurrentCategory, currentFilter = ViewBag.CurrentFilter }))
-        {
+                    @Html.DropDownListFor(m => m.OrderBy, Model.OrderList, "Najlepiej pasujące", new { onchange = "this.form.submit();", @class = "form-control" })
+            }
+        </div>
 
-            @Html.LabelFor(m => m.OrderBy)
-            @Html.DropDownListFor(m => m.OrderBy, Model.OrderList, "Najlepiej pasujące", new { onchange = "this.form.submit();", @class = "form-control" })
-
-        }
-        <a href="link">
-            @Html.MvcSiteMap().SiteMapPath()
-        </a>
-
-        @foreach (var item in Model.Products)
-        {
-
-            @Html.Partial("_ProductList", item)
-        }
+        <div class="col-md-12 col-xs-12" id="products">
 
 
-        @Html.PagedListPager(Model.Products, page => Url.Action("ProductList", new { orderBy = Model.OrderBy, currentFilter = ViewBag.CurrentFilter, categoryName = Model.CurrentCategory, page }))
-    </div>
+            @foreach (var item in Model.Products)
+            {
 
-    <div class="clearfix"></div>
+                @Html.Partial("_ProductList", item)
+            }
+            <div class="clearfix"></div>
+            @Html.PagedListPager(Model.Products, page => Url.Action("ProductList", new { orderBy = Model.OrderBy, currentFilter = ViewBag.CurrentFilter, categoryName = Model.CurrentCategory, page }))
+        </div>
+       
+        </div>
+
+  
+   
 </div>

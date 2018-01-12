@@ -40,24 +40,29 @@
     </div>
 
     <div class="col-md-9 products-right">
-        @using (Html.BeginForm("SearchProductInSubCategory", "Product", new { currentFilter = ViewBag.CurrentFilter }))
+        <div class="col-md-3 col-xs-5">
+            @using (Html.BeginForm("SearchProductInSubCategory", "Product", new { currentFilter = ViewBag.CurrentFilter }))
             {
-            @Html.LabelFor(m => m.OrderBy)
-            @Html.DropDownListFor(m => m.OrderBy, Model.OrderList, "Najlepiej pasujące", new { onchange = "this.form.submit();", @class = "form-control" })
 
-        }
+                @Html.DropDownListFor(m => m.OrderBy, Model.OrderList, "Najlepiej pasujące", new { onchange = "this.form.submit();", @class = "form-control" })
+
+            }
 
 
+        </div>
 
+    <div class="col-md-12 col-xs-12" id="products">
         @foreach (var item in Model.Products)
             {
 
             @Html.Partial("_ProductList", item)
 
         }
+        <div class="clearfix"></div>
 
-        @Html.PagedListPager(Model.Products, page => Url.Action("SearchProductInSubCategory", new { orderBy = Model.OrderBy, page, currentFilter = ViewBag.CurrentFilter}))
+        @Html.PagedListPager(Model.Products, page => Url.Action("SearchProductInSubCategory", new { orderBy = Model.OrderBy, page, currentFilter = ViewBag.CurrentFilter }))
     </div>
+</div>
 
-    <div class="clearfix"></div>
+
 </div>

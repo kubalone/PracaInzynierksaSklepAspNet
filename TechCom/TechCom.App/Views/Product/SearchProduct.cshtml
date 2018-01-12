@@ -40,33 +40,37 @@
     </div>
 
 
-      <div class="col-md-9 products-right">
-    @using (Html.BeginForm("SearchProduct", "Product", new { currentFilter = ViewBag.CurrentFilter }))
-            {
-        @Html.LabelFor(m => m.OrderBy)
-        @Html.DropDownListFor(m => m.OrderBy, Model.OrderList, "Najlepiej pasujące", new { onchange = "this.form.submit();", @class = "form-control" })
-
-    }
-
-
-
-    @foreach (var item in Model.Products)
+    <div class="col-md-9 products-right">
+        <div class="col-md-3 col-xs-5">
+            @using (Html.BeginForm("SearchProduct", "Product", new { currentFilter = ViewBag.CurrentFilter }))
             {
 
-        @Html.Partial("_ProductList", item)
+                @Html.DropDownListFor(m => m.OrderBy, Model.OrderList, "Najlepiej pasujące", new { onchange = "this.form.submit();", @class = "form-control" })
 
-    }
+            }
+        </div>
+        <div class="col-md-12 col-xs-12" id="products">
 
-    @Html.PagedListPager(Model.Products, page => Url.Action("SearchProduct", new { orderBy = Model.OrderBy, page, currentFilter = ViewBag.CurrentFilter }))
+
+            @foreach (var item in Model.Products)
+            {
+
+                @Html.Partial("_ProductList", item)
+
+            }
+
+            <div class="clearfix"></div>
+
+            @Html.PagedListPager(Model.Products, page => Url.Action("SearchProduct", new { orderBy = Model.OrderBy, page, currentFilter = ViewBag.CurrentFilter }))
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
 </div>
-
-<div class="clearfix"></div>
-</div>
-
-    @*@using (Html.BeginForm("SearchProduct", "Product"))
-        {
-            <div class="form-inline" id="formSearchProductList">
-                <input id="SearchString" name="SearchString" data-autocomplete-source="@Url.Action("SearchSuggestions","Product",new { categoryName = Model.CurrentCategory })" type="search" placeholder="czego szukasz?" value="@ViewBag.CurrentFilter" class="form-control" />
-                <button type="submit" value="Search" class="btn btn-primary"><i class="glyphicon glyphicon-search"> Wyszukaj</i> </button>
-            </div>
-        }*@
+@*@using (Html.BeginForm("SearchProduct", "Product"))
+    {
+        <div class="form-inline" id="formSearchProductList">
+            <input id="SearchString" name="SearchString" data-autocomplete-source="@Url.Action("SearchSuggestions","Product",new { categoryName = Model.CurrentCategory })" type="search" placeholder="czego szukasz?" value="@ViewBag.CurrentFilter" class="form-control" />
+            <button type="submit" value="Search" class="btn btn-primary"><i class="glyphicon glyphicon-search"> Wyszukaj</i> </button>
+        </div>
+    }*@

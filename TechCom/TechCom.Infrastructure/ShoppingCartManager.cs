@@ -32,7 +32,7 @@ namespace TechCom.Infrastructure
             {
                 cart.Quantity += quantity;
             }
-            db.SaveChanges();
+          // db.SaveChanges();
 
         }
      
