@@ -236,12 +236,7 @@ li.share {
     text-align: center;
     
 }
-.logo_agile span {
-    background: #000;
-    padding: 0 17px;
-    font-weight: bold;
-    color: #fff;
-}
+
 .logo_agile h1 a {
     font-weight: 300;
     color: #000;
@@ -2966,19 +2961,17 @@ border-bottom: 1px solid #e5e3db;
     border: 1px solid #d2d2d2;
 }
 .css-treeview h4,.community-poll h4 {
-    color:#3bb3e4 ;
+    color:rgb(59, 179, 228);
     text-align: center;
     background: #f7f7f7;
     padding: 17px 0;
     font-size: 1.2em;
-    font-weight: 700;
+    font-weight: 600;
     border-bottom: 1px solid #d2d2d2;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
-.tree-list-pad{
-	padding:25px 10px;
-}
+
 .community-poll {
     border: 1px solid #d2d2d2;
     margin-top: 30px;
@@ -5771,9 +5764,7 @@ li{
 #subCategory{
     width:2%;
 }
-a:active{
-    text-decoration:none;
-}
+
 #side a{
     padding-left:5px;
     font-size:16px;
@@ -5852,17 +5843,18 @@ ul.w3_short li a[title="Sklep"]{
     border-color:#35a1cd;
 }
 #btn-add-List{
-     padding:9px 10px;
-    background-color:#3bb3e4;
-    color:#fff;
+    padding:9px 10px;
+    background-color: #fff;  
+    color: #2a2c39;
     border-radius:5px;
     font-size:15px;
-    border:none;
+    border-style:solid;
+    border-color: #9dd9f1;
 
 }
 #btn-add-List:hover{
-     background-color:#35a1cd;
-    border-color:#35a1cd;
+  border-style:solid  ;
+  border-color: #35a1cd;
 }
 .right-side{
 
@@ -5952,6 +5944,80 @@ ul.w3_short li a[title="Sklep"]{
 #products{
     margin-top:3%;
 }
-.tree-list-pad li a:active{
-    color:red;
+
+.section-tittle{
+    text-align: center;
+    margin-bottom: 1.8em;
+    position: relative;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    color:#484c51;
+    margin-left:2%;
+    margin-right:7%;
+    font-weight:600;
+}
+.section-tittle span{
+position: relative;
+    background: #ffffff;
+    display: inline-block;
+    padding: 0 15px;
+    z-index: 2;
+}
+.section-tittle:before {
+    content: '';
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    background-color: #ddd;
+    left: 0;
+    top: 50%;
+    z-index: 1;
+}
+.logo_agile h1 a{ 
+    color:#484c51;
+    font-weight:500;
+    letter-spacing:normal;
+}
+.logo_agile span {
+   color: #ff6973;
+   font-weight:600;
+  
+    
+}
+.products-left{
+    margin-top:2%;
+}
+.products-right{
+     margin-top:-0.8%;
+}
+
+.active {
+    background-color:#eee;
+    border-color:#eee;
+}
+.nav-tabs > li > a:hover {
+    background-color:#eee;
+    border-color:#eee;
+}
+.tree-list-pad li{
+    border-bottom: 1px solid #ddd;
+}
+.css-treeview li a{
+    padding-left:8%
+}
+a:active{
+    text-decoration:none;
+}
+.product-discount-top {
+    background:#fc636b none repeat scroll 0 0;
+    color: #fff;
+    display: inline-block;
+    right: 1em;
+    padding: 0 12px 1px;
+    position: absolute;
+    top: 0;
+    z-index:99;
+}
+.well-container{
+    margin-top:1em;
 }

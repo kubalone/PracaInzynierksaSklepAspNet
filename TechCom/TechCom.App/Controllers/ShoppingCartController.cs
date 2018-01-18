@@ -92,14 +92,16 @@ namespace TechCom.App.Controllers
 
 
                 var userID = User.Identity.GetUserId();
-                var newOrder = cart.CreateAnOrder(model, userID, delivery);
+                var newOrder = cart.CreateAnOrder(model.OrderDetails, userID, delivery);
 
                 var user = await UserManager.FindByIdAsync(userID);
-                TryUpdateModel(user.UserData);
-                await UserManager.UpdateAsync(user);
+                //TryUpdateModel(user.UserData);
+              
+                orderRepository.UpdateUser(user, model.OrderDetails);
+                  await UserManager.UpdateAsync(user);
                 cart.Clear();
-                
              
+
                 emailRepository.SendConfirmationOrder(newOrder);
            
                 return RedirectToAction ("OrderConfirmation");

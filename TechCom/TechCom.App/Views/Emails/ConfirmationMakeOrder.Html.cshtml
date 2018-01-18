@@ -12,14 +12,20 @@
         for (int i = 0; i < order.Count(); i++)
         {
             <p>
-                @order.ElementAt(i).product.Name - @order.ElementAt(i).product.Price
+                @order.ElementAt(i).product.Name - @order.ElementAt(i).product.Price zł
                 
             </p>
            
         }
         <p>Numer zamówienia @Model.OrderID</p>
     }
-
+    <br /> 
+    <p>Proszę o przelanie kwoty @Model.Worth zł na adres</p>
+    <ul>
+        <li>Sklep TechCom  Sp.z.o.o</li>
+        <li>Bielsko Biała 43-300 Willowa 2</li>
+        <li>Nr konta: 22 0562 0000 7896 1111 2547 5127  Mbank</li>
+    </ul>
 
 </body>
 </html>

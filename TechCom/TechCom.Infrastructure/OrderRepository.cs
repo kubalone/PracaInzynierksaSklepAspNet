@@ -72,8 +72,17 @@ namespace TechCom.Infrastructure
             context.SaveChanges();
             return order;
         }
-
-
+        public ApplicationUser UpdateUser(ApplicationUser user, OrderDetail order)
+        {
+            user.UserData.Name = order.Name;
+            user.UserData.Surname = order.Surname;
+            user.UserData.Phone = order.Phone;
+            user.UserData.ZipCode = order.ZipCode;
+            user.UserData.Adress = order.Adress;
+            user.UserData.City = order.City;
+            return user;
+        }
+             
 
     }
 }

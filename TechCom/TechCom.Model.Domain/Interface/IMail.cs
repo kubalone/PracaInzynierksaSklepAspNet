@@ -10,7 +10,7 @@ namespace TechCom.Model.Domain.Interface
 {
  public interface IMail
     {
-        void SendConfirmationOrder(OrderListViewModel order);
+        void SendConfirmationOrder(OrderDetail order);
         void SendConfirmationRealizeOrder(OrderDetail order);
         void SendAcceptanceOfTheOrder(OrderDetail order);
     }

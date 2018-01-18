@@ -18,5 +18,6 @@ namespace TechCom.Model.Domain.Interface
         IEnumerable<OrderDetail> SearchOrder(IEnumerable<OrderDetail> ordersOfUser, string searchString);
         IEnumerable<OrderDetail> SortSearchOrders(string searchString, OrderStatus status);
         OrderDetail GetOrderByID(OrderDetail item);
+        ApplicationUser UpdateUser(ApplicationUser user, OrderDetail order);
     }
 }

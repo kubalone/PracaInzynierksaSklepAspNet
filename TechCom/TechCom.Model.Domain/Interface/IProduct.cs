@@ -28,5 +28,8 @@ namespace TechCom.Model.Domain.Interface
         Product GetProductById(int? idProduct);
         List<Product> SearchProduct(string searchString, List<Product> products);
         List<Product> SortByID();
+        List<Product> NewProducts();
+        List<Product> ProductWithDiscount();
+
     }
 }

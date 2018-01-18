@@ -52,22 +52,22 @@ namespace TechCom.Infrastructure
         {
            get{ return productCollection; }
         }
-        public OrderListViewModel CreateAnOrder(OrderListViewModel newOrder, string userID, DeliveryOption delivery)
+        public OrderDetail CreateAnOrder(OrderDetail newOrder, string userID, DeliveryOption delivery)
         {
             
             var shoppingCart = ContentOfCart;
             
-            newOrder.OrderDetails.DateOfTheOrder = DateTime.Now;
-            newOrder.OrderDetails.UserID = userID;
-            newOrder.OrderDetails.ValueOfOrder = WorthOfProduct();
-            newOrder.OrderDetails.TypeOfDelivery = delivery.TypeOfDelivery;
-            newOrder.OrderDetails.PriceDelivery = delivery.PriceOfDelivery;
+            newOrder.DateOfTheOrder = DateTime.Now;
+            newOrder.UserID = userID;
+            newOrder.ValueOfOrder = WorthOfProduct();
+            newOrder.TypeOfDelivery = delivery.TypeOfDelivery;
+            newOrder.PriceDelivery = delivery.PriceOfDelivery;
 
-            db.ShippingDetails.Add(newOrder.OrderDetails);
+            db.ShippingDetails.Add(newOrder);
             
-            if (newOrder.OrderDetails.Orders == null)
+            if (newOrder.Orders == null)
             {
-                newOrder.OrderDetails.Orders = new List<Order>();
+                newOrder.Orders = new List<Order>();
             }
             decimal worthOfCard = 0;
             foreach (var item in shoppingCart)
@@ -81,12 +81,12 @@ namespace TechCom.Infrastructure
                };
                              
                 worthOfCard += (item.Quantity * item.Product.Price);
-                newOrder.OrderDetails.Orders.Add(order);
+                newOrder.Orders.Add(order);
                 Product prod = (from p in db.Products where p.ProductID == order.ProductID select p).Single();
                 prod.Quantity -= order.Quantity;
             }
             
-            newOrder.OrderDetails.ValueOfOrder = worthOfCard + delivery.PriceOfDelivery; 
+            newOrder.ValueOfOrder = worthOfCard + delivery.PriceOfDelivery; 
 
             db.SaveChanges();
             return newOrder;

@@ -25,7 +25,7 @@
     <div class="col-md-3 products-left">
         <div class="css-treeview" id="side">
             <h4>Podkategorie</h4>
-            <ul class="tree-list-pad">
+            <ul class="tree-list-pad main-menu nav nav-tabs nav-stacked">
                 @foreach (var item in Model.CountOfProductsInCategory)
                 {
                     <li>
@@ -64,5 +64,5 @@
         @Html.PagedListPager(Model.Products, page => Url.Action("DetailSearchProductInSubCategory", new { orderBy = Model.OrderBy, page, currentFilter = ViewBag.CurrentFilter, categoryName = Model.CurrentCategory }))
     </div>
 </div>
-
+    <script src="~/Scripts/Prototype/SubCategoryList.js"></script>
 

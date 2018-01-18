@@ -71,7 +71,7 @@
                         </td>
                         <td class="text-center">
 
-                            <a href="@Url.Action("Edit", "ProductManagment", new { idProduct = item.ProductID})" class="btn btn-warning btn-sm " id="btnEdit">Edytuj</a>
+                            <a href="@Url.Action("Edit", "ProductManagment", new { idProduct = item.ProductID,idCategory=item.Subcategory.CategoryID})" class="btn btn-warning btn-sm " id="btnEdit">Edytuj</a>
                             <a href="@Url.Action("Delete", "ProductManagment", new { idProduct = item.ProductID })" class="btn btn-danger btn-sm">Usuń</a>
 
                         </td>

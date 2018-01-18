@@ -22,11 +22,14 @@ namespace TechCom.App.Controllers
         public ViewResult Index()
         {
             var categories = categoryRepository.Categories;
-            var saleProduct = productRepository.Products.Where(p => p.ProductWithDiscount == true).OrderByDescending(a=>a.DateAdded).Take(3);
+            var saleProduct = productRepository.ProductWithDiscount();
+            var newProducts = productRepository.NewProducts();
             ProductListViewModel model = new ProductListViewModel
             {
                 Categories = categories,
-                SaleProduct = saleProduct
+                SaleProducts = saleProduct,
+                NewProducts=newProducts
+
             };
             return View(model);
         }

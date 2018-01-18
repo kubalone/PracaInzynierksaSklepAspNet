@@ -457,6 +457,7 @@
     <Content Include="Scripts\Prototype\modernizr.custom.js" />
     <Content Include="Scripts\Prototype\move-top.js" />
     <Content Include="Scripts\Prototype\responsiveslides.min.js" />
+    <Content Include="Scripts\Prototype\SubCategoryList.js" />
     <Content Include="Scripts\Prototype\Validate.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

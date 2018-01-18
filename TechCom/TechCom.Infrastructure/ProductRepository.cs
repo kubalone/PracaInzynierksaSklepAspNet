@@ -258,6 +258,17 @@ namespace TechCom.App.Repository
             var products=context.Products.OrderBy(p => p.ProductID).ToList();
             return products;
         }
-     
+
+        public List<Product> NewProducts()
+        {
+            var newProducts = context.Products.Where(p => p.Quantity >= 1).OrderByDescending(p => p.DateAdded).Take(3).ToList();
+            return newProducts;
+        }
+
+        public List<Product> ProductWithDiscount()
+        {
+            var saleProduct = context.Products.Where(p => p.ProductWithDiscount == true && p.Quantity >= 1).OrderBy(p => Guid.NewGuid()).Take(3).ToList();
+            return saleProduct;
+        }
     }
 }

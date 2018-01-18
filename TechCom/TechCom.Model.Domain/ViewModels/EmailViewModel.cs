@@ -13,7 +13,6 @@ namespace TechCom.Model.Domain.ViewModels
         public string From { get; set; }
         public decimal Worth { get; set; }
         public int OrderID { get; set; }
-       // public string ImageProduct { get; set; }
         public List<Order> Order{ get; set; }
     }
     public class AcceptanceOfTheOrder : Email

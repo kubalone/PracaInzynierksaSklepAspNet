@@ -1,6 +1,7 @@
 ﻿@model TechCom.Model.Domain.Domain.Subcategory
-<ul id="subCatList">
+<ul id="subCatList" class="main-menu nav nav-tabs nav-stacked">
     <li>
-        <a href="@Url.Action("DetailedProductList", "Product", new { subCategory = Model.SubcategoryName,categoryName=Model.Category.CategoryName })">@Model.SubcategoryName</a>
+        <a  href="@Url.Action("DetailedProductList", "Product", new { subCategory = Model.SubcategoryName,categoryName=Model.Category.CategoryName }) ">@Model.SubcategoryName</a>
     </li>
 </ul>
+<script src="~/Scripts/Prototype/SubCategoryList.js"></script>

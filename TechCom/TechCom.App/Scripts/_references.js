@@ -34,6 +34,7 @@
 /// <reference path="prototype/modernizr.custom.js" />
 /// <reference path="prototype/move-top.js" />
 /// <reference path="prototype/responsiveslides.min.js" />
+/// <reference path="prototype/subcategorylist.js" />
 /// <reference path="prototype/validate.js" />
 /// <reference path="respond.js" />
 /// <reference path="search/searchsuggestions.js" />

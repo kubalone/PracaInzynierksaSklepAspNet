@@ -57,7 +57,7 @@ namespace TechCom.App.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit(int? idProduct)
+        public ActionResult Edit(int? idProduct, int? idCategory)
         {
             Product product;
             //if (idCategory==null)
@@ -77,8 +77,8 @@ namespace TechCom.App.Controllers
             }
             
            var categories = categoryRepository.Categories.ToList();
-           //var subcategories = subcategoryRepository.GetSubcategories(idCategory).ToList();
-            var subcategories = subcategoryRepository.Subcategories.ToList();
+          var subcategories = subcategoryRepository.GetSubcategories(idCategory).ToList();
+           // subcategories = subcategoryRepository.Subcategories.ToList();
 
 
             var model = new EditProductVieModel()
@@ -123,7 +123,7 @@ namespace TechCom.App.Controllers
                     }
                     else
                     {
-                        categoryRepository.SaveCategory(model);
+                       // categoryRepository.SaveCategory(model);
                         return View(model);
                     }
                 }
@@ -133,6 +133,7 @@ namespace TechCom.App.Controllers
                     TempData["message"] = string.Format("Nie wskazano pliku ");            
                     categoryRepository.SaveCategory(model);
                     subcategoryRepository.SaveSubcategory(model);
+                    model.Subcategories = subcategoryRepository.GetSubcategories(model.Product.Subcategory.CategoryID);
                     return View(model);
                 }
             }

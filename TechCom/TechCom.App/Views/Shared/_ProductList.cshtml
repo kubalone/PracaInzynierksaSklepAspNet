@@ -4,7 +4,14 @@
 
    
         <div class="col-xs-12  col-sm-4 col-md-4 row display-flex">
+            @if (Model.ProductWithDiscount == true)
+            {
+                <span class="product-discount-top">Wyprzedaż</span>
+            }
+
+
             <div class="thumbnail  shadow">
+              
                 <img src="@Url.ImageHelper(Model.ImageProduct)" alt="">
                 <div class="caption">
                     <h4 id="productListHeading" class="text-center">

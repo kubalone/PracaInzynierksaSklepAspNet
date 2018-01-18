@@ -34,7 +34,16 @@ namespace TechCom.Infrastructure
         //wyszukiwanie podkategorii
         public List<Subcategory> GetSubcategories(int? idCategory)
         {
-            var subcategories = context.Subcategories.Where(p => p.CategoryID == idCategory && p.SubcategoryName != null).ToList();
+            List<Subcategory> subcategories;
+            if (idCategory.HasValue)
+            {
+                 subcategories = context.Subcategories.Where(p => p.CategoryID == idCategory && p.SubcategoryName != null).ToList();
+
+            }
+            else
+            {
+                subcategories = context.Subcategories.Where(p => p.CategoryID == 1).ToList();
+            }
             return subcategories;
         }
         

@@ -9,7 +9,7 @@
     <div class="col-md-4 products-left">
         <div class="css-treeview" >
             <h4>Kategorie</h4>
-            <ul class="tree-list-pad">
+            <ul class="tree-list-pad nav nav-tabs nav-stacked">
                 @foreach (var item in Model.Categories)
                 {
                     <li>
@@ -22,8 +22,26 @@
         </div>
     </div>
     <div class="col-md-8 products-right">
-      
-    </div>
+        
+        <div class="col-md-12 col-xs-12" id="products">
+            <h2 class="section-tittle">
+                <span>Nowości</span>
+            </h2>
+            @foreach (var item in Model.NewProducts)
+            {
+                @Html.Partial("_ProductList", item)
+            }
+            </div>
+        <div class="col-md-12 col-xs-12" id="products">
+            <h2 class="section-tittle">
+                <span>Okazje</span>
+            </h2>
+            @foreach (var item in Model.SaleProducts)
+            {
+                @Html.Partial("_ProductList", item)
+            }
+        </div>
+        </div>
 
 
 

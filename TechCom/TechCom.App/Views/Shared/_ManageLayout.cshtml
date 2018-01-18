@@ -24,7 +24,7 @@
     <div class="header-bot">
         <div class="header-bot_inner_wthreeinfo_header_mid">
             <div class="col-md-4 logo_agile">
-                <h1><a href="@Url.Action("Index","Home")"><span>T</span>ech Com </a></h1>
+                <h1><a href="@Url.Action("Index","Home")"><span>T</span>ech .Com </a></h1>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -46,7 +46,7 @@
                      
                         <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav menu__list">
-                                <li class="menu__item"><a class="menu__link" href="@Url.Action("Index","Manage")">Twoje konto</a></li>
+                                <li class="menu__item "><a class="menu__link" href="@Url.Action("Index","Manage")">Twoje konto</a></li>
                                 <li class="menu__item "><a class="menu__link" href="@Url.Action("ListOfOrder","Manage")">Lista zamówień</a></li>
                                     @if (@User.IsInRole("Admin"))
                                     {
@@ -75,14 +75,14 @@
         <p>&copy 2017/2018 TechCom. Design by <span id="name">  Jakub Kubala</span></p>
 
     </footer>
-
-
+ 
    
-
+  
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
   
     @RenderSection("scripts", required: false)
+   
 </body>
 </html>
